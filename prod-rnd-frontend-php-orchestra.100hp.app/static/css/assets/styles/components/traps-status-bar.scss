@@ -1,0 +1,125 @@
+.status-bar {
+  position: relative;
+  z-index: 4;
+  background: $dark-blue;
+  height: 60px;
+  @apply flex justify-between min-w-[510px] rounded-2xl py-2 px-4;
+
+  @screen mobile {
+    @apply min-w-0 w-full;
+  }
+
+  &__icon {
+    @apply flex place-items-center;
+  }
+
+  &__status {
+    @apply flex items-center gap-x-2;
+  }
+
+  &__status-content {
+    @apply flex flex-col items-start justify-center;
+  }
+
+  &__status-title {
+    @apply text-xs green-text font-medium leading-4 whitespace-nowrap mr-1;
+    font-family: 'FS Elliot Pro', serif;
+  }
+
+  &__status-text {
+    line-height: 10px;
+  }
+
+  &__status-text-amount {
+    @apply text-sm font-bold main-light-text leading-4;
+    font-family: 'FS Elliot Pro', serif;
+  }
+
+  &__status-text-currency {
+    @apply text-sm font-medium lightWhite-text leading-4;
+    font-family: 'FS Elliot Pro', serif;
+  }
+
+  &__select-traps {
+    @apply px-4 py-3 bg-[#0A0F1E] rounded-lg flex-initial sm:max-w-[125px] max-w-[225px] basis-2/3 h-11;
+  }
+}
+
+.select-traps {
+  @apply flex items-center justify-between;
+
+  &__content {
+    @apply flex flex-col content-center items-center w-20 flex-none sm:w-12;
+  }
+
+  &__traps_amount {
+    font-family: 'Halvar Breit Md', sans-serif;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 500;
+    color: $main-light;
+  }
+
+  &__title {
+    font-family: FS Elliot Pro, serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    color: #97a3cb;
+  }
+
+  &__arrow-icon {
+    @apply fill-[#97A3CB] w-3 h-5;
+
+    &_prev {
+      @apply origin-center rotate-180;
+    }
+
+    &_next {
+    }
+
+    &_disabled {
+    }
+  }
+}
+
+.multiplier-list {
+  @apply flex items-center gap-x-2 overflow-hidden border-l-2 border-[#2A3145] pl-2 flex-initial w-72;
+
+  position: relative;
+
+  @screen mobile {
+    @apply w-40;
+  }
+
+  &::before {
+    @apply z-[3] w-5 absolute right-0;
+    content: '';
+    height: calc(100% + 4px);
+    background: linear-gradient(
+      270deg,
+      #151b2e 11.77%,
+      rgba(10, 15, 29, 0) 50%
+    );
+  }
+
+  &-inner {
+    @apply flex items-center gap-x-2 overflow-visible;
+  }
+
+  &__item {
+    @apply rounded-lg bg-[#1D2439] px-2 py-1;
+    min-width: 55px;
+    height: 32px;
+    text-align: center;
+
+    &-text {
+      font-family: FS Elliot Pro, serif;
+      @apply text-sm font-black leading-4 text-center text-white opacity-30;
+
+      &_active {
+        @apply opacity-100;
+      }
+    }
+  }
+}

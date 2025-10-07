@@ -1,0 +1,33 @@
+#casino[data-v-3b0707f0] {
+    background: #090f1f;
+    display: flex;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none
+}
+
+#casino .aside[data-v-3b0707f0] {
+    position: sticky;
+    top: 62px;
+    flex: none;
+    margin: 15px 0 15px 15px;
+    width: 270px;
+    height: calc(100vh - 77px)
+}
+
+#casino .aside.no-scroll[data-v-3b0707f0] {
+    height: calc(100vh - 129px);
+    margin-bottom: 0
+}
+
+#casino .main[data-v-3b0707f0] {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 15px 0 0 15px
+}
+
+#casino .main.allow-fullscreen[data-v-3b0707f0] {
+    overflow: initial
+}

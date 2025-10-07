@@ -1,0 +1,17 @@
+{
+  "name": "КАВЕМИНЫ - Игра в мины",
+  "short_name": "КАВЕМИНЫ",
+  "start_url": "/mines/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#1a1a2e",
+  "description": "Игра в мины с реальными ставками. Найди все безопасные ячейки и выиграй!",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "/static/media/cells-mask.1a7021b147b7851ffef6.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

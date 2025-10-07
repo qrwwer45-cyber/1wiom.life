@@ -1,0 +1,77 @@
+@import "./bg-small-lights";
+
+.cells-board-wrapper {
+    @apply mt-[29px] mb-[40px] relative;
+    &::after {
+        @apply -right-[140px] top-[25px] w-[82px] h-[128px] absolute;
+        content: '';
+        background-image: url('../../../img/mines/crack1.svg');
+        background-size: 82px 128px;
+    }
+    &::before {
+        @apply -left-[125px] top-[140px] w-[68px] h-[201px] absolute;
+        content: '';
+        background-image: url('../../../img/mines/crack2.svg');
+        background-size: 68px 201px;
+    }
+    @screen mobile {
+        margin: 50px 0 22px;
+        &::after {
+            @include lights;
+            left: 275px;
+            top: 310px;
+            transform: scale(1, -1);
+        }
+        &::before {
+            @include lights;
+            left: -22px;
+            top: -22px;
+            transform: rotate(-0.15turn);
+        } 
+      }    
+}
+
+.cells-board {
+    @apply p-[10px] grid overflow-hidden;
+    grid-template-columns: repeat(5, 66px);
+    grid-template-rows: repeat(5, 66px);
+    background-color: $default-bg-dark-blue;
+    border-radius: 25px;
+    box-shadow: 0px -2px 20px rgba(42, 49, 69, 0.4), 0px 4px 54px rgba(42, 49, 69, 0.2);
+    background-image: url('../../../img/mines/cellsFrame.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+
+    .cell  {
+    @apply flex justify-center items-center; 
+    z-index: 1;
+    }
+    .cell-hovered {
+        &:hover {
+            svg {
+            width: 62px;
+            height: 62px;
+            transition: all 0.3s;
+            }
+        }
+    }
+}
+
+.cells-board-mask {
+    @apply top-[15px] left-[15px] w-[320px] h-[320px] absolute;
+    -webkit-mask-image: url('../../../img/mines/utils/cells-mask.svg');
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-clip: border-box;
+    mask-image: url('../../../img/mines/utils/cells-mask.svg');
+    mask-size: 100% 100%;
+    mask-clip: border-box;
+    z-index: 2;
+
+    .animated-highlight {
+        @apply h-[74px] w-[610px] right-[170px] top-[50px] absolute;
+        transform: rotate(-60deg);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 98.37%, rgba(255, 255, 255, 0) 100%);
+        z-index: 3;
+    }
+}

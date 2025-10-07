@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'utils/reset';
+@import 'utils/fonts';
+@import 'utils/variables';
+
+@import 'components/game-controls';
+@import 'components/traps-status-bar';
+@import 'components/roulette';
+@import 'components/coin';
+@import 'components/double';
+@import 'components/mines/mines';
+@import 'components/app-bet-panel.scss';
+@import 'components/coin-animation';
+@import 'components/btns';
+@import 'components/user';
+@import 'components/colors';
+@import 'components/modals';
+@import 'components/history';
+@import 'components/carousel';
+@import 'components/mines/cells-board';
+@import 'components/tower/tower';
+@import 'components/dropdown.scss';
+@import 'components/predictor/predictor';
+
+@import url('/src/assets/fonts/halvar-breit/stylesheet.css');
+@import url('/src/assets/fonts/sf-pro-display/stylesheet.css');
+
+body {
+  background: #0a0f1e;
+  font-family: 'Halvar Breit Blk', sans-serif;
+  font-weight: 700;
+  margin: 0;
+}
+
+html,
+body {
+}
+
+.app-wrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin: unset !important;
+  overflow: hidden;
+  &.mb {
+    flex-direction: column;
+  }
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+.game-config {
+  border-radius: 16px;
+  @screen laptop {
+    padding: 15px;
+  }
+  @screen mobile {
+    padding: 8px;
+  }
+}
+
+.game__content {
+  position: relative;
+  padding: 15px 0;
+  min-height: 100vh;
+  width: calc(100% - $aside-history-width);
+  border-radius: 15px;
+  @screen laptop {
+    width: auto;
+    min-height: 0;
+  }
+}
+
+.game-right-sidebar {
+  position: relative;
+  border-radius: 8px;
+  min-width: $aside-history-width;
+  background: #101224;
+  height: 100vh;
+  @screen laptop {
+    height: 60vh;
+  }
+}
+
+.loader {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.base-input {
+  background: #0a0d2c;
+  border-radius: 8px;
+}
+
+.Toastify__toast-theme--light {
+  background: #252339 !important;
+  box-shadow: 0 8px 20px #333333 !important;
+}
+
+.Toastify__close-button > svg {
+  fill: white !important;
+}
+
+.Toastify__progress-bar-theme--light {
+  background: #24abf8 !important;
+  border: 1px solid #000000 !important;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) !important;
+}
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  height: 100vh;
+  width: 100vw;
+  background-color: #0a0f1e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    width: 140px;
+  }
+}
+
+.jackpot-palace-logo {
+  font-family: sans-serif;
+  font-size: 28px;
+  color: #ffffff;
+  text-shadow: #000000 1px 0 3px;
+}

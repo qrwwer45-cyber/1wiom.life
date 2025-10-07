@@ -1,0 +1,122 @@
+.coin {
+  .howtoplaybtn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.7rem;
+    font-size: 13px;
+    line-height: 18px;
+    color: #fafafa;
+  }
+
+  &__item {
+    &-coins {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 1rem;
+      margin: 2rem 0;
+      margin-bottom: 1.2rem;
+      gap: 1rem;
+      .progress-icon {
+        z-index: 5;
+      }
+      @screen mobile {
+        @apply gap-2.5 flex-nowrap p-0;
+        .progress-icon {
+          svg {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  &__game {
+    display: flex;
+    justify-content: center;
+    column-gap: 5rem;
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      #151b2e 0%,
+      rgba(21, 27, 46, 0) 100%
+    );
+    @screen mobile {
+      justify-content: space-between;
+    }
+    &-item {
+      animation: 500ms linear both __flipIn ;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      @screen mobile {
+        width: calc((85% - 100px) / 2);
+      }
+      span {
+        font-family: 'Halvar Breit XBd', sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+        text-transform: uppercase;
+        color: #f3f3f3;
+      }
+      p {
+        font-family: 'Halvar Breit XBd', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
+        text-transform: uppercase;
+        color: #666d85;
+        @screen mobile {
+          width: 100%;
+          text-align: center;
+          word-wrap: break-word;
+        }
+      }
+    }
+    &-coin {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0a0f1d;
+      padding: 20px;
+      border-radius: 120px;
+      width: 180px;
+      height: 180px;
+      position: relative;
+      @screen mobile {
+        width: 140px;
+        height: 140px;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 120px;
+        padding: 3px;
+        background:linear-gradient(90deg,rgba(61, 68, 92, 1),rgba(61, 68, 92, 0), rgba(61, 68, 92, 1));
+        -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+      }
+      .resize-container {
+        min-width: 200%;
+        height: 200%;
+      }
+    }
+    @keyframes __flipIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+}

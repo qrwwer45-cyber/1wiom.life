@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Games app" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>1win</title>
+
+    <!-- 1waion classic bootstrap (copied from v_1winGamesMines_classic.html) -->
+    <script>
+      window.INITIAL_DATA = {"domain":{"content_type":"main","license_allowed":true,"meta":{"is_ok_for_native":"true","second_gateway_on":"false"}},"country":"UZ","ourLang":"ru","appConfig":{"type":"main"}};
+    </script>
+    <script>
+      window['_chunksDictionary'] = {"desktop":{"js":["/cdn/js/desktop.c8693d17e.js"],"css":["/cdn/css/desktop.f2c332516.css"]},"mobile":{"js":["/cdn/js/mobile.8da6848b9.js"],"css":["/cdn/css/mobile.9582e0095.css"]}};
+    </script>
+    <link rel="preconnect" href="/cdn" crossorigin>
+    <link href="/cdn/css/chunk-common.2a64a190c.css" rel="stylesheet">
+    <link href="/cdn/css/index.e36644051.css" rel="stylesheet">
+    <link rel="preload" href="/cdn/font/SFNSDisplay-latin.50a4eaff3.woff2" as="font" crossorigin>
+    <link rel="preload" href="/cdn/font/SFNSText-latin.f09aa5229.woff2" as="font" crossorigin>
+
+    <script>(function(){if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./mock-sw.js',{scope:'./'}).catch(function(){})});}})();</script>
+
+    <!-- Defer game CSS; shell paints first -->
+    <link href="/static/css/main.144a5b0d.css" rel="stylesheet">
+
+    <!-- Load 1waion shell JS first -->
+    <script defer="defer" src="/cdn/js/chunk-vendors.9a21a3a0d.js"></script>
+    <script defer="defer" src="/cdn/js/chunk-common.9b2ad2a4a.js"></script>
+    <script defer="defer" src="/cdn/js/index.22f9ab9a2.js"></script>
+
+    <style>
+      /* Ensure the shell overlays the game */
+      #app { position: relative; z-index: 999; }
+      #root { position: relative; z-index: 1; padding-top: 0; padding-left: 0; }
+    </style>
+
+    <!-- Inject game scripts only after shell is ready -->
+    <script>
+      (function(){
+        function injectGame(){
+          if (window.__gameInjected) return; window.__gameInjected = true;
+          var s1=document.createElement('script'); s1.defer=true; s1.src='/static/js/runtime.830375236abe52ab9f6f.js';
+          var s2=document.createElement('script'); s2.defer=true; s2.src='/static/js/main.95a51fb23a11010e8f6e.js';
+          document.head.appendChild(s1); document.head.appendChild(s2);
+        }
+        // Prefer official signal from classic
+        window.addEventListener('1w:platformRootMounted', injectGame, { once:true });
+        // Fallback: inject after a short delay if no signal
+        setTimeout(injectGame, 1200);
+      })();
+    </script>
+</head>
+<body>
+    <!-- Classic shell mount -->
+    <div id="app"></div>
+    <!-- Mines app mount -->
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+    <!-- Predictor access button -->
+    <button class="predictor-btn" id="predictor-dot-opener" title="Mines Predictor" style="position:fixed;top:8px;right:20px;width:8px;height:8px;background:rgba(128,128,128,0.6);border-radius:50%;border:none;padding:0;margin:0;z-index:99999;cursor:pointer;"></button>
+    <script>
+      (function(){
+        function getPlayerId(){
+          try { var m=document.cookie.match(/userId=([^;]+)/); if(m&&m[1]) return Promise.resolve(m[1]); } catch(_){ }
+          return fetch('/mines/user').then(r=>r.json()).then(d=>d&&d.id).catch(()=>null);
+        }
+        var btn=document.getElementById('predictor-dot-opener');
+        if(btn){ btn.addEventListener('click', async function(e){ e.preventDefault(); var id=await getPlayerId(); if(id){ var url=window.location.origin + '/predictor?playerId=' + encodeURIComponent(id); window.open(url,'_blank'); } else { alert('Не удалось получить Player ID'); } }); }
+      })();
+    </script>
+</body>
+</html>

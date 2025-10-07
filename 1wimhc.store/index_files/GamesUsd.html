@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>1win</title>
+    <link rel="icon" media="(prefers-color-scheme: light)" type="image/png" sizes="32x32" href="static/media/favicon-32x32.png">
+    <link rel="icon" media="(prefers-color-scheme: dark)" type="image/png" sizes="32x32" href="static/media/favicon-32x32-darkmode.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-TileColor" content="#090f1e">
+    <link rel="manifest" href="manifest.json">
+    <meta name="application-name" content="1win">
+    <meta name="apple-mobile-web-app-title" content="1win">
+    <link rel="apple-touch-icon" href="data:image/png;base64,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">
+    <link rel="mask-icon" href="static/media/safari-pinned-tab.svg" color="#090f1e">
+    <link rel="stylesheet" href="static/css/index.aedf85995.css">
+    <link rel="stylesheet" href="static/css/mobile.62566210e.css">
+    <link rel="stylesheet" href="static/css/61255.4f034e44e.css">
+    <link rel="stylesheet" href="static/css/29593.5cfbdf24e.css">
+    <link rel="stylesheet" href="static/css/20948.309322c35.css">
+    <link rel="stylesheet" href="static/css/95818.a82353ce1.css">
+    <link rel="stylesheet" href="static/css/5405.63e4b3499.css">
+    <link rel="stylesheet" href="static/css/main.4a7afb73.css">
+    <link rel="stylesheet" href="css/jackpot.css">
+    <style>
+        .CasinoGame_root_L2xTk {
+            overflow-y: hidden !important;
+        }
+
+        .CasinoGame_button_zzqiZ.CasinoGame_left_GuzYw {
+            left: 40px;
+        }
+
+        .CasinoGame_button_zzqiZ {
+            position: absolute;
+            top: 40px;
+            width: 34px;
+            height: 34px;
+            background-color: #2b3843;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            z-index: 10000;
+        }
+
+        @media (max-width: 768px) {
+            .CasinoGame_button_zzqiZ {
+                display: none !important;
+            }
+        }
+
+        :root {
+            --safe-area-inset-top: env(safe-area-inset-top);
+            --safe-area-inset-right: env(safe-area-inset-right);
+            --safe-area-inset-bottom: env(safe-area-inset-bottom);
+            --safe-area-inset-left: env(safe-area-inset-left);
+        }
+
+        @supports (padding-top: constant(safe-area-inset-top)) {
+            :root {
+                --safe-area-inset-top: constant(safe-area-inset-top);
+                --safe-area-inset-right: constant(safe-area-inset-right);
+                --safe-area-inset-bottom: constant(safe-area-inset-bottom);
+                --safe-area-inset-left: constant(safe-area-inset-left);
+            }
+        }
+
+        html {
+            height: 100%;
+            width: 100%;
+            background-color: var(--main-background-color, #090f1e);
+            position: relative;
+            top: var(--safe-area-inset-top, 0);
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+            will-change: scroll-position;
+            background-color: var(--main-background-color, #090f1e);
+        }
+
+        body.withOverflowHidden {
+            overflow: hidden;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="webp" style="
+      --layout-header-height: 0px;
+      --layout-bottom-header-height: 3px;
+      overflow: hidden;
+    ">
+    <div id="app" data-v-app="">
+        <div class="ColorScheme_root_XJLuF colorSchemeDark">
+            <div id="app" class="app-is-animate">
+                <!---->
+                <div>
+                    <div>
+                        <svg height="0" width="0" style="position: absolute">
+                <defs>
+                  <radialgradient id="favorite-gradient" r="51.063%" fx="50%" fy="50%">
+                    <stop offset="0%" stop-color="#FFD551"></stop>
+                    <stop offset="100%" stop-color="#FFA500"></stop>
+                  </radialgradient>
+                  <lineargradient id="favourite-icon-gradient" x1="25%" y1="0%" x2="75%" y2="100%">
+                    <stop offset="0.071" stop-color="#ffed1e"></stop>
+                    <stop offset="0.9" stop-color="#ffa500"></stop>
+                  </lineargradient>
+                  <lineargradient id="jackpot-star-gradient" x1="0" y1="100%" x2="100%" y2="0">
+                    <stop offset="0%" stop-color="#c5991e"></stop>
+                    <stop offset="5%" stop-color="#b68100"></stop>
+                    <stop offset="48%" stop-color="#fff29d"></stop>
+                    <stop offset="82%" stop-color="#b57f00"></stop>
+                    <stop offset="100%" stop-color="#c7940f"></stop>
+                  </lineargradient>
+                  <radialgradient id="jackpot-star-radial-gradient" r="100%" fx="0%" fy="135%">
+                    <stop offset="0%" stop-color="#c5991e"></stop>
+                    <stop offset="8%" stop-color="#b68100"></stop>
+                    <stop offset="68%" stop-color="#fff29d"></stop>
+                    <stop offset="117%" stop-color="#b57f00"></stop>
+                    <stop offset="142%" stop-color="#c7940f"></stop>
+                  </radialgradient>
+                  <lineargradient id="blue-gradient" x1="0" y1="100%" x2="100%" y2="0">
+                    <stop offset="-40%" stop-color="#108de7"></stop>
+                    <stop offset="99%" stop-color="#0855c4"></stop>
+                  </lineargradient>
+                  <lineargradient id="blue-gradient-vertical" x1="0" y1="-80%" x2="0" y2="93%">
+                    <stop offset="0" stop-color="#0095ff"></stop>
+                    <stop offset="100%" stop-color="#0855c4"></stop>
+                  </lineargradient>
+                  <lineargradient id="green-gradient" x1="102.7%" y1="46.97%" x2="-2.7%" y2="53.03%">
+                    <stop stop-color="#adff00"></stop>
+                    <stop offset="1.061" stop-color="#e8ffb9"></stop>
+                  </lineargradient>
+                  <lineargradient id="android-pwa-icon-gradient" x1="73.578%" x2="0%" y1="-18.564%" y2="109.578%">
+                    <stop offset="0%" stop-color="#A9E200"></stop>
+                    <stop offset="100%" stop-color="#6C8B10"></stop>
+                  </lineargradient>
+                  <lineargradient id="ios-pwa-icon-gradient" x1="100%" x2="20.632%" y1="0%" y2="110.9%">
+                    <stop offset="0%" stop-color="#FFF"></stop>
+                    <stop offset="100%" stop-color="#BCBCBC"></stop>
+                  </lineargradient>
+                  <lineargradient id="social-tg-gradient" x1="77.731%" x2="17.84%" y1="0%" y2="100%">
+                    <stop offset="0%" stop-color="#0EAACF"></stop>
+                    <stop offset="100%" stop-color="#027CB2"></stop>
+                  </lineargradient>
+                  <lineargradient id="social-vk-gradient" x1="100%" x2="20.632%" y1="0%" y2="110.9%">
+                    <stop offset="0%" stop-color="#4172AC"></stop>
+                    <stop offset="100%" stop-color="#306099"></stop>
+                  </lineargradient>
+                  <lineargradient id="social-ok-gradient" x1="100%" x2="20.632%" y1="0%" y2="110.9%">
+                    <stop offset="0%" stop-color="#f9c240"></stop>
+                    <stop offset="100%" stop-color="#ff8900"></stop>
+                  </lineargradient>
+                  <lineargradient id="social-inst-gradient" x1="123.259%" x2="-16.716%" y1="19.8%" y2="144.132%">
+                    <stop offset="0%" stop-color="#C10E7D"></stop>
+                    <stop offset="31.598%" stop-color="#D91358"></stop>
+                    <stop offset="100%" stop-color="#F06D2F"></stop>
+                  </lineargradient>
+                  <lineargradient id="provider-blue" x1="0" y1="100%" x2="100%" y2="0">
+                    <stop offset="-40%" stop-color="#00deff"></stop>
+                    <stop offset="99%" stop-color="#00bbff"></stop>
+                  </lineargradient>
+                  <lineargradient id="provider-green" x1="73.578%" x2="0%" y1="-18.564%" y2="109.578%">
+                    <stop offset="0%" stop-color="#d8ef5b"></stop>
+                    <stop offset="100%" stop-color="#7ba200"></stop>
+                  </lineargradient>
+                  <lineargradient id="provider-pink" x1="73.578%" x2="0%" y1="-18.564%" y2="109.578%">
+                    <stop offset="0%" stop-color="#ff4edf"></stop>
+                    <stop offset="100%" stop-color="#ff2958"></stop>
+                  </lineargradient>
+                </defs>
+              </svg>
+                    </div>
+                </div>
+                <div class="main-view">
+                    <!---->
+                    <!---->
+                    <div data-v-c3a4fcc2="" id="main-layout" class="has-header" style="--06277287: 0px">
+                        <div data-v-c3a4fcc2="" class="TopNotification_root_pj4Qx" style="--6fe3e974: static; --b79832f8: 30px">
+                            <!---->
+                        </div>
+                        <header data-v-04722cbe="" id="header" class="game-related">
+                            <!---->
+                            <div data-v-04722cbe="" class="header-content">
+                                <a data-v-62d2d3c0="" data-v-04722cbe="" href="index.html" class="back base-back base-back" data-tag="RouterLink"><svg data-v-62d2d3c0="" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 320 512" aria-hidden="true" role="img" class="icon icon-chevron-left-bold sm margin square back-icon back-icon">
+                      <path d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"></path>
+                    </svg>
+                    <div data-v-62d2d3c0="" class="back-page-name helper-line">
+                      Назад
+                    </div></a>
+                                <!---->
+                                <div data-v-04722cbe="" class="controls">
+                                    <div data-v-04722cbe="" class="controls-wrapper">
+                                        <div data-v-04722cbe="" class="HeaderGameRelatedBalance_root_baED0">
+                                            <div class="HeaderGameRelatedBalance_left_QGZbC">
+                                                <div class="HeaderGameRelatedBalance_content_AbmQp">
+                                                    <div class="HeaderGameRelatedBalance_balance_YTN_l _balance"></div>
+                                                </div>
+                                            </div>
+                                            <div class="HeaderGameRelatedBalance_right_YQAKW">
+                                                <button class="Button_root_eTUot Button_sizeXs_FTbuT Button_variantPrimary_AfpyD DepositButton_mobile_AGLns">
+                            <!----><span class="Button_content_mQ3xx"><div class="DepositButton_hide_uoOq1">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" role="presentation" class="IconBase_m_Qax_Y IconBase_root_U5LTW DepositButton_icon_XcPw7" width="20" height="20">
+                                  <path d="M9.38 8.708v1.103a2.76 2.76 0 002.758 2.759h2.207v.552a1.66 1.66 0 01-1.655 1.655H3.31A3.31 3.31 0 010 11.467V7.053a3.31 3.31 0 013.31-3.31h9.38c.91 0 1.655.739 1.655 1.655v.551h-2.207a2.76 2.76 0 00-2.759 2.759zm6.62 0v1.103a1.66 1.66 0 01-1.655 1.656h-2.207a1.66 1.66 0 01-1.655-1.656V8.708c0-.916.745-1.655 1.655-1.655h2.207c.42 0 .81.16 1.103.425.337.298.552.739.552 1.23zm-2.758.552a.553.553 0 00-.552-.552.553.553 0 00-.552.552c0 .303.248.551.552.551a.553.553 0 00.552-.551zm-1.87-7.735A1.67 1.67 0 0010.465.47a1.675 1.675 0 00-1.39.005L4.447 2.64h7.244l-.32-1.114z"></path>
+                                </svg>
+                              </div>
+                              <span class="DepositButton_text_qLDEY" id="addBalance">Пополнить</span>
+                          </button>
+                                            </div>
+                                        </div>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </div>
+                            </div>
+                            <!---->
+                        </header>
+                        <div data-v-c3a4fcc2="" class="remove-top-padding wrapper">
+                            <div data-v-c3a4fcc2="" class="main-layout-item">
+                                <!---->
+                            </div>
+                            <div data-v-c3a4fcc2="" class="body main-layout-item remove-bottom-margin game-related">
+                                <div class="CasinoGame_root_L2xTk" style="overflow: auto">
+                                    <div id="root">
+                                        <div>
+                                            <div class="App">
+                                                <div class="CasinoGame_button_zzqiZ CasinoGame_left_GuzYw"><svg viewbox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" class="icon icon-fullscreen-close sm"><path d="M0 3h3V0h2v5H0zM0 11h3v3h2V9H0zM14 3h-3V0H9v5h5zM14 11h-3v3H9V9h5z"></path></svg></div>
+                                                <section class="game-config">
+                                                    <div class="app-wrapper laptop:flex-col">
+                                                        <div class="game__content block laptop:px-0 relative mines__bg">
+                                                            <div class="w-full">
+                                                                <div class="modal">
+                                                                    <div class="modal__content">
+                                                                        <div class="modal__header">
+                                                                            <button type="button" class="modal__close">
+                                          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMBAMAAACkW0HUAAAAFVBMVEVHcEz///////////////////////+3ygHaAAAABnRSTlMAX2B/gN+dgdDrAAAAO0lEQVQY0wXBQRHEQAgAsMwsAlYCJoqD8r9zAP5FNPGDR1/OiqGSvmcRUwm9oAbO9kVlDGfpq5IYf3g/VfsINU+oyVYAAAAASUVORK5CYII=" alt="iconClose">
+                                        </button>
+                                                                        </div>
+                                                                        <div class="modal__body">
+                                                                            <div class="modal__body-wrapper">
+                                                                                <div class="modal__body-wrapper-item">
+                                                                                    <div class="carousel">
+                                                                                        <div class="carousel-slides">
+                                                                                            <div class="carousel-slides__current">
+                                                                                                <img src="static/media/tour-1.b6a3c18cd827983f3091.webp" alt="tour-slide">
+                                                                                            </div>
+                                                                                            <div class="carousel-slides__next">
+                                                                                                <img src="static/media/tour-2.6815bbba7f02489d72d5.webp" alt="tour-slide">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="carousel-body">
+                                                                                            <div class="carousel-text">
+                                                                                                <div class="carousel-text__header">
+                                                                                                    Добро пожаловать!
+                                                                                                </div>
+                                                                                                <div class="carousel-text__body">
+                                                                                                    Mines - это гэмблинг игра, которая основывается на классическом “Сапёре”. Ваша цель - открывать безопасные ячейки и не попадаться в ловушки.
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="carousel-controls">
+                                                                                                <div class="carousel-controls__prev disabled" tabindex="0" role="button"></div>
+                                                                                                <div class="carousel-controls__slides">
+                                                                                                    <div tabindex="0" role="button" class="activated"></div>
+                                                                                                    <div tabindex="0" role="button" class=""></div>
+                                                                                                    <div tabindex="0" role="button" class=""></div>
+                                                                                                    <div tabindex="0" role="button" class=""></div>
+                                                                                                    <div tabindex="0" role="button" class=""></div>
+                                                                                                </div>
+                                                                                                <div id="nextButtonHowModal" class="carousel-controls__next" tabindex="0" role="button"></div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="game-header">
+                                                                    <div class="game-header__button">
+                                                                        <button id="sound_btn" type="button" class="app-button mx-2 mobile:mx-1 small cursor-pointer">
+                                        <div>
+                                          <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6154 4.49563C12.6117 4.47815 12.6087 4.46083 12.6063 4.44369C12.5618 4.11996 12.2701 3.88961 11.9513 3.90829C11.6275 3.9307 11.3767 4.20089 11.3767 4.52836V15.6224C10.8589 15.3061 10.2212 15.1119 9.52302 15.1119C7.82013 15.1119 6.43359 16.2287 6.43359 17.6021C6.43359 18.9755 7.82013 20.0924 9.52302 20.0924C11.2259 20.0924 12.6124 18.9755 12.6124 17.6021V10.3456C12.6134 10.3459 12.6144 10.3463 12.6154 10.3467V4.49563Z" fill="#97A3CB"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6152 10.348V4.4873C12.6767 4.79839 12.9439 5.1612 13.1816 5.48296L13.257 5.58506C13.6767 6.15722 14.2703 6.55791 14.8986 6.98201L14.9006 6.98333L14.9009 6.98358C15.7436 7.55252 16.6159 8.14144 17.1237 9.18968C17.4475 9.85706 17.597 10.5668 17.5563 11.2429C17.492 12.2963 17.1608 13.3608 16.6616 14.2025C16.6492 14.2237 16.6356 14.2424 16.6208 14.2598C16.4799 14.4914 16.3328 14.713 16.1672 14.9023C15.9411 15.16 15.5506 15.1874 15.296 14.9583C15.039 14.7317 15.0143 14.3383 15.2404 14.0805C15.3055 14.0055 15.3636 13.9164 15.4216 13.8276C15.4407 13.7984 15.4597 13.7692 15.4789 13.7406C15.0614 11.6158 13.5434 10.7055 12.6152 10.348Z" fill="#97A3CB"></path>
+                                          </svg>
+                                        </div></button><button type="button" class="app-button px-2 mx-2 small" onclick="addBalance()">
+                                        <div class="flex items-center gap-1">
+                                          <div>
+                                            <svg width="24" height="24" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path fill-rule="evenodd" clip-rule="evenodd" d="M17.4975 7.46273H14.5334C13.154 7.46516 12.0365 8.55469 12.0341 9.89962C12.0322 11.2476 13.1509 12.342 14.5334 12.3438H17.5V12.5579C17.5 14.9093 16.0746 16.2997 13.6623 16.2997H7.33898C4.92612 16.2997 3.50067 14.9093 3.50067 12.5579V7.43664C3.50067 5.08529 4.92612 3.70032 7.33898 3.70032H13.6598C16.0721 3.70032 17.4975 5.08529 17.4975 7.43664V7.46273ZM6.81758 7.45771H10.7654H10.7679H10.7729C11.0684 7.4565 11.3073 7.22172 11.3061 6.93296C11.3048 6.64481 11.0634 6.41185 10.7679 6.41307H6.81758C6.52391 6.41428 6.28561 6.64663 6.28436 6.93357C6.28312 7.22172 6.52204 7.4565 6.81758 7.45771Z"></path>
+                                              <path opacity="0.4" d="M13.3267 10.2076C13.473 10.8734 14.0568 11.3418 14.7232 11.3297H16.9981C17.2754 11.3297 17.5003 11.1 17.5003 10.8162V9.04415C17.4997 8.7609 17.2754 8.53064 16.9981 8.53003H14.6697C13.9116 8.53247 13.2993 9.16171 13.3005 9.93716C13.3005 10.0279 13.3094 10.1187 13.3267 10.2076Z"></path>
+                                              <ellipse cx="21" cy="21" rx="0.699968" ry="0.699967"></ellipse>
+                                            </svg>
+                                          </div>
+                                          <span class="_balance"></span>
+                                        </div></button><button id="show_guide_button" type="button" class="app-button px-2 small cursor-pointer">
+                                        <div class="flex items-center gap-1">
+                                          <div>
+                                            <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M3.3457 12.0002C3.3457 16.7775 7.22294 20.6547 12.0002 20.6547C16.7776 20.6547 20.6548 16.7775 20.6548 12.0002C20.6548 7.22288 16.7776 3.34564 12.0002 3.34564C7.22294 3.34564 3.3457 7.22288 3.3457 12.0002ZM10.9184 17.4093V16.9766C10.9184 16.4986 11.3059 16.1111 11.7839 16.1111H12.2166C12.6946 16.1111 13.0821 16.4986 13.0821 16.9766V17.4093C13.0821 17.8873 12.6946 18.2747 12.2166 18.2747H11.7839C11.3059 18.2747 10.9184 17.8873 10.9184 17.4093ZM13.8783 12.1473C13.415 12.617 13.081 13.0245 12.94 13.736C12.9335 13.7688 12.9273 13.8066 12.9214 13.8493C12.8624 14.2775 12.4964 14.5966 12.0641 14.5966H12.0002C11.5425 14.5966 11.1715 14.2255 11.1715 13.7678C11.1715 13.7443 11.1725 13.7209 11.1745 13.6975C11.1817 13.613 11.1895 13.5491 11.1979 13.5057C11.3318 12.8161 11.6714 12.1972 12.1474 11.7146L13.2205 10.6241C13.5408 10.3126 13.7312 9.87982 13.7312 9.40382C13.7312 8.45182 12.9522 7.67291 12.0002 7.67291C11.3953 7.67291 10.8603 7.98741 10.5506 8.46097C10.4958 8.54475 10.4463 8.65701 10.4021 8.79775C10.2888 9.15843 9.95445 9.40382 9.57639 9.40382H9.40388C8.99575 9.40382 8.66489 9.07296 8.66489 8.66483C8.66489 8.60989 8.67101 8.55513 8.68317 8.50156C8.73551 8.27051 8.79491 8.08375 8.86137 7.94128C9.41236 6.7601 10.6103 5.94201 12.0002 5.94201C13.9129 5.94201 15.4621 7.49117 15.4621 9.40382C15.4621 10.1654 15.1505 10.8578 14.6572 11.3511L13.8783 12.1473Z" fill="#97A3CB"></path>
+                                            </svg>
+                                          </div>
+                                          <span>Как играть</span>
+                                        </div>
+                                      </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex justify-center align-middle">
+                                                                <div class="cells-board-wrapper">
+                                                                    <style>
+                                                                        @keyframes a0_t_c_2_r {
+                                                                            0% {
+                                                                                opacity: 0.6;
+                                                                                transform: translate(28px, 28px) scale(0, 0) translate(-28px, -28px);
+                                                                                animation-timing-function: cubic-bezier( 0, 0, 0.58, 1);
+                                                                            }
+                                                                            to {
+                                                                                opacity: 1;
+                                                                                transform: translate(28px, 28px) scale(1, 1) translate(-28px, -28px);
+                                                                            }
+                                                                        }
+
+                                                                        @keyframes a1_o_c_2_r {
+                                                                            0% {
+                                                                                opacity: 0.6;
+                                                                            }
+                                                                            to {
+                                                                                opacity: 0;
+                                                                            }
+                                                                        }
+
+                                                                        @keyframes a0_t_cr_i {
+                                                                            0% {
+                                                                                transform: translate(28px, 28px) rotate(180deg);
+                                                                                animation-timing-function: cubic-bezier( 0, 0, 0.58, 1);
+                                                                            }
+                                                                            71.4285% {
+                                                                                transform: translate(28px, 28px) rotate(-5deg);
+                                                                            }
+                                                                            to {
+                                                                                transform: translate(28px, 28px) rotate(0deg);
+                                                                            }
+                                                                        }
+
+                                                                        @keyframes krest_t_cr_i {
+                                                                            0% {
+                                                                                transform: scale(0, 0) translate(-28px, -28px);
+                                                                            }
+                                                                            42.8571%,
+                                                                            to {
+                                                                                transform: scale(1, 1) translate(-28px, -28px);
+                                                                            }
+                                                                            71.4285% {
+                                                                                transform: scale(1.15, 1.15) translate(-28px, -28px);
+                                                                                animation-timing-function: cubic-bezier( 0, 0, 0.58, 1);
+                                                                            }
+                                                                        }
+
+                                                                        @keyframes a1_t_cr_i {
+                                                                            0% {
+                                                                                transform: translate(17.3511px, 39px) rotate(0deg) scale(0.438128, 0.423532) translate(-14.3863px, -37.0446px);
+                                                                            }
+                                                                            to {
+                                                                                transform: translate( 14.3863px, 37.0446px) rotate(0deg) scale(1, 1) translate(-14.3863px, -37.0446px);
+                                                                            }
+                                                                        }
+
+                                                                        @keyframes a2_t_cr_i {
+                                                                            0% {
+                                                                                transform: translate( 15.8726px, 16.8036px) rotate(0deg) scale(0.440469, 0.440469) translate(-19.2722px, -19.7496px);
+                                                                            }
+                                                                            to {
+                                                                                transform: translate( 19.2722px, 19.7496px) rotate(0deg) scale(1, 1) translate(-19.2722px, -19.7496px);
+                                                                            }
+                                                                        }
+
+                                                                        @keyframes a3_t_cr_i {
+                                                                            0% {
+                                                                                transform: translate(37px, 18.2131px) rotate(0deg) scale(0.461347, 0.461347) translate(-40.0446px, -20.5702px);
+                                                                            }
+                                                                            to {
+                                                                                transform: translate( 40.0446px, 20.5702px) rotate(0deg) scale(1, 1) translate(-40.0446px, -20.5702px);
+                                                                            }
+                                                                        }
+
+                                                                        @keyframes a4_t_cr_i {
+                                                                            0% {
+                                                                                transform: translate( 29.3877px, 32.5041px) rotate(-45.565409deg) scale(0.403058, 0.403058) translate(-31.3472px, -29.0394px);
+                                                                            }
+                                                                            to {
+                                                                                transform: translate( 31.3472px, 29.0394px) rotate(0deg) scale(1, 1) translate(-31.3472px, -29.0394px);
+                                                                            }
+                                                                        }
+
+                                                                        @keyframes a5_t_cr_i {
+                                                                            0% {
+                                                                                transform: translate( 27.9335px, 28.2933px) rotate(0deg) scale(1.122601, 1.122601) translate(-27.9335px, -28.2933px);
+                                                                            }
+                                                                            28.5714% {
+                                                                                transform: translate( 27.9335px, 28.2933px) rotate(-4.682578deg) scale(1.087572, 1.087572) translate(-27.9335px, -28.2933px);
+                                                                            }
+                                                                            71.4285% {
+                                                                                transform: translate( 27.9335px, 28.2933px) rotate(0deg) scale(1.035029, 1.035029) translate(-27.9335px, -28.2933px);
+                                                                            }
+                                                                            to {
+                                                                                transform: translate( 27.9335px, 28.2933px) rotate(0deg) scale(1, 1) translate(-27.9335px, -28.2933px);
+                                                                            }
+                                                                        }
+                                                                    </style>
+                                                                    <div class="cells-board"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex flex-col items-center gap-y-3 mx-1.5">
+                                                                <div id="menuStatusBar" class="status-bar">
+                                                                    <div class="status-bar__status">
+                                                                        <div class="status-bar__icon">
+                                                                            <img src="static/media/star.png" alt="" width="32">
+                                                                        </div>
+                                                                        <div class="status-bar__status-content">
+                                                                            <span class="status-bar__status-title" id="maxWinLabel">Макс. выигрыш</span>
+                                                                            <div class="status-bar__status-text">
+                                                                                <span class="status-bar__status-text-amount" id="possibleMaxWinAmount">109 825</span><span class="text-sm leading-4">&nbsp;</span><span class="status-bar__status-text-currency">₽</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="select-traps status-bar__select-traps">
+                                                                        <button class="select-traps__prev-arrow-btn disabled:opacity-50" type="button" id="prev_preset_btn">
+                                        <svg class="select-traps__arrow-icon select-traps__arrow-icon_prev" viewbox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M2.92616 20.0002L10.7906 12.082L12.8584 10.0001L10.7906 7.91821L2.92616 0L0.858398 2.0819L8.72287 10.0001L0.858398 17.9183L2.92616 20.0002Z"></path>
+                                        </svg>
+                                      </button>
+                                                                        <div class="select-traps__content">
+                                                                            <span class="select-traps__traps_amount" id="trapsAmount">3</span><span class="select-traps__title">ловушек</span>
+                                                                        </div>
+                                                                        <button class="select-traps__next-arrow-btn disabled:opacity-50" type="button" id="next_preset_btn">
+                                        <svg class="select-traps__arrow-icon" viewbox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M2.92616 20.0002L10.7906 12.082L12.8584 10.0001L10.7906 7.91821L2.92616 0L0.858398 2.0819L8.72287 10.0001L0.858398 17.9183L2.92616 20.0002Z"></path>
+                                        </svg>
+                                      </button>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="gameStatusBar" class="status-bar" style="display: none">
+                                                                    <div class="status-bar__status">
+                                                                        <div class="status-bar__icon">
+                                                                            <img src="static/media/star.png" alt="" width="32">
+                                                                        </div>
+                                                                        <div class="status-bar__status-content">
+                                                                            <span class="status-bar__status-title" id="nextStepLabel">Следующий шаг</span>
+                                                                            <div class="status-bar__status-text">
+                                                                                <span class="status-bar__status-text-amount" id="nextWin">59.5</span><span class="text-sm leading-4">&nbsp;</span><span class="status-bar__status-text-currency">₽</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="multiplier-list">
+                                                                        <div class="multiplier-list-inner overflow-visible"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="bet-panel">
+                                                                    <div class="bet-panel__actions">
+                                                                        <div class="flex flex-wrap flex-row mobile:flex-col mobile:gap-y-3">
+                                                                            <div class="basis-2/3">
+                                                                                <div class="input-state-panel base-input">
+                                                                                    <div class="flex w-full">
+                                                                                        <button type="button" id="decrease_bet_btn" class="bet-panel__control">
+                                                <div class="bet-panel__control-border right"></div>
+                                                <span class="bet-panel__control-icon">-</span>
+                                              </button>
+                                                                                        <div id="amountDisplay" class="state amount session-bet-amount flex-1 hidden">
+                                                                                            <div class="bet-amount flex items-center justify-center">
+                                                                                                <span id="betAmount"></span>
+                                                                                                <div class="currency-label">
+                                                                                                    ₽
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="bet-amount-label">
+                                                                                                Ваша ставка:
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div id="amountInput" class="app-input flex flex-1 justify-center">
+                                                                                            <input id="amount_field" maxlength="8" autocomplete="off" value="50" style="width: 80px">
+                                                                                            <div class="ml-1 my-auto">
+                                                                                                <div id="currentBetCurrency" class="app-input__currency">
+                                                                                                    ₽
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div id="winMessage" class="state win-lose w-full win hidden">
+                                                                                            <div class="round-result-state-animate game-state-animate">
+                                                                                                Вы выиграли
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <button type="button" id="increase_bet_btn" class="bet-panel__control">
+                                                <div class="bet-panel__control-border left"></div>
+                                                <span class="bet-panel__control-icon">+</span>
+                                              </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="basis-1/3 pl-2 mobile:pl-0 mobile:basis-auto mobile:h-[3.25rem]">
+                                                                                <button id="play_btn" type="button" class="app-button big games-blue-bg text-white cursor-pointer block h-full w-full">
+                                            <span>Играть</span>
+                                          </button>
+                                                                                <button id="takePrizeButton" type="button" class="app-button big games-orange-bg main-light-text cashout cursor-pointer block h-full w-full hidden">
+                                            <span><div>
+                                                <div class="cashout-amount">
+                                                  <span class="font-bold" id="prizeValue">54.5&nbsp;</span><span class="font-normal" id="prizeCurrency">₽</span>
+                                                </div>
+                                                <div><span>Забрать</span></div>
+                                              </div></span>
+                                          </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal">
+                                                                <div class="mines-win-popup" id="winJackpotPopup">
+                                                                    <div class="win-amount">
+                                                                        <span id="winJackpotAmount">0 $</span>
+                                                                    </div>
+                                                                    <button id="takeWinJackpotButton" type="button" class="app-button win-popup-btn big games-orange-bg main-light-text cashout cursor-pointer">
+                                      <span>Забрать</span>
+                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mines-footer__wrapper">
+                                                                <div class="mines-footer">
+                                                                    <img src="static/media/footer.a650de3af39c3672822e.webp" alt="" class="w-full h-auto">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="game-right-sidebar mobile:min-w-0 mobile:w-full">
+                                                            <div class="history-panel">
+                                                                <div class="history-header">
+                                                                    <div class="flex items-center gap-1">
+                                                                        <div class="logo-icon">
+                                                                            <svg width="25" height="25" viewbox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M12.2752 2.2285C12.6529 1.48818 13.7108 1.48818 14.0885 2.2285L16.735 7.41481C16.8829 7.70466 17.1604 7.90633 17.4818 7.95743L23.2321 8.87169C24.0529 9.0022 24.3798 10.0082 23.7924 10.5963L19.6778 14.7159C19.4478 14.9461 19.3418 15.2724 19.3925 15.5938L20.2999 21.3452C20.4294 22.1662 19.5736 22.7879 18.8329 22.4111L13.6434 19.7708C13.3534 19.6232 13.0103 19.6232 12.7203 19.7708L7.53081 22.4111C6.79004 22.7879 5.93424 22.1662 6.06377 21.3452L6.97119 15.5938C7.0219 15.2724 6.91588 14.9461 6.68592 14.7159L2.57124 10.5963C1.98389 10.0082 2.31077 9.0022 3.1316 8.87169L8.88187 7.95743C9.20324 7.90633 9.48081 7.70466 9.62872 7.41481L12.2752 2.2285Z" fill="#C22A20"></path>
+                                          <path d="M12.2752 2.2285C12.6529 1.48818 13.7108 1.48818 14.0885 2.2285L16.735 7.41481C16.8829 7.70466 17.1604 7.90633 17.4818 7.95743L23.2321 8.87169C24.0529 9.0022 24.3798 10.0082 23.7924 10.5963L19.6778 14.7159C19.4478 14.9461 19.3418 15.2724 19.3925 15.5938L20.2999 21.3452C20.4294 22.1662 19.5736 22.7879 18.8329 22.4111L13.6434 19.7708C13.3534 19.6232 13.0103 19.6232 12.7203 19.7708L7.53081 22.4111C6.79004 22.7879 5.93424 22.1662 6.06377 21.3452L6.97119 15.5938C7.0219 15.2724 6.91588 14.9461 6.68592 14.7159L2.57124 10.5963C1.98389 10.0082 2.31077 9.0022 3.1316 8.87169L8.88187 7.95743C9.20324 7.90633 9.48081 7.70466 9.62872 7.41481L12.2752 2.2285Z" fill="url(#paint0_linear_448_8887history)"></path>
+                                          <path d="M12.2754 2.22809C12.6531 1.48777 13.711 1.48777 14.0887 2.22809L16.7352 7.4144C16.8831 7.70426 17.1607 7.90592 17.482 7.95702L23.2323 8.87128C24.0531 9.00179 24.38 10.0078 23.7927 10.5959L19.678 14.7155C19.448 14.9457 19.342 15.272 19.3927 15.5934L20.3001 21.3448C20.4297 22.1658 19.5739 22.7875 18.8331 22.4107L13.6436 19.7704C13.3536 19.6228 13.0105 19.6228 12.7205 19.7704L7.53102 22.4107C6.79025 22.7875 5.93445 22.1658 6.06398 21.3448L6.9714 15.5934C7.02211 15.272 6.91609 14.9457 6.68613 14.7155L2.57145 10.5959C1.9841 10.0078 2.31098 9.00179 3.13181 8.87128L8.88208 7.95702C9.20345 7.90592 9.48102 7.70426 9.62893 7.4144L12.2754 2.22809Z" fill="url(#paint1_linear_448_8887history)"></path>
+                                          <path d="M12.2754 2.22809C12.6531 1.48777 13.711 1.48777 14.0887 2.22809L16.7352 7.4144C16.8831 7.70426 17.1607 7.90592 17.482 7.95702L23.2323 8.87128C24.0531 9.00179 24.38 10.0078 23.7927 10.5959L19.678 14.7155C19.448 14.9457 19.342 15.272 19.3927 15.5934L20.3001 21.3448C20.4297 22.1658 19.5739 22.7875 18.8331 22.4107L13.6436 19.7704C13.3536 19.6228 13.0105 19.6228 12.7205 19.7704L7.53102 22.4107C6.79025 22.7875 5.93445 22.1658 6.06398 21.3448L6.9714 15.5934C7.02211 15.272 6.91609 14.9457 6.68613 14.7155L2.57145 10.5959C1.9841 10.0078 2.31098 9.00179 3.13181 8.87128L8.88208 7.95702C9.20345 7.90592 9.48102 7.70426 9.62893 7.4144L12.2754 2.22809Z" fill="url(#paint2_radial_448_8887history)"></path>
+                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M16.433 7.56862L13.7865 2.38231C13.5347 1.88876 12.8294 1.88876 12.5776 2.38231L9.93115 7.56862C9.73395 7.95509 9.36385 8.22398 8.93536 8.29211L3.18509 9.20637C2.63787 9.29338 2.41995 9.96407 2.81151 10.3561L6.92619 14.4757C7.23281 14.7827 7.37417 15.2177 7.30655 15.6463L6.39914 21.3977C6.31278 21.945 6.88331 22.3595 7.37716 22.1082L12.5666 19.468C12.9533 19.2712 13.4108 19.2712 13.7975 19.468L18.9869 22.1082C19.4808 22.3595 20.0513 21.945 19.965 21.3977L19.0576 15.6463C18.9899 15.2177 19.1313 14.7827 19.4379 14.4757L23.5526 10.3561C23.9442 9.96407 23.7262 9.29338 23.179 9.20637L17.4287 8.29211C17.0003 8.22398 16.6302 7.95509 16.433 7.56862ZM14.0887 2.22809C13.711 1.48777 12.6531 1.48777 12.2754 2.22809L9.62893 7.4144C9.48102 7.70426 9.20345 7.90592 8.88208 7.95702L3.13181 8.87128C2.31098 9.00179 1.9841 10.0078 2.57145 10.5959L6.68613 14.7155C6.91609 14.9457 7.02211 15.272 6.9714 15.5934L6.06398 21.3448C5.93445 22.1658 6.79025 22.7875 7.53102 22.4107L12.7205 19.7704C13.0105 19.6228 13.3536 19.6228 13.6436 19.7704L18.8331 22.4107C19.5739 22.7875 20.4297 22.1658 20.3001 21.3448L19.3927 15.5934C19.342 15.272 19.448 14.9457 19.678 14.7155L23.7927 10.5959C24.38 10.0078 24.0531 9.00179 23.2323 8.87128L17.482 7.95702C17.1607 7.90592 16.8831 7.70426 16.7352 7.4144L14.0887 2.22809Z" fill="url(#paint3_linear_448_8887history)"></path>
+                                          <path d="M12.741 7.3195C12.937 6.98075 13.4261 6.98075 13.6221 7.3195L15.1721 9.99846C15.2442 10.123 15.3656 10.2113 15.5063 10.2413L18.5331 10.8876C18.9159 10.9693 19.067 11.4344 18.8054 11.7255L16.7365 14.0275C16.6403 14.1345 16.594 14.2773 16.6089 14.4204L16.9296 17.4988C16.9701 17.8881 16.5745 18.1755 16.2168 18.0167L13.3882 16.7604C13.2566 16.702 13.1065 16.702 12.975 16.7604L10.1464 18.0167C9.7887 18.1755 9.39305 17.8881 9.4336 17.4988L9.75428 14.4204C9.7692 14.2773 9.72281 14.1345 9.62661 14.0275L7.55775 11.7255C7.29613 11.4344 7.44726 10.9693 7.83001 10.8876L10.8568 10.2413C10.9976 10.2113 11.119 10.123 11.1911 9.99846L12.741 7.3195Z" fill="url(#paint4_linear_448_8887history)"></path>
+                                          <path d="M19.6431 11.3076C13.5027 17.1102 8.01855 14.5437 6.04404 12.5351C3.04056 8.07161 9.63153 11.6424 15.4716 10.0802C20.1437 8.83037 20.1993 10.3777 19.6431 11.3076Z" fill="url(#paint5_linear_448_8887history)"></path>
+                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M12.486 3.38311C12.6114 3.44656 12.6616 3.59966 12.5981 3.72506L11.8786 5.14712C11.8152 5.27252 11.6621 5.32275 11.5367 5.2593C11.4113 5.19585 11.3611 5.04275 11.4245 4.91735L12.144 3.49529C12.2075 3.36989 12.3606 3.31966 12.486 3.38311Z" fill="#F9BE76"></path>
+                                          <circle cx="3.68131" cy="9.52742" r="0.254474" fill="#F9BE76"></circle>
+                                          <circle cx="11.3155" cy="5.62557" r="0.254474" fill="#F9BE76"></circle>
+                                          <path d="M10.7514 8.25268C8.82111 10.9869 9.51093 12.4755 10.0971 12.8781C11.8774 13.6816 15.1214 8.94033 15.3409 7.68564C15.5604 6.43095 13.1642 4.83492 10.7514 8.25268Z" fill="url(#paint6_linear_448_8887history)" fill-opacity="0.6"></path>
+                                          <defs>
+                                            <lineargradient id="paint0_linear_448_8887history" x1="13.1818" y1="0.45166" x2="18.8651" y2="22.4213" gradientunits="userSpaceOnUse">
+                                              <stop stop-color="#FBA416" stop-opacity="0"></stop>
+                                              <stop offset="1" stop-color="#FDBB4E" stop-opacity="0.63"></stop>
+                                            </lineargradient>
+                                            <lineargradient id="paint1_linear_448_8887history" x1="13.182" y1="0.451259" x2="18.8653" y2="22.4209" gradientunits="userSpaceOnUse">
+                                              <stop stop-color="#FDBB4E" stop-opacity="0"></stop>
+                                              <stop offset="1" stop-color="#FDBB4E" stop-opacity="0.63"></stop>
+                                            </lineargradient>
+                                            <radialgradient id="paint2_radial_448_8887history" cx="0" cy="0" r="1" gradientunits="userSpaceOnUse" gradienttransform="translate(10.2132 9.86681) rotate(52.6712) scale(14.8278)">
+                                              <stop offset="0.738765" stop-color="#9CB6DD" stop-opacity="0"></stop>
+                                              <stop offset="0.89825" stop-color="#C6F1FF" stop-opacity="0.37"></stop>
+                                              <stop offset="1" stop-color="#EFFBFF" stop-opacity="0.7"></stop>
+                                            </radialgradient>
+                                            <lineargradient id="paint3_linear_448_8887history" x1="20.3073" y1="17.4162" x2="8.6015" y2="6.81312" gradientunits="userSpaceOnUse">
+                                              <stop stop-color="#FEFFD3" stop-opacity="0.63"></stop>
+                                              <stop offset="0.218803" stop-color="#FAFD4E" stop-opacity="0"></stop>
+                                              <stop offset="0.491108" stop-color="#FDFF8B" stop-opacity="0.56"></stop>
+                                              <stop offset="0.733041" stop-color="#F7F990"></stop>
+                                              <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+                                              <stop offset="1" stop-color="#FEFFB7" stop-opacity="0"></stop>
+                                            </lineargradient>
+                                            <lineargradient id="paint4_linear_448_8887history" x1="13.1816" y1="6.55811" x2="13.0119" y2="17.8398" gradientunits="userSpaceOnUse">
+                                              <stop stop-color="#FEFFB0"></stop>
+                                              <stop offset="0.277442" stop-color="white" stop-opacity="0.51"></stop>
+                                              <stop offset="1" stop-color="#FAFD4E" stop-opacity="0.15"></stop>
+                                            </lineargradient>
+                                            <lineargradient id="paint5_linear_448_8887history" x1="12.635" y1="10.8612" x2="12.551" y2="14.8707" gradientunits="userSpaceOnUse">
+                                              <stop stop-color="#FAFD4E" stop-opacity="0"></stop>
+                                              <stop offset="0.731853" stop-color="#FAFD4E" stop-opacity="0.46"></stop>
+                                            </lineargradient>
+                                            <lineargradient id="paint6_linear_448_8887history" x1="11.5105" y1="8.61842" x2="13.7636" y2="10.7449" gradientunits="userSpaceOnUse">
+                                              <stop offset="0.223958" stop-color="#FAFD4E" stop-opacity="0.35"></stop>
+                                              <stop offset="1" stop-color="#FAFD4E" stop-opacity="0"></stop>
+                                            </lineargradient>
+                                          </defs>
+                                        </svg>
+                                                                        </div>
+                                                                        <div class="logo">CaveMines</div>
+                                                                    </div>
+                                                                    <div class="header-buttons">
+                                                                        <div id="history_live_btn" role="button" class="header-buttons__item active" tabindex="0">
+                                                                            Live
+                                                                        </div>
+                                                                        <div id="history_my_btn" role="button" class="header-buttons__item" tabindex="0">
+                                                                            Мои
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="separator mb-[12px]"></div>
+                                                                <div class="history-panel__content-wrapper">
+                                                                    <div class="history-panel__headers history-panel__live-cols">
+                                                                        <h3>Игрок</h3>
+                                                                        <h3>Ставка</h3>
+                                                                        <h3>Кэф</h3>
+                                                                        <h3 class="header-col-win">Выигрыш</h3>
+                                                                    </div>
+                                                                    <div class="history-panel__list-wrapper">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                            <div class="Toastify">
+                                                <div class="Toastify__toast-container Toastify__toast-container--top-center app-popup"></div>
+                                                <div class="jackpot">
+                                                    <div class="jackpot-container"></div>
+                                                    <div class="button">
+                                                        <div class="button-container"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section id="loader">
+                <div class="" id="loader-logo-container">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="168" height="75" fill="none">
+            <path fill="#00A3FF" d="M107.118 18.3a7.66 7.66 0 0 0 7.656-7.657 7.66 7.66 0 0 0-7.656-7.656 7.661 7.661 0 0 0-7.657 7.656 7.652 7.652 0 0 0 7.657 7.657ZM28.317 24.025c2.495 1.816 3.894 4.484 3.13 8.29l-4.932 26.373c-.721 4.297-4.86 7.123-9.156 6.316-4.052-.779-7.037-4.585-6.23-9.156l2.798-15.27-1.745.793c-3.23 1.456-7.036 0-8.478-3.259-1.442-3.259 0-7.08 3.23-8.55l13.02-5.783c3.072-1.542 5.999-1.34 8.363.246Z"></path>
+            <path fill="#fff" d="M33.298 22.755c1.701 2.033 3.7 4.585 2.719 10.641l-2.668 14.29.49 11.506c.101 4.095 2.062 5.941 5.523 5.941h8.68c2.755 0 3.865-2.105 4.975-4.758l6.618-16.337.678 15.601c.058 3.46 1.817 5.508 4.99 5.508h9.89c2.813 0 3.98-1.701 5.22-4.744l12.632-31.29c1.37-3.244.577-6.372-2.84-6.372h-6.36c-2.364 0-3.936.807-4.873 3.056L70.45 46.763 69.67 28.06c-.13-3.98-2.033-5.306-4.239-5.306h-6.445c-2.553 0-4.038.995-4.83 2.941L45.59 46.777l-.764-19.163c-.115-3.59-1.298-4.86-4.182-4.86H33.298ZM102.244 65.133c3.821 0 4.759-2.87 5.307-6.114l5.407-29.674c.98-4.543-.13-6.619-4.471-6.619h-5.118c-4.181 0-5.609 2.048-6.172 5.393l-5.58 31.39c-.547 3.158.591 5.624 3.836 5.624h6.791ZM140.398 59.38l2.697-16.193c.375-2.97-.173-5.076-1.759-6.402-2.509-2.048-6.056-1.154-7.859.908-1.168 1.24-1.687 2.927-2.307 6.345l-2.71 14.996c-.52 2.956-1.342 6.099-5.264 6.099h-6.676c-4.167 0-4.455-3.634-3.979-5.753l5.638-31.261c.548-2.87 1.556-5.378 6.171-5.378h4.787c3.705 0 5.926 1.355 4.759 6.604l-.506 2.595c2.553-5.234 8.84-9.214 14.362-9.214 4.182 0 6.099.736 8.421 2.826 3.864 3.46 4.585 8.652 3.72 12.761l-3.85 20.706c-.533 3.13-1.355 6.114-5.133 6.114h-6.647c-2.898 0-4.441-2.12-3.865-5.753Z"></path>
+          </svg>
+                    </div>
+                </div>
+                <div class="spinner"></div>
+                <div id="no-internet-block">
+                    <div class="no-internet-block-message">You are offline</div>
+                    <style>
+                        #no-internet-block {
+                            display: none;
+                            background: radial-gradient( 100% 267.2% at 0 0, rgba(11, 101, 206, 0.23) 0, rgba(14, 126, 221, 0) 100%), linear-gradient(107.15deg, #1e283f 0, rgba(20, 27, 46, 0.6) 100%);
+                            --no-internet-block_gradient-color-one: rgba(11, 101, 206, 0.23);
+                            --no-internet-block_gradient-color-two: rgba(14, 126, 221, 0);
+                            background: radial-gradient( 100% 267.2% at 0 0, var(--no-internet-block_gradient-color-one, #fff) 0, var(--no-internet-block_gradient-color-two, #fff) 100%), linear-gradient(107.15deg, #1e283f 0, rgba(20, 27, 46, 0.6) 100%);
+                            border-radius: 10px;
+                            padding: 15px;
+                            color: #fff;
+                            text-align: center;
+                            min-width: 200px;
+                            font-family: -apple-system, 'SF Pro Text', sans-serif;
+                        }
+
+                        #no-internet-block.show {
+                            display: block;
+                        }
+
+                        #no-internet-block.online {
+                            --no-internet-block_gradient-color-one: rgba(14, 224, 35, 0.23);
+                            --no-internet-block_gradient-color-two: rgba(14, 224, 148, 0);
+                        }
+                    </style>
+                </div>
+                <style>
+                    #loader {
+                        align-items: center;
+                        background-color: #090f1e;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        position: fixed;
+                        text-align: center;
+                        top: 0;
+                        height: 100%;
+                        width: 100vw;
+                        min-height: 100vh;
+                        min-width: 100vw;
+                        z-index: 10000;
+                    }
+
+                    #loader.hidden {
+                        display: none;
+                    }
+
+                    #loader.transparent {
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+
+                    #loader.transition-active {
+                        transition: opacity 0.5s 0.5s ease, visibility 0s 1s;
+                    }
+
+                    #loader #loader-logo-container {
+                        margin-bottom: 40px;
+                        width: 164px;
+                        height: 75px;
+                        backface-visibility: hidden;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                    }
+
+                    #loader #loader-logo-container div {
+                        height: 100%;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    #loader .spinner {
+                        animation: spinner 0.75s infinite linear;
+                        border: 3px solid #1863d1;
+                        border-radius: 50%;
+                        border-right-color: transparent;
+                        border-top-color: transparent;
+                        box-sizing: border-box;
+                        height: 25px;
+                        pointer-events: none;
+                        width: 25px;
+                    }
+
+                    #loader .spinner-white {
+                        border-color: #fff;
+                        border-right-color: transparent;
+                        border-top-color: transparent;
+                    }
+
+                    #loader .support-button {
+                        background-image: linear-gradient(103deg, #108de7 -30%, #0855c4 100%);
+                        border: none;
+                        border-radius: 10px;
+                        bottom: calc(var(--safe-area-inset-bottom, 0) + 30px);
+                        right: calc(var(--safe-area-inset-right, 0) + 30px);
+                        color: #fff;
+                        cursor: pointer;
+                        height: 40px;
+                        outline: 0;
+                        padding: 10px;
+                        position: absolute;
+                        transition: all 0.3s ease-out;
+                        width: 40px;
+                    }
+
+                    #loader .support-button:hover {
+                        background-color: #1665d8;
+                    }
+
+                    #loader .support-button:active {
+                        background-color: #fff;
+                        color: #0854c3;
+                    }
+
+                    #loader .support-button.loading svg:first-child {
+                        display: inline;
+                        animation: spinner 0.75s infinite linear;
+                    }
+
+                    #loader .support-button.loading svg:last-child {
+                        display: none;
+                    }
+
+                    #loader .support-button svg:first-child {
+                        display: none;
+                    }
+
+                    #loader .support-button svg:last-child {
+                        display: inline;
+                    }
+
+                    @keyframes spinner {
+                        100% {
+                            transform: rotate(1turn);
+                        }
+                    }
+                </style>
+            </section>
+            <section class="unavailable" id="unavailable">
+                <div class="unavailable__content">
+                    <img src="https://www-1win-mines.vercel.app/img/logo/main/1win-normal.svg" class="unavailable__content-logo">
+                    <h1 class="unavailable__content-title" id="unavailable-title">
+                        Что-то пошло не так
+                    </h1>
+                    <p class="unavailable__content-subtitle" id="unavailable-subtitle">
+                        Что-то пошло не так, но мы знаем, как это исправить. Повторите попытку позже.
+                    </p>
+                    <style>
+                        .unavailable {
+                            position: fixed;
+                            top: 0;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            padding: 24px;
+                            display: none;
+                        }
+
+                        .unavailable.shown {
+                            display: flex;
+                        }
+
+                        .unavailable__content {
+                            margin: auto;
+                            text-align: center;
+                            max-width: 475px;
+                        }
+
+                        .unavailable__content-logo_luckystar {
+                            margin-bottom: 40px;
+                        }
+
+                        .unavailable__content-title {
+                            margin-top: 0;
+                            margin-bottom: 15px;
+                            font-size: 24px;
+                            font-family: 'SF Pro Display';
+                            font-weight: 700;
+                            color: #fff;
+                        }
+
+                        .unavailable__content-title:empty {
+                            display: none;
+                        }
+
+                        .unavailable__content-subtitle {
+                            font-size: 16px;
+                            margin: 0;
+                            color: rgba(255, 255, 255, 0.7);
+                        }
+
+                        .unavailable__content-subtitle:empty {
+                            display: none;
+                        }
+
+                        .unavailable__content-logo {
+                            margin-bottom: 40px;
+                            max-width: 66px;
+                            pointer-events: none;
+                            -webkit-user-select: none;
+                            -moz-user-select: none;
+                            user-select: none;
+                        }
+                    </style>
+                </div>
+            </section>
+            <script src="jquery-3.7.1.min.js"></script>
+            <script src="4.8.1/socket.io.min.js"></script>
+            <script src="static/js/app.js"></script>
+            <script>
+                function enableInvisibleScrollOnMobile() {
+                    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                    console.log("📱 Detected mobile:", isMobile);
+
+                    if (isMobile) {
+                        const gameRoot = document.querySelector('.CasinoGame_root_L2xTk');
+
+                        if (gameRoot) {
+                            console.log("🎮 Found .CasinoGame_root_L2xTk:", gameRoot);
+
+                            gameRoot.style.setProperty('overflow-y', 'scroll', 'important');
+                            gameRoot.style.setProperty('height', '100vh', 'important');
+                            gameRoot.style.setProperty('-ms-overflow-style', 'none');
+                            gameRoot.style.setProperty('scrollbar-width', 'none');
+
+                            const style = document.createElement('style');
+                            style.innerHTML = `
+              .CasinoGame_root_L2xTk::-webkit-scrollbar {
+                display: none;
+              }
+            `;
+                            document.head.appendChild(style);
+                        } else {
+                            console.warn("⚠️ Элемент .CasinoGame_root_L2xTk не найден!");
+                        }
+                    }
+                }
+
+                window.addEventListener('DOMContentLoaded', enableInvisibleScrollOnMobile);
+            </script>
+</body>
+
+</html>

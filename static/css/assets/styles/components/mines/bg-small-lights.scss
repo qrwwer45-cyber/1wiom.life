@@ -1,0 +1,7 @@
+@mixin lights {
+    @apply w-[89px] h-[69px] absolute;
+    content: '';
+    z-index: -1;
+    background-image: url('../../../img/mines/particles.svg');
+    background-size: 89px 69px;
+  }  

@@ -1,0 +1,970 @@
+.coin-btn {
+  margin-top: 2rem;
+}
+
+.coin-animate {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.coin-animate div {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.coin-animate div {
+  -webkit-backface-visibility: hidden;
+}
+.tails {
+  z-index: 100;
+}
+
+.active.progress > .heads {
+  -webkit-animation: flipHeads 5s infinite linear forwards;
+  -moz-animation: flipHeads 5s infinite linear forwards;
+  -o-animation: flipHeads 5s infinite linear forwards;
+  animation: flipHeads 5s infinite linear forwards;
+}
+
+.active.progress > .tails {
+  -webkit-animation: flipTails 5s infinite linear forwards;
+  -moz-animation: flipTails 5s infinite linear forwards;
+  -o-animation: flipTails 5s infinite linear forwards;
+  animation: flipTails 5s infinite linear forwards;
+}
+
+.active.stop-tails > .tails {
+  -webkit-animation: flipTails 5s linear forwards;
+  -moz-animation: flipTails 5s linear forwards;
+  -o-animation: flipTails 5s linear forwards;
+  animation: flipTails 5s linear forwards;
+}
+
+.active.stop-tails > .heads {
+  -webkit-animation: flipHeads 5s linear forwards;
+  -moz-animation: flipHeads 5s linear forwards;
+  -o-animation: flipHeads 5s linear forwards;
+  animation: flipHeads 5s linear forwards;
+}
+
+.active.stop-heads > .heads {
+  -webkit-animation: flipTails 5s linear forwards;
+  -moz-animation: flipTails 5s linear forwards;
+  -o-animation: flipTails 5s linear forwards;
+  animation: flipTails 5s linear forwards;
+}
+
+.active.stop-heads > .tails {
+  -webkit-animation: flipHeads 5s linear forwards;
+  -moz-animation: flipHeads 5s linear forwards;
+  -o-animation: flipHeads 5s linear forwards;
+  animation: flipHeads 5s linear forwards;
+}
+
+@keyframes flipHeads {
+  from {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+  to {
+    -webkit-transform: rotateY(1980deg);
+    -moz-transform: rotateY(1980deg);
+    transform: rotateY(1980deg);
+  }
+}
+@keyframes flipTails {
+  from {
+    -webkit-transform: rotateY(0);
+    -moz-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+  to {
+    -webkit-transform: rotateY(1800deg);
+    -moz-transform: rotateY(1800deg);
+    transform: rotateY(1800deg);
+  }
+}
+
+// session states animation
+
+.game-state-hide {
+  & .game-state-animate {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    padding: 0 !important;
+  }
+}
+
+@keyframes roundResultStateAnimation {
+  0% {
+    visibility: visible;
+    opacity: 0;
+    transform: scale(0.1) translateY(0.7rem);
+    -webkit-transform: scale(0.1) translateY(0.7rem);
+    -moz-transform: scale(0.1) translateY(0.7rem);
+    height: auto;
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1) translateY(0.7rem);
+    -webkit-transform: scale(1) translateY(0.7rem);
+    -moz-transform: scale(1) translateY(0.7rem);
+  }
+  85% {
+    opacity: 1;
+    transform: scale(1) translateY(0.7rem);
+    -webkit-transform: scale(1) translateY(0.7rem);
+    -moz-transform: scale(1) translateY(0.7rem);
+  }
+  100% {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+  }
+}
+
+@keyframes sessionRoundstStateAnimation {
+  0% {
+    transform: translateY(20px);
+    -webkit-transform: translateY(20px);
+    -moz-transform: translateY(20px);
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+  }
+  15% {
+    transform: translateY(0.6rem);
+    -webkit-transform: translateY(0.6rem);
+    -moz-transform: translateY(0.6rem);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(0.6rem);
+    -webkit-transform: translateY(0.6rem);
+    -moz-transform: translateY(0.6rem);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0.6rem);
+    -webkit-transform: translateY(0.6rem);
+    -moz-transform: translateY(0.6rem);
+    opacity: 0;
+  }
+}
+
+@keyframes sessionBetAmountStateAnimation {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  60% {
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    -moz-transform: scale(0.7);
+    opacity: 0;
+    visibility: visible;
+    height: auto;
+  }
+  70%,
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.round-result-state-animate {
+  animation-duration: 1000ms;
+  animation-iteration-count: 1;
+}
+.session-rounds-state-animate {
+  animation-duration: 1000ms;
+  animation-iteration-count: 1;
+}
+.session-bet-amount-animate {
+  animation-duration: 1000ms;
+  animation-iteration-count: 1;
+}
+
+.animated-coin {
+  background: rgba(0, 0, 0, 0.00);
+  white-space: pre;
+
+
+  .a0_t {
+    animation: 0.1s linear both a0_t_4;
+  }
+
+  .a1_t {
+    animation: 0.1s linear both a1_t_4;
+  }
+
+  .a2_t {
+    animation: 0.1s linear both a2_t_4;
+  }
+
+  .main_bl {
+    animation:  0.1s linear both main_t_4, 0.1s linear both main_o_4;
+  }
+
+  .a3_all {
+    animation: 0.1s linear both a3_t_4;
+  }
+
+  .a4_t {
+    animation: 0.1s linear both a4_t_4;
+  }
+
+  .a5_t {
+    animation: 0.1s linear both a5_t_4;
+  }
+}
+
+.animated-coin-jump-eur {
+  background: rgba(0, 0, 0, 0.00);
+  white-space: pre;
+
+
+  .a0_t {
+    animation: 0.834s linear both a0_t_1;
+  }
+
+  .main_t {
+    animation: 0.834s linear both main_t_1;
+  }
+
+  .main_o {
+    animation: 0.834s linear both main_o_1;
+  }
+
+  .eur_o {
+    opacity: 1;
+  }
+  .usd_o {
+    opacity: 0;
+  }
+  .star_o {
+    opacity: 0;
+  }
+  .star-2_o {
+    opacity: 0;
+  }
+  .silver-coin_o {
+    opacity: 0;
+  }
+  .eur-2_o {
+    opacity: 1;
+  }
+  .usd-2_o {
+    opacity: 0;
+  }
+
+
+  @keyframes a0_t_1 { 0% { transform: translate(250px,250px); animation-timing-function: cubic-bezier(0,0,1,1); } 50% { transform: translate(250px,250px); animation-timing-function: cubic-bezier(0,0,0.16,1); } 81.8944% { transform: translate(250px,230px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 99.88% { transform: translate(250px,250px); animation-timing-function: cubic-bezier(0,0,1,1); } 100% { transform: translate(250px,250px); } }
+  @keyframes main_t_1 { 0% { transform: rotate(0deg) skewX(0deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 2% { transform: rotate(0deg) skewX(0deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 11.7647% { transform: rotate(0deg) skewX(2deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 21.647% { transform: rotate(0deg) skewX(-2deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 31.4117% { transform: rotate(0deg) skewX(2deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 41.1764% { transform: rotate(0deg) skewX(-2deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 51.0588% { transform: rotate(0deg) skewX(2deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 60.8235% { transform: rotate(0deg) skewX(-2deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 100% { transform: rotate(0deg) skewX(0deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } }
+  @keyframes main_o_1 { 0% { opacity: 1; } 100% { opacity: 1; } }
+}
+.animated-coin-jump-usd {
+  background: rgba(0, 0, 0, 0.00);
+  white-space: pre;
+  .a0_t {
+    animation: 0.834s linear both a0_t_2;
+  }
+  .main_t {
+    animation: 0.834s linear both main_t_2;
+  }
+  .main_o {
+    opacity: 1;
+  }
+  .eur_o {
+    opacity: 0;
+  }
+  .usd_o {
+    opacity: 1;
+  }
+  .star_t {
+    opacity: 0;
+  }
+  .star_o {
+    opacity: 0;
+  }
+  .star-2_t {
+    opacity: 0;
+  }
+  .star-2_o {
+    opacity: 0;
+  }
+  .silver-coin_o {
+    opacity: 0;
+  }
+  .eur-2_o {
+    opacity: 0;
+  }
+  .usd-2_o {
+    opacity: 1;
+  }
+
+
+  @keyframes a0_t_2 { 0% { transform: translate(250px,250px); animation-timing-function: cubic-bezier(0,0,1,1); } 51.0588% { transform: translate(250px,250px); animation-timing-function: cubic-bezier(0,0,0.16,1); } 82.3529% { transform: translate(250px,230px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 100% { transform: translate(250px,250px); } }
+  @keyframes main_t_2 { 0% { transform: rotate(0deg) skewX(0deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 2% { transform: rotate(0deg) skewX(0deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 11.7647% { transform: rotate(0deg) skewX(2deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 21.647% { transform: rotate(0deg) skewX(-2deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 31.4117% { transform: rotate(0deg) skewX(2deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 41.1764% { transform: rotate(0deg) skewX(-2deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 51.0588% { transform: rotate(0deg) skewX(2deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 60.8235% { transform: rotate(0deg) skewX(-2deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 100% { transform: rotate(0deg) skewX(0deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } }
+}
+.animated-coin-reflex-eur {
+  background: rgba(0, 0, 0, 0.00);
+  white-space: pre;
+  .a1_h {
+    animation: 0.5s linear both a1_h_3;
+  }
+  .eur_o {
+    opacity: 1;
+  }
+  .usd_o {
+    opacity: 0;
+  }
+  .star-all {
+    animation: 0.5s linear both star_t_3, 0.5s linear both star_o_3;
+  }
+  .star-2-all {
+    animation: 0.5s linear both star-2_t_3, 0.5s linear both star-2_o_3;
+  }
+  .silver-coin_o {
+    opacity: 0;
+  }
+  .eur-2_o {
+    opacity: 1;
+  }
+  .usd-2_o {
+    opacity: 0;
+  }
+
+
+  @keyframes a1_h_3 { 0% { height: 170.171px; } 100% { height: 213.486px; } }
+  @keyframes star_t_3 { 0% { transform: translate(129.41px,54.264px) scale(0,0) translate(-129.885px,-54.7484px); } 10% { transform: translate(129.41px,54.264px) scale(0,0) translate(-129.885px,-54.7484px); } 43.4% { transform: translate(129.41px,54.264px) scale(2,2) translate(-129.885px,-54.7484px); } 80% { transform: translate(129.41px,54.264px) scale(1,1) translate(-129.885px,-54.7484px); } 100% { transform: translate(129.41px,54.264px) scale(1,1) translate(-129.885px,-54.7484px); } }
+  @keyframes star_o_3 { 0% { opacity: 0; } 10% { opacity: 0; } 43.4% { opacity: 1; animation-timing-function: cubic-bezier(0.946859,0.006366,1,1); } 80% { opacity: 0; } 100% { opacity: 0; } }
+  @keyframes star-2_t_3 { 0% { transform: translate(41.6444px,57.8778px) scale(0,0) translate(-129.885px,-54.7484px); } 33.4% { transform: translate(41.6444px,57.8778px) scale(0,0) translate(-129.885px,-54.7484px); } 70% { transform: translate(41.6444px,57.8778px) scale(2,2) translate(-129.885px,-54.7484px); } 100% { transform: translate(41.6444px,57.8778px) scale(1,1) translate(-129.885px,-54.7484px); } }
+  @keyframes star-2_o_3 { 0% { opacity: 0; } 33.4% { opacity: 0; } 70% { opacity: 1; animation-timing-function: cubic-bezier(1,0.010313,1,1); } 100% { opacity: 0; } }
+}
+.animated-coin-reflex-usd {
+  background: rgba(0, 0, 0, 0.00);
+  white-space: pre;
+  .a1_h {
+    animation: 0.5s linear both a1_h_4;
+  }
+  .a3_all {
+    animation: 0.5s linear both a3_t_4;
+  }
+  .eur_o {
+    opacity: 0;
+  }
+  .usd_o {
+    opacity: 1;
+  }
+  .star-all {
+    animation: 0.5s linear both star_t_4, 0.5s linear both star_o_4;
+  }
+  .star-2-all {
+    animation: 0.5s linear both star-2_t_4, 0.5s linear both star-2_o_4;
+  }
+  .silver-coin_o {
+    opacity: 0;
+  }
+  .eur-2_o {
+    opacity: 0;
+  }
+  .usd-2_o {
+    opacity: 1;
+  }
+
+
+  @keyframes a1_h_4 { 0% { height: 170.171px; } 100% { height: 213.486px; } }
+  @keyframes a3_t_4 { 0% { transform: translate(-14.1973px,-4.2564px); } 100% { transform: translate(-14.1973px,-4.2564px); } }
+  @keyframes star_t_4 { 0% { transform: translate(129.41px,54.264px) scale(0,0) translate(-129.885px,-54.7484px); } 10% { transform: translate(129.41px,54.264px) scale(0,0) translate(-129.885px,-54.7484px); } 43.4% { transform: translate(129.41px,54.264px) scale(2,2) translate(-129.885px,-54.7484px); } 80% { transform: translate(129.41px,54.264px) scale(1,1) translate(-129.885px,-54.7484px); } 100% { transform: translate(129.41px,54.264px) scale(0.837925,0.837925) translate(-129.885px,-54.7484px); } }
+  @keyframes star_o_4 { 0% { opacity: 0; } 10% { opacity: 0; } 43.4% { opacity: 1; animation-timing-function: cubic-bezier(0.946859,0.006366,1,1); } 80% { opacity: 0; } 100% { opacity: 0; } }
+  @keyframes star-2_t_4 { 0% { transform: translate(41.6444px,57.8778px) scale(0,0) translate(-129.885px,-54.7484px); } 33.4% { transform: translate(41.6444px,57.8778px) scale(0,0) translate(-129.885px,-54.7484px); } 70% { transform: translate(41.6444px,57.8778px) scale(2,2) translate(-129.885px,-54.7484px); } 100% { transform: translate(41.6444px,57.8778px) scale(1,1) translate(-129.885px,-54.7484px); } }
+  @keyframes star-2_o_4 { 0% { opacity: 0; } 33.4% { opacity: 0; } 70% { opacity: 1; animation-timing-function: cubic-bezier(1,0.010313,1,1); } 100% { opacity: 0; } }
+}
+.animated-coin-reset-eur {
+  background: rgba(0, 0, 0, 0.00);
+  white-space: pre;
+  .a1_h {
+    animation: 0.166s linear both a1_h_5;
+  }
+  .eur_o {
+    opacity: 0;
+  }
+  .usd_o {
+    opacity: 1;
+  }
+  .star-all {
+    animation: 0.166s linear both star_t_5, 0.166s linear both star_o_5;
+  }
+  .star-2-all {
+    animation: 0.166s linear both star-2_t_5, 0.166s linear both star-2_o_5;
+  }
+  .silver-coin_o {
+    opacity: 0;
+  }
+  .eur-2_o {
+    opacity: 0;
+  }
+  .usd-2_o {
+    opacity: 1;
+  }
+
+
+  @keyframes main_t_5 { 0% { transform: rotate(0deg) skewX(0deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } 100% { transform: rotate(0deg) skewX(0deg) skewY(0deg) scale(2,2) translate(-74.3056px,-75.9433px); } }
+  @keyframes a1_h_5 { 0% { height: 170.171px; } 100% { height: 213.486px; } }
+  @keyframes star_t_5 { 0% { transform: translate(129.41px,54.264px) scale(0,0) translate(-129.885px,-54.7484px); } 10% { transform: translate(129.41px,54.264px) scale(0,0) translate(-129.885px,-54.7484px); } 43.4% { transform: translate(129.41px,54.264px) scale(2,2) translate(-129.885px,-54.7484px); } 80% { transform: translate(129.41px,54.264px) scale(1,1) translate(-129.885px,-54.7484px); } 100% { transform: translate(129.41px,54.264px) scale(0.837925,0.837925) translate(-129.885px,-54.7484px); } }
+  @keyframes star_o_5 { 0% { opacity: 0; } 10% { opacity: 0; } 43.4% { opacity: 1; animation-timing-function: cubic-bezier(0.946859,0.006366,1,1); } 80% { opacity: 0; } 100% { opacity: 0; } }
+  @keyframes star-2_t_5 { 0% { transform: translate(41.6444px,57.8778px) scale(0,0) translate(-129.885px,-54.7484px); } 33.4% { transform: translate(41.6444px,57.8778px) scale(0,0) translate(-129.885px,-54.7484px); } 70% { transform: translate(41.6444px,57.8778px) scale(2,2) translate(-129.885px,-54.7484px); } 100% { transform: translate(41.6444px,57.8778px) scale(1,1) translate(-129.885px,-54.7484px); } }
+  @keyframes star-2_o_5 { 0% { opacity: 0; } 33.4% { opacity: 0; } 70% { opacity: 1; animation-timing-function: cubic-bezier(1,0.010313,1,1); } 100% { opacity: 0; } }
+}
+.animated-coin-reset-usd {
+  background: rgba(0, 0, 0, 0.00);
+  white-space: pre;
+  .a1_h {
+    animation: 0.166s linear both a1_h_6;
+  }
+  .a1_t {
+    animation: 0.166s linear both a1_t_6;
+  }
+  .a2_t {
+    animation: 0.166s linear both a2_t_6;
+  }
+  .main_bl {
+    opacity: 1;
+  }
+  .a4_t {
+    animation: 0.166s linear both a4_t_6;
+  }
+  .a5_t {
+    animation: 0.166s linear both a5_t_6;
+  }
+  .eur_o {
+    opacity: 0;
+  }
+  .usd_o {
+    opacity: 1;
+  }
+  .star-all {
+    animation: 0.166s linear both star_t_6, 0.166s linear both star_o_6;
+  }
+  .star-2-all {
+    animation: 0.166s linear both star-2_t_6, 0.166s linear both star-2_o_6;
+  }
+  .silver-coin_o {
+    opacity: 0;
+  }
+  .eur-2_o {
+    opacity: 0;
+  }
+  .usd-2_o {
+    opacity: 1;
+  }
+
+
+  @keyframes a1_t_6 { 0% { transform: translate(-20.5251px,75.4435px) rotate(-12deg) translate(-17px,-85.085669px); } 100% { transform: translate(171.066px,76.8435px) rotate(-12deg) translate(-17px,-106.742994px); } }
+  @keyframes a1_h_6 { 0% { height: 170.171px; } 100% { height: 213.486px; } }
+  @keyframes star_t_6 { 0% { transform: translate(129.41px,54.264px) scale(0,0) translate(-129.885px,-54.7484px); } 10% { transform: translate(129.41px,54.264px) scale(0,0) translate(-129.885px,-54.7484px); } 43.4% { transform: translate(129.41px,54.264px) scale(2,2) translate(-129.885px,-54.7484px); } 80% { transform: translate(129.41px,54.264px) scale(1,1) translate(-129.885px,-54.7484px); } 100% { transform: translate(129.41px,54.264px) scale(0.837925,0.837925) translate(-129.885px,-54.7484px); } }
+  @keyframes star_o_6 { 0% { opacity: 0; } 10% { opacity: 0; } 43.4% { opacity: 1; animation-timing-function: cubic-bezier(0.946859,0.006366,1,1); } 80% { opacity: 0; } 100% { opacity: 0; } }
+  @keyframes star-2_t_6 { 0% { transform: translate(41.6444px,57.8778px) scale(0,0) translate(-129.885px,-54.7484px); } 33.4% { transform: translate(41.6444px,57.8778px) scale(0,0) translate(-129.885px,-54.7484px); } 70% { transform: translate(41.6444px,57.8778px) scale(2,2) translate(-129.885px,-54.7484px); } 100% { transform: translate(41.6444px,57.8778px) scale(1,1) translate(-129.885px,-54.7484px); } }
+  @keyframes star-2_o_6 { 0% { opacity: 0; } 33.4% { opacity: 0; } 70% { opacity: 1; animation-timing-function: cubic-bezier(1,0.010313,1,1); } 100% { opacity: 0; } }
+}
+.animated-coin-toss-eur-lose-eur {
+  background: rgba(0, 0, 0, 0.00);
+  white-space: pre;
+
+
+  .a0_t {
+    animation: 2.167s linear both a0_t_7;
+  }
+
+  .a1_t {
+    transform: rotate(0deg) skewX(0deg) skewY(0deg);
+  }
+  .main_bl {
+    opacity: 1;
+    animation:  2.167s linear both main_t_7;
+  }
+
+  .a3_all {
+    animation: 2.167s linear both a3_t_7;
+  }
+
+
+  .a4_t {
+    animation: 2.167s linear both a4_t_7;
+  }
+
+  .a5_t {
+    animation: 2.167s linear both a5_t_7;
+  }
+
+  .eur_o {
+    opacity: 1;
+  }
+  .usd_o {
+    opacity: 0;
+  }
+  .star-all {
+    opacity: 0;
+  }
+  .star-2-all {
+    opacity: 0;
+  }
+  .silver-coin_o {
+    animation: 2.167s linear both silver-coin_o_7;
+  }
+  .eur-2_o {
+    opacity: 1;
+  }
+  .usd-2_o {
+    opacity: 0;
+  }
+
+
+  @keyframes a0_t_7 { 0% { transform: translate(250px,250px); animation-timing-function: cubic-bezier(0,0,1,1); } 46.1467% { transform: translate(250px,250px); animation-timing-function: cubic-bezier(0,0,0.58,1); } 51.5459% { transform: translate(250px,200.98px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 64.6054% { transform: translate(250px,240px); } 66.9127% { transform: translate(250px,250px); } 100% { transform: translate(250px,250px); } }
+  @keyframes main_t_7 { 0% { transform: scale(2,2) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 46.1467% { transform: scale(1.925,2) translate(-74.3056px,-75.9433px); } 51.5459% { transform: scale(-2.2,2.2) translate(-74.3056px,-75.9433px); } 56.8989% { transform: scale(2.1,1.909091) translate(-74.3056px,-75.9433px); } 69.2201% { transform: scale(2,2) translate(-74.3056px,-75.9433px); } 100% { transform: scale(2,2) translate(-74.3056px,-75.9433px); } }
+  @keyframes a3_t_7 { 0% { transform: translate(-14.1973px,-4.257px); } 46.1467% { transform: translate(-14.1973px,-7.757px); } 69.2201% { transform: translate(-14.1973px,-4.257px); } 100% { transform: translate(-14.1973px,-4.257px); } }
+  @keyframes a4_t_7 { 0% { transform: translate(-14.1973px,-4.2564px); } 46.1467% { transform: translate(-14.1973px,-8.7564px); } 69.2201% { transform: translate(-14.1973px,-4.2564px); } 100% { transform: translate(-14.1973px,-4.2564px); } }
+  @keyframes silver-coin_o_7 { 0% { opacity: 0; } 84.587% { opacity: 0; animation-timing-function: cubic-bezier(0.75,0,1,1); } 92.2935% { opacity: 1; } 100% { opacity: 1; } }
+
+}
+.animated-coin-toss-eur-lose-usd {
+  background: rgba(0, 0, 0, 0.00);
+  white-space: pre;
+
+
+  .a0_t {
+    animation: 2.167s linear both a0_t_8;
+  }
+
+  .a1_t {
+    transform: rotate(0deg) skewX(0deg) skewY(0deg)
+  }
+
+  .main_bl {
+    opacity: 1;
+    animation:  2.167s linear both main_t_8;
+  }
+
+  .a3_all {
+    animation: 2.167s linear both a3_t_8;
+  }
+
+
+  .a4_t {
+    animation: 2.167s linear both a4_t_8;
+  }
+
+  .a5_t {
+    animation: 2.167s linear both a5_t_8;
+  }
+
+  .eur_o {
+    animation: 2.167s linear both eur_o_8;
+  }
+
+  .usd_o {
+    animation: 2.167s linear both usd_o_8;
+  }
+
+  .star-all {
+    animation: 2.167s linear both star_t_8, 2.167s linear both star_o_8;
+  }
+
+
+  .star-2-all {
+    opacity: 0;
+  }
+
+
+  .silver-coin_o {
+    opacity: 0;
+  }
+
+  .eur-2_o {
+    animation: 2.167s linear both eur-2_o_8;
+  }
+
+  .usd-2_o {
+    animation: 2.167s linear both usd-2_o_8;
+  }
+
+
+  @keyframes a0_t_8 { 0% { transform: translate(250px,250px); } 46.1467% { transform: translate(250px,250px); animation-timing-function: cubic-bezier(0,0,0.58,1); } 51.5459% { transform: translate(250px,200.98px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 64.6054% { transform: translate(250px,240px); } 66.9127% { transform: translate(250px,250px); } 100% { transform: translate(250px,250px); } }
+  @keyframes main_t_8 { 0% { transform: scale(2,2) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 46.1467% { transform: scale(1.925,2) translate(-74.3056px,-75.9433px); } 51.5459% { transform: scale(-2.2,2.2) translate(-74.3056px,-75.9433px); } 56.8989% { transform: scale(2.1,1.909091) translate(-74.3056px,-75.9433px); } 69.2201% { transform: scale(2,2) translate(-74.3056px,-75.9433px); } 100% { transform: scale(2,2) translate(-74.3056px,-75.9433px); } }
+  @keyframes a3_t_8 { 0% { transform: translate(-14.1973px,-4.257px); } 46.1467% { transform: translate(-14.1973px,-7.757px); } 69.2201% { transform: translate(-14.1973px,-4.257px); } 100% { transform: translate(-14.1973px,-4.257px); } }
+  @keyframes a4_t_8 { 0% { transform: translate(-14.1973px,-4.2564px); } 46.1467% { transform: translate(-14.1973px,-8.7564px); } 69.2201% { transform: translate(-14.1973px,-4.2564px); } 100% { transform: translate(-14.1973px,-4.2564px); } }
+  @keyframes eur_o_8 { 0% { opacity: 1; } 48.4541% { opacity: 1; } 49.2386% { opacity: 0; } 100% { opacity: 0; } }
+  @keyframes usd_o_8 { 0% { opacity: 0; } 48.4541% { opacity: 0; } 49.2386% { opacity: 1; } 100% { opacity: 1; } }
+  @keyframes silver-coin_o_8 { 0% { opacity: 0; } 84.587% { opacity: 0; animation-timing-function: cubic-bezier(0.75,0,1,1); } 92.2935% { opacity: 1; } 100% { opacity: 1; } }
+  @keyframes eur-2_o_8 { 0% { opacity: 1; } 48.4541% { opacity: 1; } 49.2386% { opacity: 0; } 100% { opacity: 0; } }
+  @keyframes usd-2_o_8 { 0% { opacity: 0; } 48.4541% { opacity: 0; } 49.2386% { opacity: 1; } 100% { opacity: 1; } }
+}
+.animated-coin-toss-eur-win-eur {
+  background: rgba(0, 0, 0, 0.00);
+  white-space: pre;
+
+
+  .a0_t {
+    animation: 2.167s linear both a0_t_9;
+  }
+
+  .a2_t {
+    animation: 2.167s linear both a2_t_9;
+  }
+
+  .main_bl {
+    opacity: 1;
+    animation:  2.167s linear both main_t_9;
+  }
+
+  .a3_all {
+    animation: 2.167s linear both a3_t_9;
+  }
+  .a4_t {
+    animation: 2.167s linear both a4_t_9;
+  }
+  .eur_o {
+    opacity: 1;
+  }
+  .usd_o {
+    opacity: 0;
+  }
+  .star-all {
+    opacity: 0;
+  }
+  .star-2-all {
+    opacity: 0;
+  }
+  .silver-coin_o {
+    opacity: 0;
+  }
+  .eur-2_o {
+    animation: 2.167s linear both eur-2_o_9;
+  }
+  .usd-2_o {
+    animation: 2.167s linear both usd-2_o_9;
+  }
+
+
+  @keyframes a0_t_9 { 0% { transform: translate(250px,250px); } 54.5553% { transform: translate(250px,250px); animation-timing-function: cubic-bezier(0,0,0.58,1); } 60.9383% { transform: translate(250px,200.98px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 76.3775% { transform: translate(250px,240px); } 79.1052% { transform: translate(250px,250px); } 100% { transform: translate(250px,250px); } }
+  @keyframes main_t_9 { 0% { transform: scale(2,2) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 54.5553% { transform: scale(1.925,2) translate(-74.3056px,-75.9433px); } 60.9383% { transform: scale(-2.2,2.2) translate(-74.3056px,-75.9433px); } 67.3213% { transform: scale(2.1,1.909091) translate(-74.3056px,-75.9433px); } 81.833% { transform: scale(2,2) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0,0,0.58,1); } 90.9438% { transform: scale(2.3,2.3) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0,0,0.577971,0.990601); } 100% { transform: scale(2.00002,2.00002) translate(-74.3056px,-75.9433px); } }
+  @keyframes a3_t_9 { 0% { transform: translate(-14.1973px,-4.257px); } 54.5553% { transform: translate(-14.1973px,-7.757px); } 81.833% { transform: translate(-14.1973px,-4.257px); } 100% { transform: translate(-14.1973px,-4.257px); } }
+  @keyframes a4_t_9 { 0% { transform: translate(-14.1973px,-4.2564px); } 54.5553% { transform: translate(-14.1973px,-8.7564px); } 81.833% { transform: translate(-14.1973px,-4.2564px); } 100% { transform: translate(-14.1973px,-4.2564px); } }
+  @keyframes eur-2_o_9 { 0% { opacity: 0.957942; } 100% { opacity: 0.700967; } }
+  @keyframes usd-2_o_9 { 0% { opacity: 0.042058; } 100% { opacity: 0.299033; } }
+}
+.animated-coin-toss-eur-win-usd {
+  background: rgba(0, 0, 0, 0.00);
+  white-space: pre;
+
+
+  .a0_t {
+    animation: 2.167s linear both a0_t_10;
+  }
+  .main_bl {
+    opacity: 1;
+    animation:  2.167s linear both main_t_10, 2.167s linear both main_o_10;
+  }
+
+  .a3_all {
+    animation: 2.167s linear both a3_t_10;
+  }
+
+
+  .a4_t {
+    animation: 2.167s linear both a4_t_10;
+  }
+
+  .a5_t {
+    animation: 2.167s linear both a5_t_10;
+  }
+
+  .eur_o {
+    animation: 2.167s linear both eur_o_10;
+  }
+
+  .usd_o {
+    animation: 2.167s linear both usd_o_10;
+  }
+
+  .star-all {
+    opacity: 0;
+  }
+  .star-2-all {
+    opacity: 0;
+  }
+  .silver-coin_o {
+    opacity: 0;
+  }
+  .eur-2_o {
+    animation: 2.167s linear both eur-2_o_10;
+  }
+  .usd-2_o {
+    animation: 2.167s linear both usd-2_o_10;
+  }
+
+
+  @keyframes a0_t_10 { 0% { transform: translate(250px,250px); } 54.5801% { transform: translate(250px,250px); animation-timing-function: cubic-bezier(0,0,0.58,1); } 60.9596% { transform: translate(250px,200.98px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 76.3904% { transform: translate(250px,240px); } 79.1166% { transform: translate(250px,250px); } 100% { transform: translate(250px,250px); } }
+  @keyframes main_t_10 { 0% { transform: scale(2,2) translate(-74.3056px,-75.9433px); } 0.0545% { transform: scale(2,2) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 54.5801% { transform: scale(1.925,2) translate(-74.3056px,-75.9433px); } 60.9596% { transform: scale(-2.2,2.2) translate(-74.3056px,-75.9433px); } 67.3391% { transform: scale(2.1,1.909091) translate(-74.3056px,-75.9433px); } 81.8429% { transform: scale(2,2) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0,0,0.58,1); } 90.9487% { transform: scale(2.3,2.3) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0,0,0.577971,0.990601); } 100% { transform: scale(2.00002,2.00002) translate(-74.3056px,-75.9433px); } }
+  @keyframes a3_t_10 { 0% { transform: translate(-14.1973px,-4.257px); } 0.0545% { transform: translate(-14.1973px,-4.257px); } 54.5801% { transform: translate(-14.1973px,-7.757px); } 81.8429% { transform: translate(-14.1973px,-4.257px); } 100% { transform: translate(-14.1973px,-4.257px); } }
+  @keyframes a4_t_10 { 0% { transform: translate(-14.1973px,-4.2564px); } 0.0545% { transform: translate(-14.1973px,-4.2564px); } 54.5801% { transform: translate(-14.1973px,-8.7564px); } 81.8429% { transform: translate(-14.1973px,-4.2564px); } 100% { transform: translate(-14.1973px,-4.2564px); } }
+  @keyframes eur_o_10 { 0% { opacity: 1; } 57.2519% { opacity: 1; } 58.1788% { opacity: 0; } 100% { opacity: 0; } }
+  @keyframes usd_o_10 { 0% { opacity: 0; } 57.2519% { opacity: 0; } 58.1788% { opacity: 1; } 100% { opacity: 1; } }
+  @keyframes eur-2_o_10 { 0% { opacity: 0.626244; } 100% { opacity: 0.369129; } }
+  @keyframes usd-2_o_10 { 0% { opacity: 0.373756; } 100% { opacity: 0.630871; } }
+}
+.animated-coin-toss-usd-lose-eur {
+
+
+  .a0_t {
+    animation: 2.167s linear both a0_t_11;
+  }
+  .main_bl {
+    opacity: 1;
+    animation:  2.167s linear both main_t_11;
+  }
+  .a3_all {
+    animation: 2.167s linear both a3_t_11;
+  }
+  .a4_t {
+    animation: 2.167s linear both a4_t_11;
+  }
+  .a5_t {
+    animation: 2.167s linear both a5_t_11;
+  }
+  .eur_o {
+    animation: 2.167s linear both eur_o_11;
+  }
+  .usd_o {
+    animation: 2.167s linear both usd_o_11;
+  }
+  .star-all {
+    opacity: 0;
+  }
+  .star-2-all {
+    opacity: 0;
+  }
+  .silver-coin_o {
+    animation: 2.167s linear both silver-coin_o_11;
+  }
+  .eur-2_o {
+    opacity: 1;
+  }
+  .usd-2_o {
+    opacity: 0;
+  }
+
+
+  @keyframes a0_t_11 { 0% { transform: translate(250px,250px); } 46.1467% { transform: translate(250px,250px); animation-timing-function: cubic-bezier(0,0,0.58,1); } 51.5459% { transform: translate(250px,200.98px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 64.6054% { transform: translate(250px,240px); } 66.9127% { transform: translate(250px,250px); } 100% { transform: translate(250px,250px); } }
+  @keyframes main_t_11 { 0% { transform: scale(2,2) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 46.1467% { transform: scale(1.925,2) translate(-74.3056px,-75.9433px); } 51.5459% { transform: scale(-2.2,2.2) translate(-74.3056px,-75.9433px); } 56.8989% { transform: scale(2.1,1.909091) translate(-74.3056px,-75.9433px); } 69.2201% { transform: scale(2,2) translate(-74.3056px,-75.9433px); } 100% { transform: scale(2,2) translate(-74.3056px,-75.9433px); } }
+  @keyframes a3_t_11 { 0% { transform: translate(-14.1973px,-4.257px); } 46.1467% { transform: translate(-14.1973px,-7.757px); } 69.2201% { transform: translate(-14.1973px,-4.257px); } 100% { transform: translate(-14.1973px,-4.257px); } }
+  @keyframes a4_t_11 { 0% { transform: translate(-14.1973px,-4.2564px); } 46.1467% { transform: translate(-14.1973px,-8.7564px); } 69.2201% { transform: translate(-14.1973px,-4.2564px); } 100% { transform: translate(-14.1973px,-4.2564px); } }
+  @keyframes eur_o_11 { 0% { opacity: 0; } 48.4541% { opacity: 0; } 49.2386% { opacity: 1; } 100% { opacity: 1; } }
+  @keyframes usd_o_11 { 0% { opacity: 1; } 48.4541% { opacity: 1; } 49.2386% { opacity: 0; } 100% { opacity: 0; } }
+  @keyframes silver-coin_o_11 { 0% { opacity: 0; } 84.587% { opacity: 0; animation-timing-function: cubic-bezier(0.75,0,1,1); } 92.2935% { opacity: 1; } 100% { opacity: 1; } }
+}
+.animated-coin-toss-usd-lose-usd {
+  background: rgba(0, 0, 0, 0.00);
+  white-space: pre;
+
+
+  .a0_t {
+    animation: 2.167s linear both a0_t_12;
+  }
+
+  .main_bl {
+    animation:  2.167s linear both main_t_12;
+  }
+
+  .a3_all {
+    opacity: 1;
+    animation: 2.167s linear both a3_t_12;
+  }
+
+
+  .a4_t {
+    animation: 2.167s linear both a4_t_12;
+  }
+
+  .a5_t {
+    animation: 2.167s linear both a5_t_12;
+  }
+
+  .eur_o {
+    opacity: 0;
+  }
+
+  .usd_o {
+    opacity: 1;
+  }
+
+  .star-all {
+    opacity: 0;
+  }
+
+
+  .star-2-all {
+    opacity: 0;
+  }
+
+
+  .silver-coin_o {
+    animation: 2.167s linear both silver-coin_o_12;
+  }
+
+  .eur-2_o {
+    animation: 2.167s linear both eur-2_o_12;
+  }
+
+  .usd-2_o {
+    animation: 2.167s linear both usd-2_o_12;
+  }
+
+  @keyframes a0_t_12 { 0% { transform: translate(250px,250px); } 46.1467% { transform: translate(250px,250px); animation-timing-function: cubic-bezier(0,0,0.58,1); } 51.5459% { transform: translate(250px,200.98px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 64.6054% { transform: translate(250px,240px); } 66.9127% { transform: translate(250px,250px); } 100% { transform: translate(250px,250px); } }
+  @keyframes main_t_12 { 0% { transform: scale(2,2) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 46.1467% { transform: scale(1.925,2) translate(-74.3056px,-75.9433px); } 51.5459% { transform: scale(-2.2,2.2) translate(-74.3056px,-75.9433px); } 56.8989% { transform: scale(2.1,1.909091) translate(-74.3056px,-75.9433px); } 69.2201% { transform: scale(2,2) translate(-74.3056px,-75.9433px); } 100% { transform: scale(2,2) translate(-74.3056px,-75.9433px); } }
+  @keyframes a3_t_12 { 0% { transform: translate(-14.1973px,-4.257px); } 46.1467% { transform: translate(-14.1973px,-7.757px); } 69.2201% { transform: translate(-14.1973px,-4.257px); } 100% { transform: translate(-14.1973px,-4.257px); } }
+  @keyframes a4_t_12 { 0% { transform: translate(-14.1973px,-4.2564px); } 46.1467% { transform: translate(-14.1973px,-8.7564px); } 69.2201% { transform: translate(-14.1973px,-4.2564px); } 100% { transform: translate(-14.1973px,-4.2564px); } }
+  @keyframes silver-coin_o_12 { 0% { opacity: 0; } 84.587% { opacity: 0; animation-timing-function: cubic-bezier(0.75,0,1,1); } 92.2935% { opacity: 1; } 100% { opacity: 1; } }
+  @keyframes eur-2_o_12 { 0% { opacity: 0.21029; } 69.2201% { opacity: 0; } 100% { opacity: 0; } }
+  @keyframes usd-2_o_12 { 0% { opacity: 0.78971; } 69.2201% { opacity: 1; } 100% { opacity: 1; } }
+}
+.animated-coin-toss-usd-win-eur {
+  background: rgba(0, 0, 0, 0.00);
+  white-space: pre;
+
+
+  .a0_t {
+    animation: 2.167s linear both a0_t_13;
+  }
+
+  .a1_t {
+    transform: rotate(0deg) skewX(0deg) skewY(0deg);
+  }
+
+  .a2_t {
+    animation: 2.167s linear both a2_t_13;
+  }
+
+  .main_bl {
+    opacity: 1;
+    animation:  2.167s linear both main_t_13, 2.167s linear both main_o_13;
+  }
+
+  .a3_all {
+    animation: 2.167s linear both a3_t_13;
+  }
+
+
+  .a4_t {
+    animation: 2.167s linear both a4_t_13;
+  }
+
+  .a5_t {
+    animation: 2.167s linear both a5_t_13;
+  }
+
+  .eur_o {
+    animation: 2.167s linear both eur_o_13;
+  }
+
+  .usd_o {
+    animation: 2.167s linear both usd_o_13;
+  }
+
+  .silver-coin_o {
+    opacity: 0;
+  }
+
+  .eur-2_o {
+    opacity: 1;
+  }
+
+  .usd-2_o {
+    opacity: 0;
+  }
+
+  @keyframes a0_t_13 { 0% { transform: translate(250px,250px); } 54.5553% { transform: translate(250px,250px); animation-timing-function: cubic-bezier(0,0,0.58,1); } 60.9383% { transform: translate(250px,200.98px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 76.3775% { transform: translate(250px,240px); } 79.1052% { transform: translate(250px,250px); } 100% { transform: translate(250px,250px); } }
+  @keyframes main_t_13 { 0% { transform: scale(2,2) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 54.5553% { transform: scale(1.925,2) translate(-74.3056px,-75.9433px); } 60.9383% { transform: scale(-2.2,2.2) translate(-74.3056px,-75.9433px); } 67.3213% { transform: scale(2.1,1.909091) translate(-74.3056px,-75.9433px); } 81.833% { transform: scale(2,2) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0,0,0.58,1); } 90.9438% { transform: scale(2.3,2.3) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0,0,0.577971,0.990601); } 100% { transform: scale(2.00002,2.00002) translate(-74.3056px,-75.9433px); } }
+  @keyframes a3_t_13 { 0% { transform: translate(-14.1973px,-4.257px); } 54.5553% { transform: translate(-14.1973px,-7.757px); } 81.833% { transform: translate(-14.1973px,-4.257px); } 100% { transform: translate(-14.1973px,-4.257px); } }
+  @keyframes a4_t_13 { 0% { transform: translate(-14.1973px,-4.2564px); } 54.5553% { transform: translate(-14.1973px,-8.7564px); } 81.833% { transform: translate(-14.1973px,-4.2564px); } 100% { transform: translate(-14.1973px,-4.2564px); } }
+  @keyframes eur_o_13 { 0% { opacity: 0; } 57.2831% { opacity: 0; } 58.156% { opacity: 1; } 100% { opacity: 1; } }
+  @keyframes usd_o_13 { 0% { opacity: 1; } 57.2831% { opacity: 1; } 58.156% { opacity: 0; } 100% { opacity: 0; } }
+
+}
+.animated-coin-toss-usd-win-usd {
+  background: rgba(0, 0, 0, 0.00);
+  white-space: pre;
+
+  .a0_t {
+    animation: 2.167s linear both a0_t_14;
+  }
+
+  .a1_t {
+    animation: 2.167s linear both a1_t_14;
+  }
+
+  .main_bl {
+    opacity: 1;
+    animation:  2.167s linear both main_t_14;
+  }
+
+  .a3_all {
+    animation: 2.167s linear both a3_t_14;
+  }
+
+
+  .a4_t {
+    animation: 2.167s linear both a4_t_14;
+  }
+
+  .a5_t {
+    animation: 2.167s linear both a5_t_14;
+  }
+
+  .eur_o {
+    opacity: 0;
+  }
+
+  .usd_o {
+    opacity: 1;
+  }
+
+
+  .silver-coin_o {
+    opacity: 0;
+  }
+
+  .eur-2_o {
+    opacity: 1;
+  }
+
+  .usd-2_o {
+    opacity: 0;
+  }
+
+
+  @keyframes a0_t_14 { 0% { transform: translate(250px,250px); } 54.5801% { transform: translate(250px,250px); animation-timing-function: cubic-bezier(0,0,0.58,1); } 60.9596% { transform: translate(250px,200.98px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 76.3904% { transform: translate(250px,240px); } 79.1166% { transform: translate(250px,250px); } 100% { transform: translate(250px,250px); } }
+  @keyframes a1_t_14 { 0% { transform: rotate(0deg) skewX(0deg) skewY(0deg); } 60.9596% { transform: rotate(0deg) skewX(0deg) skewY(0deg); } 100% { transform: rotate(0deg) skewX(0deg) skewY(0deg); } }
+  @keyframes main_t_14 { 0% { transform: scale(2,2) translate(-74.3056px,-75.9433px); } 0.0545% { transform: scale(2,2) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0.42,0,1,1); } 54.5801% { transform: scale(1.925,2) translate(-74.3056px,-75.9433px); } 60.9596% { transform: scale(-2.2,2.2) translate(-74.3056px,-75.9433px); } 67.3391% { transform: scale(2.1,1.909091) translate(-74.3056px,-75.9433px); } 81.8429% { transform: scale(2,2) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0,0,0.58,1); } 90.9487% { transform: scale(2.3,2.3) translate(-74.3056px,-75.9433px); animation-timing-function: cubic-bezier(0,0,0.577971,0.990601); } 100% { transform: scale(2.00002,2.00002) translate(-74.3056px,-75.9433px); } }
+  @keyframes a3_t_14 { 0% { transform: translate(-14.1973px,-4.257px); } 0.0545% { transform: translate(-14.1973px,-4.257px); } 54.5801% { transform: translate(-14.1973px,-7.757px); } 81.8429% { transform: translate(-14.1973px,-4.257px); } 100% { transform: translate(-14.1973px,-4.257px); } }
+  @keyframes a4_t_14 { 0% { transform: translate(-14.1973px,-4.2564px); } 0.0545% { transform: translate(-14.1973px,-4.2564px); } 54.5801% { transform: translate(-14.1973px,-8.7564px); } 81.8429% { transform: translate(-14.1973px,-4.2564px); } 100% { transform: translate(-14.1973px,-4.2564px); } }
+}
+
+.animated-icon {
+  opacity: 0.1;
+  animation: 0.5s linear both fadein;
+  animation-delay: 0.5s;
+
+  @keyframes fadein {
+    from { opacity: 0.1; }
+    to { opacity: 1; }
+}
+}

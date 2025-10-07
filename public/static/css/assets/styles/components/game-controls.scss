@@ -1,0 +1,31 @@
+.game-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  background: transparent;
+  line-height: 0;
+  padding: 0 15px;
+  @screen laptop {
+    padding: 0;
+  }
+
+  &__buttons-group {
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    display: flex;
+    button {
+      &:first-child {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &__button {
+    gap: 10px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
+}

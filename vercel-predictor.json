@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "name": "mines-predictor",
+  "builds": [
+    {
+      "src": "server-predictor.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/predictor-api/(.*)",
+      "dest": "server-predictor.js"
+    },
+    {
+      "src": "/predictor-setup",
+      "dest": "server-predictor.js"
+    },
+    {
+      "src": "/predictor",
+      "dest": "server-predictor.js"
+    },
+    {
+      "src": "/",
+      "dest": "server-predictor.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

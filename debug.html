@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAVEMINES - Debug</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #000; color: #fff; }
+        .debug { margin: 10px 0; padding: 10px; border: 1px solid #333; }
+        .success { border-color: #0f0; }
+        .error { border-color: #f00; }
+        .balance { font-size: 24px; color: #ff6b6b; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>🎮 CAVEMINES - Debug</h1>
+    
+    <div class="balance" id="balance">Загрузка баланса...</div>
+    
+    <div id="debug"></div>
+    
+    <script>
+        const debug = document.getElementById('debug');
+        const balance = document.getElementById('balance');
+        
+        function addDebug(message, success = true) {
+            const div = document.createElement('div');
+            div.className = `debug ${success ? 'success' : 'error'}`;
+            div.innerHTML = message;
+            debug.appendChild(div);
+        }
+        
+        // Тест API пользователя
+        fetch('/mines/user')
+            .then(response => {
+                addDebug(`API Response: ${response.status} ${response.statusText}`);
+                return response.json();
+            })
+            .then(data => {
+                addDebug(`User Data: ${JSON.stringify(data, null, 2)}`);
+                balance.textContent = `Баланс: ${data.balance} ${data.currency}`;
+            })
+            .catch(error => {
+                addDebug(`API Error: ${error.message}`, false);
+            });
+        
+        // Тест настроек
+        fetch('/mines/settings')
+            .then(response => response.json())
+            .then(data => {
+                addDebug(`Settings loaded: ${data.supportedCurrencies.length} currencies`);
+                addDebug(`RUB limits: ${data.bets.RUB.quickBets.min} - ${data.bets.RUB.quickBets.max}`);
+            })
+            .catch(error => {
+                addDebug(`Settings Error: ${error.message}`, false);
+            });
+    </script>
+</body>
+</html>

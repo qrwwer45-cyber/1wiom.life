@@ -1,0 +1,79 @@
+@use 'variables';
+.bg-sky {
+  background: #24abf8;
+  border-radius: 8px;
+  padding: 1rem 3rem;
+}
+
+.bg-blue {
+  background: #0a0d2c;
+  border-radius: 8px;
+  padding: 1rem 3rem;
+}
+
+.bg-darkBlue {
+  background: #23274e;
+  border-radius: 8px;
+  padding: 1rem 3rem;
+}
+
+.bg-gold {
+  background: #ffbe18;
+  border-radius: 8px;
+  padding: 1rem 3rem;
+}
+
+.bg-darkBlueLiner {
+  background: #24abf8;
+  box-shadow: inset 0px 3px 8px #6dcaff;
+  border-radius: 8px;
+  padding: 1rem 3rem;
+}
+
+.blue-text {
+  color: #24abf8;
+}
+
+.main-light-text {
+  color: $main-light;
+}
+
+.gold-text {
+  color: #ffbe18;
+}
+
+.lightWhite-text {
+  color: #858cab;
+}
+
+.darkBlue-text {
+  color: #0c0f1e;
+}
+
+.double-red-sector-bg {
+  background: variables.$red-color;
+}
+
+.double-white-sector-bg {
+  background: #fff;
+}
+
+.double-black-sector-bg {
+  background: #0a0f1d;
+}
+
+.games-pink-bg {
+  background: linear-gradient(90deg, #f54e76 1%, #fc244b 99%);
+}
+
+.games-orange-bg {
+  background: linear-gradient(272.98deg, #fdbb4e 2.23%, #f56719 95.05%);
+}
+
+.games-blue-bg {
+  background: linear-gradient(93.73deg, #108de7 0%, #0855c4 100%);
+}
+
+.green-text {
+  color: $lime;
+}

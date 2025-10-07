@@ -1,0 +1,497 @@
+.history-panel {
+  height: 100%;
+  border-radius: 16px;
+  @apply px-[15px];
+  background-color: $dark-blue;
+
+  .separator {
+    &.closed {
+      height: 0;
+    }
+    transition: all 0.15s ease-in-out;
+    height: 1px;
+    background: rgba(133, 140, 171, 0.2);
+  }
+
+  .history-header {
+    @apply py-[15px];
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo {
+      font-family: 'Halvar Breit Blk', serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 21px;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      color: white;
+
+      &-icon {
+        height: 22px;
+        width: 22px;
+        & > svg {
+          height: 100%;
+          width: auto;
+        }
+      }
+    }
+    .header-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      &__item {
+        @apply px-[15px] py-[9px];
+        font-style: normal;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 18px;
+        text-align: center;
+        color: #fafafa;
+        border: 2px solid transparent;
+        background: rgba(21, 27, 46, 1);
+        background-clip: padding-box;
+        border-radius: 8px;
+        position: relative;
+        transition: all 0.15s ease-out;
+        font-family: 'FS Elliot Pro';
+        &.active {
+          color: #fafafa;
+          background: linear-gradient($dark-blue 0 0) padding-box,
+            /*this is your grey background*/
+              linear-gradient(
+                to right,
+                rgba(0, 149, 255, 1),
+                rgba(8, 85, 196, 1)
+              )
+              border-box;
+          border: 2px solid transparent;
+          border-radius: 8px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  &__headers {
+    padding: 0 0.5rem;
+    margin-bottom: 0.7rem;
+    h3 {
+      font-family: 'FS Elliot Pro';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 14px;
+      color: #fff;
+      &.header-col-win {
+        text-align: right;
+      }
+    }
+    & > span,
+    & > h3 {
+      text-align: center;
+    }
+  }
+
+  &__content-wrapper {
+    overflow: hidden;
+    height: calc(100% - 80px);
+
+    &.tabbed {
+      height: calc(100% - 100px);
+    }
+  }
+
+  &__list-wrapper {
+    overflow: auto;
+    height: calc(100% - 60px);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &.tabbed {
+      height: calc(100% - 130px);
+    }
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__my-cols {
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr 1.5fr 1.5fr 0.2fr;
+  }
+
+  &__live-cols {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  }
+
+  &__tabs {
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    padding: 5px;
+    &-separator {
+      width: 2px;
+      height: 32px;
+      opacity: 0.2;
+      background: #948ac5;
+      border-radius: 2px;
+    }
+    &-item {
+      color: $double-light-gray-blue;
+      font-weight: 400;
+      font-family: 'FS Elliot Pro';
+      text-align: center;
+      flex: 1;
+      padding: 10px 6px;
+      font-size: 12px;
+      line-height: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      &__amount {
+        &.win {
+          color: $lime;
+        }
+      }
+      &.active {
+        background: #2a3145;
+        border-radius: 9px;
+      }
+      &.active > &__title {
+        color: #fff;
+      }
+      &__title {
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__total {
+    font-family: 'Halvar Breitschrift', sans-serif;
+    &-color-tag {
+      height: 36px;
+      width: 36px;
+      border-radius: 100%;
+      &.black {
+        border: 1.28571px solid $double-light-gray-blue;
+      }
+      &.white {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &::after {
+          content: '';
+          background-image: url('../../icons/double-white-tag-star.svg');
+          width: 21px;
+          height: 21px;
+          background-size: 21px 21px;
+        }
+      }
+    }
+    &-amount {
+      color: #fff;
+      &.win {
+        color: $lime;
+      }
+    }
+  }
+
+  .history-element-container {
+    @apply my-[8px];
+    transition: all 0.15s ease-in-out;
+    &:nth-child(odd) {
+      background-color: #1b233c;
+    }
+    font-family: 'SF Pro Display', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.03em;
+    border-radius: 8px;
+
+    .collapsable-header {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      align-items: center;
+      padding: 7px 9px;
+
+      &.tabbed {
+        & .user {
+          color: $double-light-gray-blue;
+        }
+      }
+      &-my {
+        grid-template-columns: 0.5fr 1.5fr 1.5fr 1.5fr 0.2fr;
+
+        &__item {
+          text-align: center;
+        }
+      }
+      .color-tag {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 100%;
+
+        &.black {
+          border: 1px solid $double-light-gray-blue;
+        }
+      }
+      .game-amount {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+      }
+      .date {
+        align-self: center;
+        div {
+          display: grid;
+          place-items: start;
+          color: rgba(151, 163, 203, 1);
+        }
+        div:last-child {
+          font-size: 10px;
+          line-height: 13px;
+          opacity: 0.5;
+        }
+      }
+      .won {
+        text-align: right;
+      }
+      .user {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: rgba(84, 92, 120, 1);
+        line-height: 14px;
+      }
+      .start-sum {
+        color: $double-light-gray-blue;
+        align-self: center;
+        text-align: center;
+        font-size: 12px;
+        & span {
+          font-size: 10px;
+          color: rgba(151, 163, 203, 0.15);
+        }
+      }
+      .coef {
+        color: $double-light-gray-blue;
+        align-self: center;
+        text-align: center;
+      }
+      .win-amount {
+        text-align: right;
+        color: rgba(19, 243, 108, 1);
+        align-self: center;
+
+        &__currency {
+          font-size: 9px;
+          opacity: 0.3;
+        }
+      }
+
+      .feed-amount {
+        text-align: right;
+        color: #fff;
+        align-self: center;
+        &.win {
+          color: $lime;
+        }
+        &__currency {
+          font-size: 9px;
+          opacity: 0.3;
+        }
+      }
+      .lose-amount {
+        text-align: right;
+        align-self: center;
+        color: white;
+        min-width: 40px;
+      }
+
+      .collapse-button {
+        display: flex;
+        justify-content: flex-end;
+        align-self: center;
+        width: 100%;
+        div {
+          width: 26px;
+          height: 26px;
+          border-radius: 32px;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          filter: grayscale(1);
+          transition: 0.15s all ease-in-out;
+          img {
+            filter: grayscale(1);
+          }
+          &:hover {
+            filter: grayscale(0);
+          }
+        }
+      }
+
+      &.history-live {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & > .game-amount {
+          width: 25%;
+        }
+        & > .start-sum,
+        & > .coef {
+          width: 20%;
+        }
+        & > .user {
+          width: 35%;
+          & div {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            -ms-text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+    &.opened .collapse-button > div {
+      filter: grayscale(0);
+      transform: rotate(-180deg) translateX(-15px);
+    }
+
+    .collapsable-container {
+      position: relative;
+      padding-left: 7px;
+      padding-right: 7px;
+      padding-bottom: 0;
+      overflow: hidden;
+      height: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      transition: all 0.15s ease-in-out;
+      &.opened {
+        height: 100%;
+        padding-bottom: 18px;
+        .details {
+          height: 156px;
+          padding-top: 10px;
+          margin-top: 13px;
+          width: 100%;
+        }
+      }
+      .game-result {
+        font-family: 'Halvar Breit Blk', serif;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 20px;
+        line-height: 23px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        &-win {
+          color: #13f36c;
+        }
+        &-lose {
+          color: rgba(253, 79, 90, 1);
+        }
+      }
+      .details {
+        transition: all 0.15s ease-in-out;
+        width: 100%;
+        height: 0;
+        background: #121727;
+        border-radius: 16px;
+        margin: 0;
+        padding: 0;
+        .row {
+          display: flex;
+          align-items: center;
+          span {
+            float: left;
+          }
+          .row-text {
+            @apply py-[10px] px-[12px] mx-[10px] my-[5px];
+            position: relative;
+            font-size: 12px;
+            line-height: 17px;
+            color: rgba(151, 163, 203, 1);
+            background: rgba(27, 35, 60, 1);
+            border-radius: 8px;
+            width: 100%;
+            span {
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+            b {
+              color: #fafafa;
+            }
+            img {
+              height: 16px;
+              width: 16px;
+              float: right;
+              margin-top: 10px;
+              margin-right: 10px;
+            }
+            .button-container {
+              &:hover {
+                filter: opacity(0.8);
+              }
+              &:active {
+                filter: opacity(0.6);
+              }
+              filter: opacity(1);
+              transition: all 0.15s ease-in-out;
+              cursor: pointer;
+              width: 60px;
+              position: absolute;
+              right: 0;
+              top: 0;
+              height: 36px;
+              background-repeat: no-repeat;
+              background-size: 60px 36px;
+              background-image: url('../../img/Coin/history-text-button-container.png');
+            }
+          }
+          .rounds {
+            font-size: 14px;
+            color: #858cab;
+            b {
+              font-size: 16px;
+              color: #fafafa;
+            }
+
+            & > .color-tag {
+              height: 24px;
+              width: 24px;
+              border-radius: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-family: 'Halvar Breit XBd', sans-serif;
+              font-weight: 800;
+              font-size: 10px;
+              // color: #e5e5e5;
+              color: $main-light;
+              border: 1px solid #2a3145;
+              &.black {
+                border: 1px solid $double-light-gray-blue;
+              }
+              &.white {
+                color: $dark-gray;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

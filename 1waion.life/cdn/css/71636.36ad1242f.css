@@ -1,0 +1,32 @@
+.CasinoGameFrame_root_V6yFR {
+    height: 100%;
+    width: 100%
+}
+
+.CasinoGameFrame_root_V6yFR iframe {
+    border: none !important;
+    color: #fff !important;
+    height: 100% !important;
+    width: 100% !important
+}
+
+.CasinoGameFrame_root_V6yFR>*,
+.CasinoGameFrame_root_V6yFR>*>*:only-child,
+.CasinoGameFrame_root_V6yFR>*>*:only-child>*:only-child {
+    height: 100%;
+    overflow: auto
+}
+
+.CasinoGameFrame_disabled_LP2yz {
+    pointer-events: none
+}
+
+.CasinoGameFrame_scroll_CR4uy {
+    overflow-x: hidden;
+    overflow-y: auto;
+    overflow: hidden auto
+}
+
+.CasinoGameFrame_large_Zc_9H {
+    font-size: 16px
+}

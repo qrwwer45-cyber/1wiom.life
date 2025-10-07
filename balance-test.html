@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAVEMINES - Balance Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #000; color: #fff; }
+        .balance { font-size: 32px; color: #ff6b6b; margin: 20px 0; text-align: center; }
+        .test { margin: 10px 0; padding: 10px; border: 1px solid #333; }
+        .success { border-color: #0f0; }
+        .error { border-color: #f00; }
+        button { padding: 10px 20px; margin: 5px; background: #ff6b6b; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>🎮 CAVEMINES - Balance Test</h1>
+    
+    <div class="balance" id="balance">Загрузка...</div>
+    
+    <div>
+        <button onclick="testAPI()">Тест API</button>
+        <button onclick="testSettings()">Тест Настроек</button>
+        <button onclick="testSession()">Тест Сессии</button>
+    </div>
+    
+    <div id="results"></div>
+    
+    <script>
+        const balance = document.getElementById('balance');
+        const results = document.getElementById('results');
+        
+        function addResult(message, success = true) {
+            const div = document.createElement('div');
+            div.className = `test ${success ? 'success' : 'error'}`;
+            div.innerHTML = message;
+            results.appendChild(div);
+        }
+        
+        function testAPI() {
+            results.innerHTML = '';
+            addResult('Тестируем API...');
+            
+            fetch('/mines/user')
+                .then(response => {
+                    addResult(`Статус: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    addResult(`Данные: ${JSON.stringify(data, null, 2)}`);
+                    balance.textContent = `Баланс: ${data.balance} ${data.currency}`;
+                })
+                .catch(error => {
+                    addResult(`Ошибка: ${error.message}`, false);
+                });
+        }
+        
+        function testSettings() {
+            fetch('/mines/settings')
+                .then(response => response.json())
+                .then(data => {
+                    addResult(`Настройки: ${data.supportedCurrencies.length} валют`);
+                    addResult(`RUB лимиты: ${data.bets.RUB.quickBets.min} - ${data.bets.RUB.quickBets.max}`);
+                })
+                .catch(error => {
+                    addResult(`Ошибка настроек: ${error.message}`, false);
+                });
+        }
+        
+        function testSession() {
+            fetch('/mines/session', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ amount: 10, presetValue: 3 })
+            })
+            .then(response => response.json())
+            .then(data => {
+                addResult(`Сессия создана: ${JSON.stringify(data, null, 2)}`);
+                // Обновляем баланс после создания сессии
+                testAPI();
+            })
+            .catch(error => {
+                addResult(`Ошибка сессии: ${error.message}`, false);
+            });
+        }
+        
+        // Автоматически тестируем при загрузке
+        testAPI();
+    </script>
+</body>
+</html>

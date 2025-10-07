@@ -1,0 +1,273 @@
+@use 'variables';
+.double {
+  &__background {
+    background-repeat: no-repeat;
+    background-image: url('../../img/Double/background.png');
+    background-size: cover;
+    background-position: center center;
+    @screen mobile {
+      background-image: url('../../img/Double/backgroundPhone.png');
+    }
+  }
+  &__game-buttons {
+    margin-bottom: 1.5rem;
+    @screen mobile {
+      justify-content: center;
+    }
+    &-item {
+      padding: 0.8rem 0.4rem;
+      width: 8.5rem;
+      background: $semi-dark-blue;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+      &:disabled {
+        cursor: default;
+        opacity: 0.3;
+      }
+      &:enabled:hover {
+        opacity: 0.8;
+      }
+      &:enabled:active,
+      &:enabled:focus,
+      &.selected {
+        padding: calc(0.8rem - 2px) calc(0.4rem - 2px);
+        background: $border-blue-gradient;
+        border: 2px solid transparent;
+      }
+      &__color-tag {
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+      }
+      &__label {
+        font-family: 'Halvar Breit XBd', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+        color: #ffffff;
+      }
+      &.red {
+        border-radius: 12px 8px 8px 12px;
+      }
+      &.black {
+        border-radius: 8px 12px 12px 8px;
+
+        &:enabled:active,
+        &:enabled:focus,
+        &.selected {
+          .double__game-buttons-item__color-tag {
+            width: 20px;
+            height: 20px;
+            box-sizing: border-box;
+            border: 1px solid #97a3cb;
+          }
+        }
+      }
+    }
+  }
+  &__game-roulette {
+    height: 130px;
+    position: relative;
+    border-top: solid 2px rgba(10, 93, 201, 0.65);
+    border-bottom: solid 2px rgba(10, 93, 201, 0.65);
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    &.disabled {
+      opacity: 0.4;
+    }
+    @screen mobile {
+      height: 95px;
+    }
+    .roulette-pointers {
+      top: -3px;
+      background-image: url('../../img/Double/pointers.png');
+      @screen mobile {
+        background-image: url('../../img/Double/pointersMobile.png');
+      }
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: calc(100% + 6px);
+      position: absolute;
+      width: 80px;
+      z-index: 15;
+    }
+    ul {
+      transition: left 1s ease;
+    }
+    &::before {
+      top: -2px;
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: calc(100% + 4px);
+      z-index: 3;
+      background: linear-gradient(
+          90deg,
+          #0a0f1d 11.77%,
+          rgba(10, 15, 29, 0) 50%
+        ),
+        linear-gradient(270deg, #0a0f1d 11.77%, rgba(10, 15, 29, 0) 50%);
+
+      @screen mobile {
+        background: linear-gradient(
+            90deg,
+            #0a0f1d 4.77%,
+            rgba(10, 15, 29, 0) 50%
+          ),
+          linear-gradient(270deg, #0a0f1d 4.77%, rgba(10, 15, 29, 0) 50%);
+      }
+    }
+  }
+  &__odds {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 5px 0;
+    gap: 8px;
+    @screen mobile {
+      align-items: center;
+      gap: 7px;
+    }
+    color: #e5e5e5;
+    .double-odd.small-odd {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      width: 38px;
+      height: 32px;
+      @screen mobile {
+        width: 34px;
+        min-width: 34px;
+        height: 28px;
+        min-height: 28px;
+        font-size: 10.5px;
+      }
+    }
+    .double-odd.large-odd {
+      @apply flex justify-center items-center;
+      width: 110px;
+      height: 90px;
+      margin: 0 10px;
+      font-weight: 800;
+      font-size: 32px;
+      border-radius: 16px;
+      @screen mobile {
+        width: 70px;
+        height: 56px;
+        font-size: 20px;
+      }
+      button {
+        width: 48px;
+        height: 48px;
+        @screen mobile {
+          width: 32px;
+          height: 32px;
+        }
+      }
+    }
+    .odd-black {
+      background: #0a0f1d;
+      border: 1px solid #97a3cb;
+      border-radius: 6px;
+    }
+    div.large.odd-black {
+      border: 3px solid #97a3cb;
+    }
+    .odd-red {
+      background: linear-gradient(0deg, variables.$red-color, variables.$red-color), variables.$red-color;
+      border-radius: 6px;
+    }
+    .odd-white {
+      width: 32px;
+      height: 32px;
+      @screen mobile {
+        width: 24px;
+        height: 24px;
+      }
+      background: linear-gradient(315deg, #ced3fd 0%, #ffffff 100%), #cfd5e6;
+      border-radius: 6px  ;
+      button {
+        color: transparent;
+        width: 18px;
+        height: 18px;
+        @screen mobile {
+          width: 14px;
+          height: 14px;
+        }
+        background-repeat: no-repeat;
+        background-image: url('../../img/Double/star.svg');
+        background-size: contain;
+      }
+    }
+  }
+
+  &__bet-panel {
+    background: variables.$double-main-bg !important;
+  }
+
+  &__input {
+    background: variables.$double-secondary-bg !important;
+  }
+
+  &__auto-bet-input {
+    background: variables.$double-secondary-bg !important;
+  }
+
+  &__header-button {
+    & button {
+      background: variables.$double-header-buttons-bg !important;
+    }
+  }
+
+  &__progress-state {
+    position: relative;
+    margin: 36px 0 28px;
+    width: 420px;
+    z-index: 2;
+    @screen mobile {
+      width: 285px;
+    }
+  }
+
+  &__progress-container {
+    background: $dark-blue;
+    border-radius: 6px;
+    height: 32px;
+    padding: 2px;
+    @screen mobile {
+      height: 28px;
+    }
+  }
+
+
+  &__progress-label {
+    @apply flex justify-center align-middle;
+    position: absolute;
+    font-family: 'SF Pro Display', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
+    width: 150px;
+    top: 36px;
+    right: 135px;
+    color: #fff;
+    z-index: 2;
+    text-transform: uppercase;
+    @screen mobile {
+      line-height: 28px;
+      right: 67px;
+      font-size: 16px;
+    }
+
+    .result {
+      color: #fff;
+    }
+  }
+}

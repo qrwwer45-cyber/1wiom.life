@@ -1,0 +1,164 @@
+.play-button {
+  padding: 1rem 3rem;
+  background: #24abf8;
+  box-shadow: inset 0px 3px 8px #6dcaff;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.count-button {
+  padding: 0.3rem;
+  background: #23274e;
+  border-radius: 5px;
+  font-family: 'FS Elliot Pro', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  text-align: center;
+  color: #858cab;
+}
+
+.bid-button {
+  &-block {
+    font-family: 'Halvar Breitschrift', sans-serif;
+    @apply flex flex-row justify-center;
+    margin-bottom: 1.5rem;
+    gap: 0.5rem;
+    transition: all 0.3s;
+    pointer-events: all;
+    &[type='button'] {
+      pointer-events: all;
+    }
+    &.disabled {
+      filter: brightness(0.3);
+      pointer-events: none;
+    }
+  }
+  &__item {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #ffffff;
+    padding: 0.8rem;
+    min-width: 210px;
+    transition: all 0.3s;
+    cursor: pointer;
+    background: $semi-dark-blue;
+    @screen mobile {
+      min-width: 0;
+    }
+    &:disabled {
+      cursor: default;
+      opacity: 0.3;
+    }
+    &:hover {
+      opacity: 0.8;
+    }
+    &:active,
+    &:focus {
+      padding: calc(0.8rem - 2px);
+      background: $border-blue-gradient;
+      border: 2px solid transparent;
+    }
+
+    &-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &__text {
+        margin-left: 0.3rem;
+      }
+      &__icon {
+        width: 40px;
+        height: 40px;
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  &-head {
+    border-radius: 12px 8px 8px 12px;
+  }
+  &-tail {
+    border-radius: 8px 12px 12px 8px;
+  }
+}
+
+button.app-button {
+  font-family: 'FS Elliot Pro';
+  transition: background opacity 0.3s ease;
+  &.big {
+    padding: 5px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 8px;
+
+    &:hover,
+    &.btn-waiting,
+    &:focus {
+      opacity: 0.8;
+    }
+    &:disabled {
+      opacity: 0.3;
+    }
+    &.cashout {
+      &:focus {
+        opacity: 0.3;
+      }
+    }
+  }
+
+  &.medium {
+    padding: 5px 3px;
+    flex: 1;
+    background: #2a3145;
+    border-radius: 5px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 17px;
+    text-align: center;
+    color: #97a3cb;
+    text-transform: uppercase;
+
+    &:hover {
+      opacity: 0.8;
+    }
+    &:focus {
+      background: #1d2439;
+      color: #97a3cb30;
+    }
+    &:disabled {
+      background: #1d2439;
+      color: #97a3cb30;
+    }
+  }
+
+  &.small {
+    background: $dark-blue;
+    border-radius: 8px;
+    padding: 5px;
+    mix-blend-mode: normal;
+    color: #fafafa;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    svg {
+      fill: #858cab;
+    }
+    &:hover {
+      opacity: 0.8;
+    }
+    &:enabled:active {
+      opacity: 0.3;
+    }
+  }
+}

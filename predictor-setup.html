@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mines Predictor Setup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 50%, #0a0e1a 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d1ff, #1affb5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #9bb4d1;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        .label {
+            display: block;
+            margin-bottom: 8px;
+            color: #00d1ff;
+            font-weight: 600;
+        }
+        
+        .input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .input:focus {
+            border-color: #00d1ff;
+            box-shadow: 0 0 0 4px rgba(0, 209, 255, 0.1);
+        }
+        
+        .input::placeholder {
+            color: #9bb4d1;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #00d1ff, #1affb5);
+            border: none;
+            border-radius: 12px;
+            color: #0a0e1a;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 209, 255, 0.4);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .info {
+            background: rgba(114, 255, 162, 0.1);
+            border: 1px solid rgba(114, 255, 162, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: left;
+        }
+        
+        .info-title {
+            color: #72ffa2;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .info-text {
+            color: #9bb4d1;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .step-number {
+            background: #00d1ff;
+            color: #0a0e1a;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .error {
+            background: rgba(255, 128, 128, 0.1);
+            border: 1px solid rgba(255, 128, 128, 0.3);
+            color: #ff8080;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .success {
+            background: rgba(114, 255, 162, 0.1);
+            border: 1px solid rgba(114, 255, 162, 0.3);
+            color: #72ffa2;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🎮 Mines Predictor</div>
+        <div class="subtitle">Предсказатель для индивидуальных игр</div>
+        <div style="color: #72ffa2; font-size: 14px; margin-bottom: 30px;">
+            ✨ Анализирует вашу игру и предсказывает безопасные ячейки
+        </div>
+        
+        <form id="setupForm">
+            <div class="form-group">
+                <label class="label" for="playerId">ID игрока</label>
+                <input 
+                    type="text" 
+                    id="playerId" 
+                    class="input" 
+                    placeholder="user_xxxxx"
+                    required
+                >
+            </div>
+            
+            <div class="form-group">
+                <label class="label" for="gameUrl">URL игры (опционально)</label>
+                <input 
+                    type="url" 
+                    id="gameUrl" 
+                    class="input" 
+                    placeholder="https://1waion-life.vercel.app"
+                    value="https://1waion-life.vercel.app"
+                >
+            </div>
+            
+            <button type="submit" class="btn" id="submitBtn">
+                🚀 Запустить предсказатель
+            </button>
+        </form>
+        
+        <div style="margin-top: 20px;">
+            <a href="/" target="_blank" style="
+                display: inline-block;
+                padding: 10px 20px;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 8px;
+                color: #9bb4d1;
+                text-decoration: none;
+                font-size: 14px;
+                transition: all 0.3s ease;
+            " onmouseover="this.style.borderColor='#00d1ff'; this.style.color='#00d1ff';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.color='#9bb4d1';">
+                🎮 Открыть игру
+            </a>
+        </div>
+        
+        <div class="error" id="errorMsg"></div>
+        <div class="success" id="successMsg"></div>
+        
+        <div class="info">
+            <div class="info-title">📋 Как получить ID игрока:</div>
+            <div class="info-text">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <span>Нажмите кнопку "🎮 Открыть игру" выше (откроется в новой вкладке)</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <span>Нажмите F12 для открытия Dev Tools</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <span>Перейдите на вкладку Console</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <span>Найдите строку "🎮 Player ID for Predictor:"</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <span>Скопируйте ID (например: user_6tagx92g66qmg3x8ldy)</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <span>Вставьте ID в поле выше и нажмите "🚀 Запустить предсказатель"</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">7</div>
+                    <span><strong>📱 Ссылка будет работать на любом устройстве!</strong></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info" style="margin-top: 15px;">
+            <div class="info-title">💡 Что делает предсказатель:</div>
+            <div class="info-text">
+                • Анализирует вашу индивидуальную игру<br>
+                • Показывает где находятся бомбы (красные кресты)<br>
+                • Предсказывает безопасные ячейки (золотые звезды)<br>
+                • Обновляется в реальном времени<br>
+                • Работает только с вашей игрой
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('setupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const playerId = document.getElementById('playerId').value.trim();
+            const gameUrl = document.getElementById('gameUrl').value.trim() || 'https://1waion-life.vercel.app';
+            const errorMsg = document.getElementById('errorMsg');
+            const successMsg = document.getElementById('successMsg');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            // Hide previous messages
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+            
+            if (!playerId) {
+                errorMsg.textContent = 'Пожалуйста, введите ID игрока';
+                errorMsg.style.display = 'block';
+                return;
+            }
+            
+            // Validate player ID format
+            if (!/^user_[a-z0-9]+$/.test(playerId)) {
+                errorMsg.textContent = 'Неверный формат ID. ID должен начинаться с "user_"';
+                errorMsg.style.display = 'block';
+                return;
+            }
+            
+            // Show loading
+            submitBtn.textContent = '⏳ Загрузка...';
+            submitBtn.disabled = true;
+            
+            // Test connection to predictor API
+            fetch(`/predictor-api/mines/debug/state?playerId=${encodeURIComponent(playerId)}`, {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Success - redirect to predictor
+                const predictorUrl = `/predictor?playerId=${encodeURIComponent(playerId)}`;
+                window.location.href = predictorUrl;
+            })
+            .catch(error => {
+                // Error
+                errorMsg.textContent = `Ошибка подключения к игре: ${error.message}`;
+                errorMsg.style.display = 'block';
+                
+                // Reset button
+                submitBtn.textContent = '🚀 Запустить предсказатель';
+                submitBtn.disabled = false;
+            });
+        });
+        
+        // Auto-fill from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const playerIdParam = urlParams.get('playerId');
+        if (playerIdParam) {
+            document.getElementById('playerId').value = playerIdParam;
+        }
+    </script>
+</body>
+</html>

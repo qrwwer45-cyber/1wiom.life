@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mines Predictor</title>
+    <link rel="stylesheet" href="/prod-rnd-frontend-php-orchestra.100hp.app/static/css/main.144a5b0d.css">
+    <style>
+        :root { --footer-h: 14vmin; }
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background: #0a0f1d; 
+            font-family: Arial, sans-serif; 
+            overflow: hidden; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            width: 100vw;
+        }
+        
+        /* Stage holds frame and outside decorations */
+        .stage { 
+            position: relative; 
+            width: 370px; 
+            height: 370px; 
+            overflow: visible; 
+        }
+        
+        /* Frame fills the stage - beautiful styling */
+        .frame {
+            position: absolute; 
+            inset: 0;
+            background-color: transparent;
+            z-index: 1;
+        }
+        
+        /* Beautiful frame image */
+        .frame-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+
+        
+
+        
+        /* Grid strictly inside visible frame area - beautiful grid */
+        .grid-container {
+            position: absolute; 
+            inset: 0;
+            display: grid; 
+            grid-template-columns: repeat(5, 70px);
+            grid-template-rows: repeat(5, 70px);
+            gap: 0;
+            z-index: 2;
+            padding: 10px;
+            overflow: hidden;
+            animation: gridAppear 1s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+        
+        @keyframes gridAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Mobile-only perf hints (визуально без изменений) */
+        @media (pointer: coarse), (max-width: 480px) {
+            .grid-container { contain: layout paint size style; will-change: transform, opacity; }
+            .cell { backface-visibility: hidden; transform: translateZ(0); }
+            .cell svg { backface-visibility: hidden; }
+        }
+        
+        /* Original empty cell styling */
+        .cell { 
+            background: transparent;
+            border: none; 
+            border-radius: 8px;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            z-index: 1;
+            overflow: visible;
+            cursor: pointer;
+            transition: transform .15s ease-in-out;
+            position: relative;
+        }
+        
+        /* Центрирование SVG элементов */
+        .cell svg {
+            display: block;
+            margin: 0 auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+
+        .cell:hover { transform: scale(1.02); }
+        
+        /* Hover эффекты для оригинальных SVG */
+        .cell:hover svg {
+            width: 62px;
+            height: 62px;
+            transition: all .3s ease;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+
+        
+
+        
+        @keyframes highlightSweep {
+          0% { right: 170px; opacity: 0; }
+          15% { opacity: 1; }
+          85% { opacity: 1; }
+          100% { right: -300px; opacity: 0; }
+        }
+        
+        /* Анимация появления ячеек - оригинальная */
+        @keyframes cellAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        /* Оригинальные анимации исчезновения и появления звезд и крестов */
+        @keyframes star_t_s_i {
+            0% {
+                transform: translate(28.3918px, 26.0576px) scale(0, 0) translate(-23.4974px, -22.4547px);
+                animation-timing-function: cubic-bezier(0, 0, 0.58, 1);
+            }
+            42.8571% {
+                transform: translate(28.3918px, 26.0576px) scale(1, 1) translate(-23.4974px, -22.4547px);
+                animation-timing-function: cubic-bezier(0, 0, 0.58, 1);
+            }
+            71.4285% {
+                transform: translate(28.3918px, 26.0576px) scale(1.15, 1.15) translate(-23.4974px, -22.4547px);
+                animation-timing-function: cubic-bezier(0, 0, 0.58, 1);
+            }
+            to {
+                transform: translate(28.3918px, 26.0576px) scale(1, 1) translate(-23.4974px, -22.4547px);
+            }
+        }
+        
+        @keyframes star_t_s_d {
+            0% {
+                transform: translate(28.3918px, 26.0576px) scale(1, 1) translate(-23.4974px, -22.4547px);
+                animation-timing-function: cubic-bezier(0.42, 0, 1, 1);
+            }
+            25% {
+                transform: translate(28.3918px, 26.0576px) scale(1.15, 1.15) translate(-23.4974px, -22.4547px);
+                animation-timing-function: cubic-bezier(0, 0, 0.58, 1);
+            }
+            50% {
+                transform: translate(28.3918px, 26.0576px) scale(1, 1) translate(-23.4974px, -22.4547px);
+            }
+            to {
+                transform: translate(28.3918px, 26.0576px) scale(0, 0) translate(-23.4974px, -22.4547px);
+            }
+        }
+        
+        @keyframes krest_t_cr_i {
+            0% {
+                transform: scale(0, 0) translate(-28px, -28px);
+            }
+            42.8571%, to {
+                transform: scale(1, 1) translate(-28px, -28px);
+            }
+            71.4285% {
+                transform: scale(1.15, 1.15) translate(-28px, -28px);
+                animation-timing-function: cubic-bezier(0, 0, 0.58, 1);
+            }
+        }
+        
+        @keyframes krest_t_cr_d {
+            0% {
+                transform: scale(1, 1) translate(-28px, -28px);
+                animation-timing-function: cubic-bezier(0.42, 0, 1, 1);
+            }
+            50% {
+                transform: scale(1, 1) translate(-28px, -28px);
+            }
+            to {
+                transform: scale(0, 0) translate(-28px, -28px);
+            }
+        }
+        
+
+        
+
+        
+        /* Bottom decorative rock below the frame */
+        .footer-rock { 
+            position: fixed; 
+            left: 50%; 
+            bottom: 0; 
+            transform: translateX(-50%); 
+            width: min(96vmin, 96vw); 
+            pointer-events: none; 
+            z-index: 0; 
+        }
+        
+        
+    </style>
+  </head>
+  <body>
+    
+    <div class="stage">
+        <div class="frame">
+            <!-- Beautiful frame image -->
+            <img class="frame-image" src="./prod-rnd-frontend-php-orchestra.100hp.app/static/media/cellsFrame.40eb57f7e28f2ca52ad4.png" alt="beautiful frame" />
+            
+            <div class="grid-container" id="gameGrid"></div>
+        </div>
+
+        <!-- Bottom decorative rock below the frame -->
+        <img class="footer-rock" src="./prod-rnd-frontend-php-orchestra.100hp.app/static/media/footer.a650de3af39c3672822e.webp" alt="footer"/>
+        
+
+    </div>
+
+    <script>
+        // Prevent browser zoom
+        (function preventZoom(){
+          const onKeyDown = (e) => {
+            if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '=' || e.key === '-' || e.key === '_' || e.key === '0')) e.preventDefault();
+            if ((e.ctrlKey || e.metaKey) && (e.code === 'NumpadAdd' || e.code === 'NumpadSubtract')) e.preventDefault();
+          };
+          const onWheel = (e) => { if (e.ctrlKey) e.preventDefault(); };
+          window.addEventListener('keydown', onKeyDown, { passive: false });
+          window.addEventListener('wheel', onWheel, { passive: false });
+        })();
+
+        class MinesPredictor {
+            constructor() {
+                this.currentSessionId = null;
+                this.prevMap = new Map(); // idx -> 'mine' | 'safe'
+                this.pollTimer = null;
+                this.freezeUntilMs = 0;
+                this.freezeActive = false;
+                this.lastRoundSeen = null;
+                this.storageKey = 'minesPredictor:lastGrid';
+                this.upstreamAvailable = false;
+                this.hasShownInitialMask = false;
+                this._svgCache = new Map();
+                this.init();
+            }
+            
+                        async init() {
+                this.createGrid();
+                await this.fetchAndRender();
+                this.startPolling();
+            }
+            
+            async checkUpstream(timeoutMs = 800) {
+              try {
+                const controller = new AbortController();
+                const t = setTimeout(() => controller.abort(), timeoutMs);
+                
+                // Получить Player ID из URL или автоматически
+                let playerId = new URLSearchParams(window.location.search).get('playerId');
+                
+                if (!playerId) {
+                    // Попробовать получить из cookies
+                    const cookieMatch = document.cookie.match(/userId=([^;]+)/);
+                    if (cookieMatch) {
+                        playerId = cookieMatch[1];
+                    } else {
+                        // Получить через API
+                        try {
+                            const userRes = await fetch('/mines/user');
+                            if (userRes.ok) {
+                                const userData = await userRes.json();
+                                playerId = userData.id;
+                                console.log('🎮 Auto-detected Player ID:', playerId);
+                            }
+                        } catch (e) {}
+                    }
+                }
+                
+                const res = await fetch(`/predictor-api/mines/full-state?playerId=${encodeURIComponent(playerId || 'test')}`, { cache: 'no-store', signal: controller.signal });
+                clearTimeout(t);
+                this.upstreamAvailable = !!res && res.ok;
+              } catch(_) {
+                this.upstreamAvailable = false;
+              }
+              return this.upstreamAvailable;
+            }
+            
+            createGrid() {
+                const grid = document.getElementById('gameGrid'); 
+                grid.innerHTML = '';
+                for (let r = 0; r < 5; r++) {
+                    for (let c = 0; c < 5; c++) {
+                    const cell = document.createElement('button');
+                    cell.type = 'button';
+                        cell.className = 'cell cell-hovered';
+                        cell.dataset.row = r; 
+                        cell.dataset.col = c;
+                    grid.appendChild(cell);
+                    }
+                }
+            }
+            
+
+            
+            startPolling() { 
+                // Делаем опрос реже на мобильных (экономим батарею/CPU), без визуальных изменений
+                const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                const interval = isMobile ? 3000 : 2000;
+                if (this.pollTimer) clearInterval(this.pollTimer);
+                this.pollTimer = setInterval(() => this.checkForUpdates(), interval);
+            }
+            
+            async checkForUpdates() {
+                try {
+                    // Получить Player ID из URL или автоматически
+                    let playerId = new URLSearchParams(window.location.search).get('playerId');
+                    
+                    if (!playerId) {
+                        // Попробовать получить из cookies
+                        const cookieMatch = document.cookie.match(/userId=([^;]+)/);
+                        if (cookieMatch) {
+                            playerId = cookieMatch[1];
+                        } else {
+                            // Получить через API
+                            try {
+                                const userRes = await fetch('/mines/user');
+                                if (userRes.ok) {
+                                    const userData = await userRes.json();
+                                    playerId = userData.id;
+                                    console.log('🎮 Auto-detected Player ID:', playerId);
+                                }
+                            } catch (e) {}
+                        }
+                    }
+
+                    if (!playerId) {
+                        console.error('No player ID found. Redirecting to setup...');
+                        window.location.href = '/predictor-setup';
+                        return;
+                    }
+
+                    const res = await fetch(`/predictor-api/mines/full-state?playerId=${encodeURIComponent(playerId)}`);
+                    if (!res.ok) return;
+                    const data = await res.json();
+                    
+                    const sessionId = data.sessionId || null;
+                    const lastRound = typeof data.lastRound === 'number' ? data.lastRound : null;
+                    
+                    // Оригинальная логика: обновляем ТОЛЬКО при изменении сессии (новая игра)
+                    if (sessionId !== this.currentSessionId) {
+                        this.currentSessionId = sessionId;
+                        this.lastRoundSeen = lastRound;
+                        
+                        // Если новая игра, обновляем поле
+                        if (sessionId) {
+                            await this.fetchAndRender();
+                        }
+                        // Если игра закончилась (sessionId = null), НЕ очищаем предсказание
+                    }
+                } catch (e) {}
+            }
+
+
+            
+
+            
+            idx(r,c){ return r*5+c; }
+            
+            saveSnapshotToStorage(mapArr){
+                try { localStorage.setItem(this.storageKey, JSON.stringify({ map: mapArr, ts: Date.now() })); } catch(_){}
+            }
+            
+            loadSnapshotFromStorageAndRender(){
+                try {
+                    const raw = localStorage.getItem(this.storageKey);
+                    if (!raw) return;
+                    const parsed = JSON.parse(raw);
+                    const map = Array.isArray(parsed?.map) ? parsed.map : null;
+                    if (!map || map.length !== 25) return;
+                    // Rehydrate snapshot without changing session bookkeeping
+                    for (let r=0;r<5;r++){
+                        for (let c=0;c<5;c++){
+                            const type = map[this.idx(r,c)];
+                            if (type === 'mine' || type === 'safe') this.place(type, r, c, true);
+                        }
+                    }
+                } catch(_){}
+            }
+            
+            place(type, r, c, force = false) {
+                const cell = document.querySelector(`.cell[data-row="${r}"][data-col="${c}"]`);
+                if (!cell) {
+                    return;
+                }
+                
+                const key = this.idx(r,c);
+                // Пропускаем, если значение не изменилось (сильно снижает нагрузку на мобильных)
+                if (!force && this.prevMap.get(key) === type) return;
+                this.prevMap.set(key, type);
+                
+                // Убираем старые классы
+                cell.classList.remove('mine', 'safe');
+                
+                 // Добавляем полные оригинальные SVG компоненты
+                 if (type === 'mine') {
+                    cell.classList.add('mine');
+                     cell.innerHTML = this.getCachedSvg('mine', r, c, () => this.createOriginalCross(r, c));
+                } else if (type === 'safe') {
+                    cell.classList.add('safe');
+                     cell.innerHTML = this.getCachedSvg('safe', r, c, () => this.createOriginalStar(r, c));
+                } else {
+                    cell.innerHTML = '';
+                }
+                
+                // Анимация для ВСЕХ ячеек при каждом обновлении
+                cell.style.animation = 'none';
+                cell.offsetHeight; // Trigger reflow
+                cell.style.animation = 'cellAppear 0.5s ease-out forwards';
+            }
+
+            // Возвращает SVG из кеша либо генерирует и сохраняет
+            getCachedSvg(type, r, c, factory){
+                const k = `${type}:${r}:${c}`;
+                let v = this._svgCache.get(k);
+                if (!v) { v = factory(); this._svgCache.set(k, v); }
+                return v;
+            }
+            
+            clearAll() {
+                return new Promise((resolve) => {
+                    const cells = document.querySelectorAll('.cell');
+                    let completedAnimations = 0;
+                    
+                    if (cells.length === 0) {
+                        this.prevMap.clear();
+                        resolve();
+                        return;
+                    }
+                    
+                    cells.forEach(cell => {
+                        if (cell.innerHTML.trim() !== '') {
+                            // Добавляем анимацию исчезновения
+                            const svg = cell.querySelector('svg');
+                            if (svg) {
+                                const star = svg.querySelector('#star');
+                                const krest = svg.querySelector('#krest');
+                                
+                                if (star) {
+                                    star.style.animation = '0.8s linear both star_t_s_d';
+                                }
+                                if (krest) {
+                                    krest.style.animation = '0.8s linear both krest_t_cr_d';
+                                }
+                                
+                                // Убираем содержимое после анимации
+                                setTimeout(() => {
+                                    cell.innerHTML = '';
+                                    cell.style.animation = '';
+                                    cell.classList.remove('mine', 'safe');
+                                    completedAnimations++;
+                                    if (completedAnimations === cells.length) {
+                                        this.prevMap.clear();
+                                        resolve();
+                                    }
+                                }, 800);
+                            } else {
+                                cell.innerHTML = '';
+                                cell.style.animation = '';
+                                cell.classList.remove('mine', 'safe');
+                                completedAnimations++;
+                                if (completedAnimations === cells.length) {
+                                    this.prevMap.clear();
+                                    resolve();
+                                }
+                            }
+                        } else {
+                            completedAnimations++;
+                            if (completedAnimations === cells.length) {
+                                this.prevMap.clear();
+                                resolve();
+                            }
+                        }
+                    });
+                });
+            }
+            
+            // Полная оригинальная звезда (безопасная ячейка)
+            createOriginalStar(r, c) {
+                return `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none" style="background: 0 0;">
+                        <defs>
+                            <linearGradient id="Gradient-0_s_i${r}${c}" x1="28.392" y1="0.972" x2="40.632" y2="48.291" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#fba416" stop-opacity="0"/>
+                                <stop offset="1" stop-color="#fdbb4e" stop-opacity="0.63"/>
+                            </linearGradient>
+                            <linearGradient id="Gradient-1_s_i${r}${c}" x1="28.392" y1="0.972" x2="40.633" y2="48.291" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#fdbb4e" stop-opacity="0"/>
+                                <stop offset="1" stop-color="#fdbb4e" stop-opacity="0.63"/>
+                            </linearGradient>
+                            <linearGradient id="Gradient-3_s_i${r}${c}" x1="43.739" y1="37.512" x2="18.526" y2="14.674" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#feffd3" stop-opacity="0.63"/>
+                                <stop offset="0.219" stop-color="#fafd4e" stop-opacity="0"/>
+                                <stop offset="0.491" stop-color="#fdff8b" stop-opacity="0.56"/>
+                                <stop offset="0.733" stop-color="#f7f990"/>
+                                <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                                <stop offset="1" stop-color="#feffb7" stop-opacity="0"/>
+                            </linearGradient>
+                            <linearGradient id="Gradient-4_s_i${r}${c}" x1="28.391" y1="14.126" x2="28.026" y2="38.425" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#feffb0"/>
+                                <stop offset="0.277" stop-color="#fff" stop-opacity="0.51"/>
+                                <stop offset="1" stop-color="#fafd4e" stop-opacity="0.15"/>
+                            </linearGradient>
+                            <linearGradient id="Gradient-5_s_i${r}${c}" x1="27.214" y1="23.393" x2="27.033" y2="32.029" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#fafd4e" stop-opacity="0"/>
+                                <stop offset="0.732" stop-color="#fafd4e" stop-opacity="0.46"/>
+                            </linearGradient>
+                            <linearGradient id="Gradient-6_s_i${r}${c}" x1="24.792" y1="18.563" x2="29.645" y2="23.143" gradientUnits="userSpaceOnUse">
+                                <stop offset="0.224" stop-color="#fafd4e" stop-opacity="0.35"/>
+                                <stop offset="1" stop-color="#fafd4e" stop-opacity="0"/>
+                            </linearGradient>
+                            <radialGradient id="Gradient-2_s_i${r}${c}" cx="0" cy="0" r="1" fx="0" fy="0" gradientUnits="userSpaceOnUse" gradientTransform="rotate(52.671 -10.467 32.845) scale(31.9369)">
+                                <stop offset="0.739" stop-color="#9cb6dd" stop-opacity="0"/>
+                                <stop offset="0.898" stop-color="#c6f1ff" stop-opacity="0.37"/>
+                                <stop offset="1" stop-color="#effbff" stop-opacity="0.7"/>
+                            </radialGradient>
+                            <mask id="Mask-1_s_i${r}${c}">
+                                <path fill="url(#Gradient-7_s_i${r}${c})" transform="rotate(30 31.002 3.397)" d="M0 0h16.959v56H0z"/>
+                            </mask>
+                        </defs>
+                        <style>
+                            @keyframes star_t_s_i{0%{transform:translate(28.3918px,26.0576px) scale(0,0) translate(-23.4974px,-22.4547px);animation-timing-function:cubic-bezier(0,0,.58,1)}42.8571%{transform:translate(28.3918px,26.0576px) scale(1,1) translate(-23.4974px,-22.4547px);animation-timing-function:cubic-bezier(0,0,.58,1)}71.4285%{transform:translate(28.3918px,26.0576px) scale(1.15,1.15) translate(-23.4974px,-22.4547px);animation-timing-function:cubic-bezier(0,0,.58,1)}to{transform:translate(28.3918px,26.0576px) scale(1,1) translate(-23.4974px,-22.4547px)}}
+                            @keyframes a1_t_s_i{0%,to{transform:translate(23.4966px,22.4549px)}}
+                            @keyframes a0_t_s_i{0%{transform:scale(1.889498,1.889498) translate(-28.3911px,-27.0603px);animation-timing-function:cubic-bezier(0,0,.58,1)}to{transform:scale(1,1) translate(-28.3911px,-27.0603px)}}
+                            @keyframes a2_t_s_i{0%{transform:translate(22.2182px,22.7642px) rotate(145.526246deg) scale(.462454,.462454) translate(-27.1127px,-26.3671px);animation-timing-function:cubic-bezier(0,0,.58,1)}to{transform:translate(22.2182px,22.7642px) rotate(0deg) scale(1,1) translate(-27.1127px,-26.3671px)}}
+                            @keyframes a2_o_s_i{0%{opacity:0;animation-timing-function:cubic-bezier(0,0,.58,1)}to{opacity:1}}
+                            @keyframes a3_t_s_i{0%{transform:translate(18.9293px,24.3971px) rotate(-53.127557deg) scale(.322292,.322292) translate(-26.7458px,-20.6401px);animation-timing-function:cubic-bezier(0,0,.58,1)}to{transform:translate(21.8514px,17.0372px) rotate(0deg) scale(1,1) translate(-26.7458px,-20.6401px)}}
+                            @keyframes a3_o_s_i{0%{opacity:0;animation-timing-function:cubic-bezier(0,0,.58,1)}to{opacity:1}}
+                        </style>
+                        <g id="star" transform="matrix(0 0 0 0 28.392 26.058)" style="animation: 1s linear both star_t_s_i">
+                            <path d="M26.439 4.8c.813-1.595 3.092-1.595 3.905 0l5.7 11.17a2.192 2.192 0 0 0 1.609 1.168l12.385 1.97c1.768.28 2.472 2.448 1.207 3.714l-8.862 8.873a2.193 2.193 0 0 0-.615 1.891l1.955 12.388c.279 1.768-1.565 3.107-3.16 2.295l-11.177-5.686a2.192 2.192 0 0 0-1.989 0L16.22 48.269c-1.595.812-3.439-.527-3.16-2.295l1.955-12.388a2.192 2.192 0 0 0-.615-1.89l-8.862-8.874c-1.265-1.266-.561-3.433 1.207-3.714l12.385-1.97a2.192 2.192 0 0 0 1.609-1.168l5.7-11.17Z" fill="#C22A20" transform="translate(-4.894 -3.603)"/>
+                            <path d="M26.439 4.8c.813-1.595 3.092-1.595 3.905 0l5.7 11.17a2.192 2.192 0 0 0 1.609 1.168l12.385 1.97c1.768.28 2.472 2.448 1.207 3.714l-8.862 8.873a2.193 2.193 0 0 0-.615 1.891l1.955 12.388c.279 1.768-1.565 3.107-3.16 2.295l-11.177-5.686a2.192 2.192 0 0 0-1.989 0L16.22 48.269c-1.595.812-3.439-.527-3.16-2.295l1.955-12.388a2.192 2.192 0 0 0-.615-1.89l-8.862-8.874c-1.265-1.266-.561-3.433 1.207-3.714l12.385-1.97a2.192 2.192 0 0 0 1.609-1.168l5.7-11.17Z" fill="url(#Gradient-0_s_i${r}${c})" transform="translate(-4.894 -3.603)"/>
+                            <path d="M26.44 4.799c.813-1.595 3.091-1.595 3.905 0l5.7 11.17a2.192 2.192 0 0 0 1.609 1.169l12.385 1.97c1.768.28 2.472 2.447 1.207 3.714l-8.863 8.873a2.192 2.192 0 0 0-.614 1.89l1.954 12.388c.28 1.769-1.564 3.108-3.16 2.296l-11.177-5.687a2.193 2.193 0 0 0-1.988 0L16.22 48.27c-1.596.812-3.44-.527-3.16-2.296l1.954-12.387a2.192 2.192 0 0 0-.614-1.891l-8.863-8.873c-1.265-1.267-.56-3.434 1.207-3.715l12.386-1.969a2.192 2.192 0 0 0 1.608-1.169l5.7-11.17Z" fill="url(#Gradient-1_s_i${r}${c})" transform="translate(-4.894 -3.603)"/>
+                            <path d="M26.44 4.799c.813-1.595 3.091-1.595 3.905 0l5.7 11.17a2.192 2.192 0 0 0 1.609 1.169l12.385 1.97c1.768.28 2.472 2.447 1.207 3.714l-8.863 8.873a2.192 2.192 0 0 0-.614 1.89l1.954 12.388c.28 1.769-1.564 3.108-3.16 2.296l-11.177-5.687a2.193 2.193 0 0 0-1.988 0L16.22 48.27c-1.596.812-3.44-.527-3.16-2.296l1.954-12.387a2.192 2.192 0 0 0-.614-1.891l-8.863-8.873c-1.265-1.267-.56-3.434 1.207-3.715l12.386-1.969a2.192 2.192 0 0 0 1.608-1.169l5.7-11.17Z" fill="url(#Gradient-2_s_i${r}${c})" transform="translate(-4.894 -3.603)"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="m35.394 16.302-5.7-11.171c-.542-1.063-2.061-1.063-2.604 0l-5.7 11.17a2.923 2.923 0 0 1-2.145 1.559L6.86 19.829c-1.178.187-1.648 1.632-.804 2.476l8.862 8.873c.66.661.965 1.598.82 2.522l-1.955 12.387c-.186 1.179 1.043 2.072 2.106 1.53l11.178-5.686a2.923 2.923 0 0 1 2.65 0l11.178 5.687c1.064.54 2.292-.352 2.106-1.53L41.047 33.7a2.923 2.923 0 0 1 .82-2.522l8.862-8.873c.843-.844.374-2.289-.805-2.476l-12.385-1.97a2.923 2.923 0 0 1-2.145-1.558ZM30.345 4.799c-.814-1.595-3.092-1.595-3.906 0l-5.7 11.17a2.192 2.192 0 0 1-1.608 1.169l-12.386 1.97c-1.768.28-2.472 2.447-1.207 3.714l8.863 8.873c.495.496.723 1.198.614 1.89l-1.954 12.388c-.28 1.769 1.564 3.108 3.16 2.296l11.177-5.687a2.193 2.193 0 0 1 1.988 0l11.178 5.687c1.595.812 3.438-.527 3.16-2.296l-1.955-12.387c-.11-.693.119-1.395.614-1.891l8.863-8.873c1.265-1.267.56-3.434-1.207-3.715l-12.385-1.969a2.192 2.192 0 0 1-1.609-1.169l-5.7-11.17Z" fill="url(#Gradient-3_s_i${r}${c})" transform="translate(-4.894 -3.603)"/>
+                            <g style="animation: 1s linear both a1_t_s_i">
+                                <path d="M27.442 15.766a1.096 1.096 0 0 1 1.898 0l3.338 5.77c.156.268.417.458.72.523l6.52 1.392a1.096 1.096 0 0 1 .586 1.805l-4.456 4.958c-.207.23-.307.538-.275.846l.69 6.63a1.096 1.096 0 0 1-1.535 1.116L28.836 36.1a1.095 1.095 0 0 0-.89 0l-6.092 2.706a1.096 1.096 0 0 1-1.535-1.115l.69-6.63a1.096 1.096 0 0 0-.275-.847l-4.456-4.958a1.096 1.096 0 0 1 .587-1.805l6.519-1.392c.303-.065.565-.255.72-.523l3.338-5.77Z" fill="url(#Gradient-4_s_i${r}${c})" transform="translate(-30.148 -28.676) scale(1.8895)" style="animation: 1s linear both a0_t_s_i"/>
+                            </g>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M26.893 7.286c.27.137.378.467.241.737l-1.55 3.063a.548.548 0 1 1-.977-.495l1.55-3.063a.548.548 0 0 1 .736-.242Z" fill="#F9BE76" transform="translate(-4.895 -3.603)"/>
+                            <circle fill="#F9BE76" transform="translate(3.035 16.918)" r="0.548"/>
+                            <circle fill="#F9BE76" transform="translate(19.477 8.514)" r="0.548"/>
+                        </g>
+                    </svg>
+                `;
+            }
+
+            // Полный оригинальный крест (мина)
+            createOriginalCross(r, c) {
+                return `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none" style="background: 0 0;">
+                        <defs>
+                            <linearGradient id="Gradient-0_cr_i${r}${c}" x1="36.273" y1="22.811" x2="36.273" y2="42.259" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#708fbe" stop-opacity="0"/>
+                                <stop offset="1" stop-color="#72ddff" stop-opacity="0.63"/>
+                            </linearGradient>
+                            <linearGradient id="Gradient-1_cr_i${r}${c}" x1="37.616" y1="25.294" x2="38.093" y2="46.992" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#708fbe" stop-opacity="0"/>
+                                <stop offset="1" stop-color="#72ddff" stop-opacity="0.63"/>
+                            </linearGradient>
+                            <linearGradient id="Gradient-3_cr_i${r}${c}" x1="40.728" y1="38.449" x2="18.636" y2="19.326" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#d8f6ff" stop-opacity="0.63"/>
+                                <stop offset="0.219" stop-color="#a0d2ff" stop-opacity="0"/>
+                                <stop offset="0.491" stop-color="#8dc8ff" stop-opacity="0.56"/>
+                                <stop offset="0.733" stop-color="#9adbf8"/>
+                                <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                                <stop offset="1" stop-color="#baeaff" stop-opacity="0"/>
+                            </linearGradient>
+                            <linearGradient id="Gradient-4_cr_i${r}${c}" x1="14.418" y1="36.947" x2="17.329" y2="39.593" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#c4c4c4" stop-opacity="0"/>
+                                <stop offset="0.732" stop-color="#dbf6ff" stop-opacity="0.46"/>
+                            </linearGradient>
+                            <linearGradient id="Gradient-5_cr_i${r}${c}" x1="19.496" y1="20.081" x2="16.218" y2="17.456" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#c4c4c4" stop-opacity="0"/>
+                                <stop offset="1" stop-color="#dbf6ff" stop-opacity="0.45"/>
+                            </linearGradient>
+                            <linearGradient id="Gradient-6_cr_i${r}${c}" x1="40.013" y1="20.668" x2="36.906" y2="18.258" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#c4c4c4" stop-opacity="0"/>
+                                <stop offset="1" stop-color="#dbf6ff" stop-opacity="0.45"/>
+                            </linearGradient>
+                            <linearGradient id="Gradient-7_cr_i${r}${c}" x1="28.827" y1="29.033" x2="36.075" y2="28.323" gradientUnits="userSpaceOnUse">
+                                <stop offset="0.224" stop-color="#dbf6ff" stop-opacity="0.35"/>
+                                <stop offset="1" stop-color="#c4c4c4" stop-opacity="0"/>
+                            </linearGradient>
+                            <linearGradient id="Gradient-8_cr_i${r}${c}" x1="37.08" y1="34.836" x2="12.044" y2="13.755" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#d8f6ff" stop-opacity="0.63"/>
+                                <stop offset="0.219" stop-color="#a0d2ff" stop-opacity="0"/>
+                                <stop offset="0.491" stop-color="#8dc8ff" stop-opacity="0.56"/>
+                                <stop offset="0.733" stop-color="#9adbf8"/>
+                                <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                                <stop offset="1" stop-color="#baeaff" stop-opacity="0"/>
+                            </linearGradient>
+                            <radialGradient id="Gradient-2_cr_i${r}${c}" cx="0" cy="0" r="1" fx="0" fy="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(15.5197 21.2962 -21.0221 15.3199 22.682 24.327)">
+                                <stop offset="0.739" stop-color="#9cb6dd" stop-opacity="0"/>
+                                <stop offset="0.898" stop-color="#c6f1ff" stop-opacity="0.37"/>
+                                <stop offset="1" stop-color="#effbff" stop-opacity="0.7"/>
+                            </radialGradient>
+                        </defs>
+                        <style>
+                            @keyframes a0_t_cr_i{0%{transform:translate(28px,28px) rotate(180deg);animation-timing-function:cubic-bezier(0,0,.58,1)}71.4285%{transform:translate(28px,28px) rotate(-5deg)}to{transform:translate(28px,28px) rotate(0deg)}}
+                            @keyframes krest_t_cr_i{0%{transform:scale(0,0) translate(-28px,-28px)}42.8571%,to{transform:scale(1,1) translate(-28px,-28px)}71.4285%{transform:scale(1.15,1.15) translate(-28px,-28px);animation-timing-function:cubic-bezier(0,0,.58,1)}}
+                            @keyframes a1_t_cr_i{0%{transform:translate(17.3511px,39px) rotate(0deg) scale(.438128,.423532) translate(-14.3863px,-37.0446px)}to{transform:translate(14.3863px,37.0446px) rotate(0deg) scale(1,1) translate(-14.3863px,-37.0446px)}}
+                            @keyframes a2_t_cr_i{0%{transform:translate(15.8726px,16.8036px) rotate(0deg) scale(.440469,.440469) translate(-19.2722px,-19.7496px)}to{transform:translate(19.2722px,19.7496px) rotate(0deg) scale(1,1) translate(-19.2722px,-19.7496px)}}
+                            @keyframes a3_t_cr_i{0%{transform:translate(37px,18.2131px) rotate(0deg) scale(.461347,.461347) translate(-40.0446px,-20.5702px)}to{transform:translate(40.0446px,20.5702px) rotate(0deg) scale(1,1) translate(-40.0446px,-20.5702px)}}
+                            @keyframes a4_t_cr_i{0%{transform:translate(29.3877px,32.5041px) rotate(-45.565409deg) scale(.403058,.403058) translate(-31.3472px,-29.0394px)}to{transform:translate(31.3472px,29.0394px) rotate(0deg) scale(1,1) translate(-31.3472px,-29.0394px)}}
+                            @keyframes a5_t_cr_i{0%{transform:translate(27.9335px,28.2933px) rotate(0deg) scale(1.122601,1.122601) translate(-27.9335px,-28.2933px)}28.5714%{transform:translate(27.9335px,28.2933px) rotate(-4.682578deg) scale(1.087572,1.087572) translate(-27.9335px,-28.2933px)}71.4285%{transform:translate(27.9335px,28.2933px) rotate(0deg) scale(1.035029,1.035029) translate(-27.9335px,-28.2933px)}to{transform:translate(27.9335px,28.2933px) rotate(0deg) scale(1,1) translate(-27.9335px,-28.2933px)}}
+                        </style>
+                        <g style="animation: 1s linear both a0_t_cr_i">
+                            <g transform="matrix(0 0 0 0 28 28)" style="animation: 1s linear both krest_t_cr_i" id="krest">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M43.408 10.226a2.385 2.385 0 0 0-3.373 0L29.388 20.872a2.237 2.237 0 0 1-3.163 0L15.578 10.226a2.385 2.385 0 0 0-3.373 0l-2.53 2.53a2.385 2.385 0 0 0 0 3.373L20.32 26.776c.874.873.874 2.29 0 3.163L9.675 40.585a2.385 2.385 0 0 0 0 3.374l2.53 2.53a2.385 2.385 0 0 0 3.373 0l10.647-10.647a2.236 2.236 0 0 1 3.163 0l10.646 10.647a2.385 2.385 0 0 0 3.374 0l2.53-2.53a2.385 2.385 0 0 0 0-3.374L35.29 29.94a2.237 2.237 0 0 1 0-3.163l10.647-10.647a2.385 2.385 0 0 0 0-3.373l-2.53-2.53Z" fill="#43628F"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M43.408 10.226a2.385 2.385 0 0 0-3.373 0L29.388 20.872a2.237 2.237 0 0 1-3.163 0L15.578 10.226a2.385 2.385 0 0 0-3.373 0l-2.53 2.53a2.385 2.385 0 0 0 0 3.373L20.32 26.776c.874.873.874 2.29 0 3.163L9.675 40.585a2.385 2.385 0 0 0 0 3.374l2.53 2.53a2.385 2.385 0 0 0 3.373 0l10.647-10.647a2.236 2.236 0 0 1 3.163 0l10.646 10.647a2.385 2.385 0 0 0 3.374 0l2.53-2.53a2.385 2.385 0 0 0 0-3.374L35.29 29.94a2.237 2.237 0 0 1 0-3.163l10.647-10.647a2.385 2.385 0 0 0 0-3.373l-2.53-2.53Z" fill="url(#Gradient-0_cr_i${r}${c})"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M43.408 10.226a2.385 2.385 0 0 0-3.373 0L27.806 22.454 15.578 10.226a2.385 2.385 0 0 0-3.373 0l-2.53 2.53a2.385 2.385 0 0 0 0 3.373l12.228 12.228L9.675 40.585a2.385 2.385 0 0 0 0 3.374l2.53 2.53a2.385 2.385 0 0 0 3.373 0L27.806 34.26 40.035 46.49a2.385 2.385 0 0 0 3.373 0l2.53-2.53a2.385 2.385 0 0 0 0-3.374L33.709 28.357 45.938 16.13a2.385 2.385 0 0 0 0-3.373l-2.53-2.53Z" fill="url(#Gradient-1_cr_i${r}${c})"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M43.408 10.226a2.385 2.385 0 0 0-3.373 0L27.806 22.454 15.578 10.226a2.385 2.385 0 0 0-3.373 0l-2.53 2.53a2.385 2.385 0 0 0 0 3.373l12.228 12.228L9.675 40.585a2.385 2.385 0 0 0 0 3.374l2.53 2.53a2.385 2.385 0 0 0 3.373 0L27.806 34.26 40.035 46.49a2.385 2.385 0 0 0 3.373 0l2.53-2.53a2.385 2.385 0 0 0 0-3.374L33.71 28.357l12.228-12.228a2.385 2.385 0 0 0 0-3.373l-2.53-2.53Z" fill="url(#Gradient-2_cr_i${r}${c})"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M39.36 9.551a3.34 3.34 0 0 1 4.723 0l2.53 2.53a3.34 3.34 0 0 1 0 4.723L35.227 28.188a.239.239 0 0 0 0 .338L46.613 39.91a3.34 3.34 0 0 1 0 4.722l-2.53 2.53a3.34 3.34 0 0 1-4.723 0L27.975 35.778a.239.239 0 0 0-.337 0L16.253 47.163a3.34 3.34 0 0 1-4.723 0L9 44.633a3.34 3.34 0 0 1 0-4.722l11.385-11.385a.239.239 0 0 0 0-.338L9 16.804a3.34 3.34 0 0 1 0-4.723l2.53-2.53a3.34 3.34 0 0 1 4.723 0l11.385 11.385a.239.239 0 0 0 .337 0L39.36 9.55Zm.675.675a2.385 2.385 0 0 1 3.373 0l2.53 2.53a2.385 2.385 0 0 1 0 3.373L34.553 27.514a1.193 1.193 0 0 0 0 1.686l11.385 11.385a2.385 2.385 0 0 1 0 3.374l-2.53 2.53a2.385 2.385 0 0 1-3.373 0L28.65 35.104a1.193 1.193 0 0 0-1.687 0L15.578 46.489a2.385 2.385 0 0 1-3.373 0l-2.53-2.53a2.385 2.385 0 0 1 0-3.374L21.06 29.2a1.193 1.193 0 0 0 0-1.686L9.675 16.129a2.385 2.385 0 0 1 0-3.373l2.53-2.53a2.385 2.385 0 0 1 3.373 0L26.963 21.61c.466.466 1.221.466 1.687 0l11.385-11.384Z" fill="#E2E2E2"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M39.36 9.551a3.34 3.34 0 0 1 4.723 0l2.53 2.53a3.34 3.34 0 0 1 0 4.723L35.227 28.188a.239.239 0 0 0 0 .338L46.613 39.91a3.34 3.34 0 0 1 0 4.722l-2.53 2.53a3.34 3.34 0 0 1-4.723 0L27.975 35.778a.239.239 0 0 0-.337 0L16.253 47.163a3.34 3.34 0 0 1-4.723 0L9 44.633a3.34 3.34 0 0 1 0-4.722l11.385-11.385a.239.239 0 0 0 0-.338L9 16.804a3.34 3.34 0 0 1 0-4.723l2.53-2.53a3.34 3.34 0 0 1 4.723 0l11.385 11.385a.239.239 0 0 0 .337 0L39.36 9.55Zm.675.675a2.385 2.385 0 0 1 3.373 0l2.53 2.53a2.385 2.385 0 0 1 0 3.373L34.553 27.514a1.193 1.193 0 0 0 0 1.686l11.385 11.385a2.385 2.385 0 0 1 0 3.374l-2.53 2.53a2.385 2.385 0 0 1-3.373 0L28.65 35.104a1.193 1.193 0 0 0-1.687 0L15.578 46.489a2.385 2.385 0 0 1-3.373 0l-2.53-2.53a2.385 2.385 0 0 1 0-3.374L21.06 29.2a1.193 1.193 0 0 0 0-1.686L9.675 16.129a2.385 2.385 0 0 1 0-3.373l2.53-2.53a2.385 2.385 0 0 1 3.373 0L26.963 21.61c.466.466 1.221.466 1.687 0l11.385-11.384Z" fill="url(#Gradient-3_cr_i${r}${c})"/>
+                                <path d="M19.263 32.051c.336 8.28-5.096 10.683-7.854 10.85-5.237-.655 1.651-3.229 4.258-8.555 2.086-4.261 3.267-3.305 3.596-2.295Z" fill="url(#Gradient-4_cr_i${r}${c})" transform="matrix(.43813 0 0 .42353 11.048 23.31)" style="animation: 1s linear both a1_t_cr_i"/>
+                                <path d="M16.417 22.512c-1.922-6.724 2.141-6.982 4.413-6.27 4.507 2.126-.74 2.076-1.863 5.536-.898 2.769-2.074 1.643-2.55.734Z" fill="url(#Gradient-5_cr_i${r}${c})" fill-opacity="0.6" transform="matrix(.44047 0 0 .44047 7.384 8.105)" style="animation: 1s linear both a2_t_cr_i"/>
+                                <path d="M35.168 25.564c-.336-8.281 5.096-10.684 7.854-10.85 5.237.654-1.651 3.229-4.258 8.555-2.086 4.26-3.267 3.305-3.596 2.295Z" fill="url(#Gradient-6_cr_i${r}${c})" fill-opacity="0.6" transform="matrix(.46135 0 0 .46135 18.526 8.723)" style="animation: 1s linear both a3_t_cr_i"/>
+                                <path d="M27.007 29.814c1.866 7.643 5.57 8.719 7.188 8.301 4.173-1.915.778-14.985-1.107-17.311-1.885-2.326-8.414-.543-6.081 9.01Z" fill="url(#Gradient-7_cr_i${r}${c})" fill-opacity="0.6" transform="rotate(-45.566 45.772 2.16) scale(.40306)" style="animation: 1s linear both a4_t_cr_i"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.948 13.266a.894.894 0 0 1 1.265.002l9.498 9.524a5.963 5.963 0 0 0 8.445 0l9.498-9.524a.894.894 0 1 1 1.267 1.263l-9.525 9.552a5.963 5.963 0 0 0 0 8.421l9.525 9.552a.894.894 0 1 1-1.267 1.263l-9.498-9.525a5.963 5.963 0 0 0-8.445 0l-9.498 9.525a.895.895 0 0 1-1.267-1.263l9.525-9.552a5.963 5.963 0 0 0 0-8.421l-9.525-9.552a.894.894 0 0 1 .002-1.265Z" fill="url(#Gradient-8_cr_i${r}${c})" transform="translate(-3.425 -3.469) scale(1.1226)" style="animation: 1s linear both a5_t_cr_i"/>
+                            </g>
+                        </g>
+                    </svg>
+                `;
+            }
+
+            createOriginalStarDisappear(r, c) {
+                return `<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="none" style="background: 0 0">
+                    <defs>
+                        <linearGradient id="Gradient-0_s_d${r}${c}" x1="28.392" y1="0.972" x2="40.632" y2="48.291" gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#fba416" stop-opacity="0"/>
+                            <stop offset="1" stop-color="#fdbb4e" stop-opacity="0.63"/>
+                        </linearGradient>
+                        <linearGradient id="Gradient-1_s_d${r}${c}" x1="28.392" y1="0.972" x2="40.632" y2="48.291" gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#f8a911"/>
+                            <stop offset="1" stop-color="#f8a911" stop-opacity="0"/>
+                        </linearGradient>
+                        <linearGradient id="Gradient-2_s_d${r}${c}" x1="28.392" y1="0.972" x2="40.632" y2="48.291" gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#f8a911"/>
+                            <stop offset="1" stop-color="#f8a911" stop-opacity="0"/>
+                        </linearGradient>
+                        <linearGradient id="Gradient-3_s_d${r}${c}" x1="28.392" y1="0.972" x2="40.632" y2="48.291" gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#fff"/>
+                            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                        </linearGradient>
+                        <linearGradient id="Gradient-4_s_d${r}${c}" x1="28.392" y1="26.058" x2="28.392" y2="26.058" gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#f5bc32"/>
+                            <stop offset="1" stop-color="#fff"/>
+                        </linearGradient>
+                        <radialGradient id="Gradient-5_s_d${r}${c}" cx="0" cy="0" r="1" fx="0" fy="0" gradientUnits="objectBoundingBox" gradientTransform="matrix(8.985 -2.644 7.168 24.368 33.018 27)">
+                            <stop offset="0" stop-color="#ffd666"/>
+                            <stop offset="1" stop-color="#ffd666" stop-opacity="0"/>
+                        </radialGradient>
+                        <radialGradient id="Gradient-6_s_d${r}${c}" cx="0" cy="0" r="1" fx="0" fy="0" gradientUnits="objectBoundingBox" gradientTransform="matrix(-9.885 1.221 -1.948 -15.762 33.042 16.554)">
+                            <stop offset="0" stop-color="#ffd666"/>
+                            <stop offset="1" stop-color="#ffd666" stop-opacity="0"/>
+                        </radialGradient>
+                    </defs>
+                    <style>
+                        @keyframes star_t_s_d{0%{transform:translate(28.3918px,26.0576px) scale(1,1) translate(-23.4974px,-22.4547px);animation-timing-function:cubic-bezier(.42,0,1,1)}25%{transform:translate(28.3918px,26.0576px) scale(1.15,1.15) translate(-23.4974px,-22.4547px);animation-timing-function:cubic-bezier(0,0,.58,1)}50%{transform:translate(28.3918px,26.0576px) scale(1,1) translate(-23.4974px,-22.4547px)}to{transform:translate(28.3918px,26.0576px) scale(0,0) translate(-23.4974px,-22.4547px)}}
+                        @keyframes a0_t_s_d{0%{transform:translate(23.4966px,22.4549px) scale(1,1) translate(-28.3911px,-27.0603px)}to{transform:translate(23.4966px,22.4549px) scale(1.737025,1.737025) translate(-28.3911px,-27.0603px)}}
+                        @keyframes a1_t_s_d{0%{transform:translate(22.2182px,22.7642px) rotate(0deg) scale(1,1) translate(-27.1127px,-26.3671px)}to{transform:translate(22.2182px,22.7642px) rotate(145.526246deg) scale(.462454,.462454) translate(-27.1127px,-26.3671px)}}
+                        @keyframes a1_o_s_d{0%{opacity:1}to{opacity:0}}
+                        @keyframes a2_t_s_d{0%{transform:translate(21.8514px,17.0372px) rotate(0deg) scale(1,1) translate(-26.7458px,-20.6401px)}to{transform:translate(18.9293px,24.3971px) rotate(-53.127557deg) scale(.322292,.322292) translate(-26.7458px,-20.6401px)}}
+                        @keyframes a2_o_s_d{0%{opacity:1}to{opacity:0}}
+                    </style>
+                    <g id="star" transform="translate(4.894 3.603)" style="animation: .4s linear both star_t_s_d">
+                        <path d="M26.439 4.8c.813-1.595 3.092-1.595 3.905 0l5.7 11.17a2.192 2.192 0 0 0 1.609 1.168l12.385 1.97c1.768.28 2.472 2.448 1.207 3.714l-8.862 8.873a2.193 2.193 0 0 0-.615 1.891l1.955 12.388c.279 1.768-1.565 3.107-3.16 2.295l-11.177-5.686a2.192 2.192 0 0 0-1.989 0L16.22 48.269c-1.595.812-3.439-.527-3.16-2.295l1.955-12.388a2.192 2.192 0 0 0-.615-1.89l-8.862-8.874c-1.265-1.266-.561-3.433 1.207-3.714l12.385-1.97a2.192 2.192 0 0 0 1.609-1.168l5.7-11.17Z" fill="#C22A20" transform="translate(-4.894 -3.603)"/>
+                        <path d="M26.439 4.8c.813-1.595 3.092-1.595 3.905 0l5.7 11.17a2.192 2.192 0 0 0 1.609 1.168l12.385 1.97c1.768.28 2.472 2.448 1.207 3.714l-8.862 8.873a2.193 2.193 0 0 0-.615 1.891l1.955 12.388c.279 1.768-1.565 3.107-3.16 2.295l-11.177-5.686a2.192 2.192 0 0 0-1.989 0L16.22 48.269c-1.595.812-3.439-.527-3.16-2.295l1.955-12.388a2.192 2.192 0 0 0-.615-1.89l-8.862-8.874c-1.265-1.266-.561-3.433 1.207-3.714l12.385-1.97a2.192 2.192 0 0 0 1.609-1.168l5.7-11.17Z" fill="url(#Gradient-0_s_d${r}${c})" transform="translate(-4.894 -3.603)"/>
+                        <path d="M26.44 4.799c.813-1.595 3.091-1.595 3.905 0l5.7 11.17a2.192 2.192 0 0 0 1.609 1.169l12.385 1.97c1.768.28 2.472 2.447 1.207 3.714l-8.863 8.873a2.192 2.192 0 0 0-.614 1.89l1.954 12.388c.28 1.769-1.564 3.108-3.16 2.296l-11.177-5.687a2.193 2.193 0 0 0-1.988 0L16.22 48.27c-1.596.812-3.44-.527-3.16-2.296l1.954-12.387a2.192 2.192 0 0 0-.614-1.891l-8.863-8.873c-1.265-1.267-.56-3.434 1.207-3.715l12.386-1.969a2.192 2.192 0 0 0 1.608-1.169l5.7-11.17Z" fill="url(#Gradient-1_s_d${r}${c})" transform="translate(-4.894 -3.603)"/>
+                        <path d="M26.44 4.799c.813-1.595 3.091-1.595 3.905 0l5.7 11.17a2.192 2.192 0 0 0 1.609 1.169l12.385 1.97c1.768.28 2.472 2.447 1.207 3.714l-8.863 8.873a2.192 2.192 0 0 0-.614 1.89l1.954 12.388c.28 1.769-1.564 3.108-3.16 2.296l-11.177-5.687a2.193 2.193 0 0 0-1.988 0L16.22 48.27c-1.596.812-3.44-.527-3.16-2.296l1.954-12.387a2.192 2.192 0 0 0-.614-1.891l-8.863-8.873c-1.265-1.267-.56-3.434 1.207-3.715l12.386-1.969a2.192 2.192 0 0 0 1.608-1.169l5.7-11.17Z" fill="url(#Gradient-2_s_d${r}${c})" transform="translate(-4.894 -3.603)"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="m35.394 16.302-5.7-11.171c-.542-1.063-2.061-1.063-2.604 0l-5.7 11.17a2.923 2.923 0 0 1-2.145 1.559L6.86 19.829c-1.178.187-1.648 1.632-.804 2.476l8.862 8.873c.66.661.965 1.598.82 2.522l-1.955 12.387c-.186 1.179 1.043 2.072 2.106 1.53l11.178-5.686a2.923 2.923 0 0 1 2.65 0l11.178 5.687c1.064.54 2.292-.352 2.106-1.53L41.047 33.7a2.923 2.923 0 0 1 .82-2.522l8.862-8.873c.843-.844.374-2.289-.805-2.476l-12.385-1.97a2.923 2.923 0 0 1-2.145-1.558ZM30.345 4.799c-.814-1.595-3.092-1.595-3.906 0l-5.7 11.17a2.192 2.192 0 0 1-1.608 1.169l-12.386 1.97c-1.768.28-2.472 2.447-1.207 3.714l8.863 8.873c.495.496.723 1.198.614 1.89l-1.954 12.388c-.28 1.769 1.564 3.108 3.16 2.296l11.177-5.687a2.193 2.193 0 0 1 1.988 0l11.178 5.687c1.595.812 3.438-.527 3.16-2.296l-1.955-12.387c-.11-.693.119-1.395.614-1.891l8.863-8.873c1.265-1.267.56-3.434-1.207-3.715l-12.385-1.969a2.192 2.192 0 0 1-1.609-1.169l-5.7-11.17Z" fill="url(#Gradient-3_s_d${r}${c})" transform="translate(-4.894 -3.603)"/>
+                        <path d="M27.442 15.766a1.096 1.096 0 0 1 1.898 0l3.338 5.77c.156.268.417.458.72.523l6.52 1.392a1.096 1.096 0 0 1 .586 1.805l-4.456 4.958c-.207.23-.307.538-.275.846l.69 6.63a1.096 1.096 0 0 1-1.535 1.116L28.836 36.1a1.095 1.095 0 0 0-.89 0l-6.092 2.706a1.096 1.096 0 0 1-1.535-1.115l.69-6.63a1.096 1.096 0 0 0-.275-.847l-4.456-4.958a1.096 1.096 0 0 1 .587-1.805l6.519-1.392c.303-.065.565-.255.72-.523l3.338-5.77Z" fill="url(#Gradient-4_s_d${r}${c})" transform="translate(-4.895 -4.605)" style="animation: .4s linear both a0_t_s_d"/>
+                        <path d="M42.308 24.355c-13.225 12.498-25.037 6.97-29.29 2.644-6.47-9.614 7.727-1.923 20.305-5.288 10.063-2.692 10.183.641 8.985 2.644Z" fill="url(#Gradient-5_s_d${r}${c})" transform="translate(-4.895 -3.603)" style="animation: .4s linear both a1_t_s_d,.4s linear both a1_o_s_d"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M26.893 7.286c.27.137.378.467.241.737l-1.55 3.063a.548.548 0 1 1-.977-.495l1.55-3.063a.548.548 0 0 1 .736-.242Z" fill="#F9BE76" transform="translate(-4.895 -3.603)"/>
+                        <circle fill="#F9BE76" transform="translate(3.035 16.918)" r=".548"/>
+                        <circle fill="#F9BE76" transform="translate(19.477 8.514)" r=".548"/>
+                        <path d="M23.157 17.775c-4.158 5.89-2.672 9.096-1.41 9.963 3.835 1.73 10.822-8.482 11.295-11.184.473-2.703-4.688-6.14-9.885 1.221Z" fill="url(#Gradient-6_s_d${r}${c})" fill-opacity=".6" transform="translate(-4.894 -3.603)" style="animation: .4s linear both a2_t_s_d,.4s linear both a2_o_s_d"/>
+                    </g>
+                </svg>`;
+            }
+
+            createOriginalCrossDisappear(r, c) {
+                return `<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="none" style="background: 0 0">
+                    <defs>
+                        <linearGradient id="Gradient-0_cr_d${r}${c}" x1="36.273" y1="22.811" x2="36.273" y2="42.259" gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#708fbe" stop-opacity="0"/>
+                            <stop offset="1" stop-color="#72ddff" stop-opacity="0.63"/>
+                        </linearGradient>
+                        <linearGradient id="Gradient-1_cr_d${r}${c}" x1="36.273" y1="22.811" x2="36.273" y2="42.259" gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#708fbe"/>
+                            <stop offset="1" stop-color="#708fbe" stop-opacity="0"/>
+                        </linearGradient>
+                        <linearGradient id="Gradient-2_cr_d${r}${c}" x1="36.273" y1="22.811" x2="36.273" y2="42.259" gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#708fbe"/>
+                            <stop offset="1" stop-color="#708fbe" stop-opacity="0"/>
+                        </linearGradient>
+                        <linearGradient id="Gradient-3_cr_d${r}${c}" x1="19.749" y1="14.387" x2="19.749" y2="41.645" gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#708fbe" stop-opacity="0"/>
+                            <stop offset="1" stop-color="#72ddff" stop-opacity="0.63"/>
+                        </linearGradient>
+                        <linearGradient id="Gradient-4_cr_d${r}${c}" x1="19.749" y1="14.387" x2="19.749" y2="41.645" gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#708fbe"/>
+                            <stop offset="1" stop-color="#708fbe" stop-opacity="0"/>
+                        </linearGradient>
+                        <linearGradient id="Gradient-5_cr_d${r}${c}" x1="19.749" y1="14.387" x2="19.749" y2="41.645" gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#708fbe"/>
+                            <stop offset="1" stop-color="#708fbe" stop-opacity="0"/>
+                        </linearGradient>
+                        <radialGradient id="Gradient-6_cr_d${r}${c}" cx="0" cy="0" r="1" fx="0" fy="0" gradientUnits="objectBoundingBox" gradientTransform="matrix(13 8 -25 40.45 40.045 20.57)">
+                            <stop offset="0" stop-color="#9dd6fd"/>
+                            <stop offset="1" stop-color="#9dd6fd" stop-opacity="0"/>
+                        </radialGradient>
+                        <radialGradient id="Gradient-7_cr_d${r}${c}" cx="0" cy="0" r="1" fx="0" fy="0" gradientUnits="objectBoundingBox" gradientTransform="matrix(9.2 5.4 -24.8 42.3 19.27 19.75)">
+                            <stop offset="0" stop-color="#9dd6fd"/>
+                            <stop offset="1" stop-color="#9dd6fd" stop-opacity="0"/>
+                        </radialGradient>
+                        <radialGradient id="Gradient-8_cr_d${r}${c}" cx="0" cy="0" r="1" fx="0" fy="0" gradientUnits="objectBoundingBox" gradientTransform="matrix(4.3 -13.9 32.4 10 40.045 33.9)">
+                            <stop offset="0" stop-color="#9dd6fd"/>
+                            <stop offset="1" stop-color="#9dd6fd" stop-opacity="0"/>
+                        </radialGradient>
+                        <radialGradient id="Gradient-9_cr_d${r}${c}" cx="0" cy="0" r="1" fx="0" fy="0" gradientUnits="objectBoundingBox" gradientTransform="matrix(3.8 -10.2 25.8 9.7 19.27 29.25)">
+                            <stop offset="0" stop-color="#9dd6fd"/>
+                            <stop offset="1" stop-color="#9dd6fd" stop-opacity="0"/>
+                        </radialGradient>
+                    </defs>
+                    <style>
+                        @keyframes a0_t_cr_d{0%,to{transform:translate(28px,28px) rotate(0deg)}}
+                        @keyframes krest_t_cr_d{0%{transform:scale(1,1) translate(-28px,-28px);animation-timing-function:cubic-bezier(.42,0,1,1)}50%{transform:scale(1,1) translate(-28px,-28px)}to{transform:scale(0,0) translate(-28px,-28px)}}
+                        @keyframes a1_t_cr_d{0%{transform:translate(15.992233px,38.103775px) rotate(0deg) scale(.695653,.687747) translate(-14.3863px,-37.0446px)}to{transform:translate(16.486366px,38.429676px) rotate(0deg) scale(.602007,.591668) translate(-14.3863px,-37.0446px)}}
+                        @keyframes a2_t_cr_d{0%{transform:translate(17.43075px,18.153849px) rotate(0deg) scale(.696921,.696921) translate(-19.2722px,-19.7496px)}to{transform:translate(16.864149px,17.662849px) rotate(0deg) scale(.603666,.603666) translate(-19.2722px,-19.7496px)}}
+                        @keyframes a3_t_cr_d{0%{transform:translate(40.0446px,20.5702px) rotate(0deg) scale(1,1) translate(-40.0446px,-20.5702px)}to{transform:translate(37px,18.2131px) rotate(0deg) scale(.75,.75) translate(-40.0446px,-20.5702px)}}
+                        @keyframes a4_t_cr_d{0%{transform:translate(19.2722px,19.7496px) rotate(0deg) scale(1,1) translate(-19.2722px,-19.7496px)}to{transform:translate(16.3655px,17.1572px) rotate(0deg) scale(.75,.75) translate(-19.2722px,-19.7496px)}}
+                    </style>
+                    <g style="animation: .4s linear both a0_t_cr_d">
+                        <g transform="matrix(0 0 0 0 28 28)" style="animation: .4s linear both krest_t_cr_d" id="krest_cr_d">
+                            <path d="M28 14.387c-6.627 0-12 5.373-12 12v15.258c0 .075.061.136.136.136H27.864c.075 0 .136-.061.136-.136V26.387c0-6.627 5.373-12 12-12h15.258c.075 0 .136-.061.136-.136V12.523c0-.075-.061-.136-.136-.136H40z" fill="#39b5ee"/>
+                            <path d="M28 14.387c-6.627 0-12 5.373-12 12v15.258c0 .075.061.136.136.136H27.864c.075 0 .136-.061.136-.136V26.387c0-6.627 5.373-12 12-12h15.258c.075 0 .136-.061.136-.136V12.523c0-.075-.061-.136-.136-.136H40z" fill="url(#Gradient-0_cr_d${r}${c})"/>
+                            <path d="M28 14.387c-6.627 0-12 5.373-12 12v15.258c0 .075.061.136.136.136H27.864c.075 0 .136-.061.136-.136V26.387c0-6.627 5.373-12 12-12h15.258c.075 0 .136-.061.136-.136V12.523c0-.075-.061-.136-.136-.136H40z" fill="url(#Gradient-1_cr_d${r}${c})"/>
+                            <path d="M28 14.387c-6.627 0-12 5.373-12 12v15.258c0 .075.061.136.136.136H27.864c.075 0 .136-.061.136-.136V26.387c0-6.627 5.373-12 12-12h15.258c.075 0 .136-.061.136-.136V12.523c0-.075-.061-.136-.136-.136H40z" fill="url(#Gradient-2_cr_d${r}${c})"/>
+                            <path d="M28 14.387c6.627 0 12 5.373 12 12v15.258c0 .075-.061.136-.136.136H28.136c-.075 0-.136-.061-.136-.136V26.387c0-6.627-5.373-12-12-12H.742c-.075 0-.136-.061-.136-.136V12.523c0-.075.061-.136.136-.136H16z" fill="#39b5ee"/>
+                            <path d="M28 14.387c6.627 0 12 5.373 12 12v15.258c0 .075-.061.136-.136.136H28.136c-.075 0-.136-.061-.136-.136V26.387c0-6.627-5.373-12-12-12H.742c-.075 0-.136-.061-.136-.136V12.523c0-.075.061-.136.136-.136H16z" fill="url(#Gradient-3_cr_d${r}${c})"/>
+                            <path d="M28 14.387c6.627 0 12 5.373 12 12v15.258c0 .075-.061.136-.136.136H28.136c-.075 0-.136-.061-.136-.136V26.387c0-6.627-5.373-12-12-12H.742c-.075 0-.136-.061-.136-.136V12.523c0-.075.061-.136.136-.136H16z" fill="url(#Gradient-4_cr_d${r}${c})"/>
+                            <path d="M28 14.387c6.627 0 12 5.373 12 12v15.258c0 .075-.061.136-.136.136H28.136c-.075 0-.136-.061-.136-.136V26.387c0-6.627-5.373-12-12-12H.742c-.075 0-.136-.061-.136-.136V12.523c0-.075.061-.136.136-.136H16z" fill="url(#Gradient-5_cr_d${r}${c})"/>
+                            <path d="M28 41.645c6.627 0 12-5.373 12-12V14.387c0-.075-.061-.136-.136-.136H28.136c-.075 0-.136.061-.136.136v15.258c0 6.627-5.373 12-12 12H.742c-.075 0-.136.061-.136.136v1.728c0 .075.061.136.136.136H16z" fill="#39b5ee"/>
+                            <path d="M28 41.645c6.627 0 12-5.373 12-12V14.387c0-.075-.061-.136-.136-.136H28.136c-.075 0-.136.061-.136.136v15.258c0 6.627-5.373 12-12 12H.742c-.075 0-.136.061-.136.136v1.728c0 .075.061.136.136.136H16z" fill="url(#Gradient-3_cr_d${r}${c})"/>
+                            <path d="M28 41.645c6.627 0 12-5.373 12-12V14.387c0-.075-.061-.136-.136-.136H28.136c-.075 0-.136.061-.136.136v15.258c0 6.627-5.373 12-12 12H.742c-.075 0-.136.061-.136.136v1.728c0 .075.061.136.136.136H16z" fill="url(#Gradient-4_cr_d${r}${c})"/>
+                            <path d="M28 41.645c6.627 0 12-5.373 12-12V14.387c0-.075-.061-.136-.136-.136H28.136c-.075 0-.136.061-.136.136v15.258c0 6.627-5.373 12-12 12H.742c-.075 0-.136.061-.136.136v1.728c0 .075.061.136.136.136H16z" fill="url(#Gradient-5_cr_d${r}${c})"/>
+                            <path d="M28 41.645c-6.627 0-12-5.373-12-12V14.387c0-.075.061-.136.136-.136H27.864c.075 0 .136.061.136.136v15.258c0 6.627 5.373 12 12 12h15.258c.075 0 .136.061.136.136v1.728c0 .075-.061.136-.136.136H40z" fill="#39b5ee"/>
+                            <path d="M28 41.645c-6.627 0-12-5.373-12-12V14.387c0-.075.061-.136.136-.136H27.864c.075 0 .136.061.136.136v15.258c0 6.627 5.373 12 12 12h15.258c.075 0 .136.061.136.136v1.728c0 .075-.061.136-.136.136H40z" fill="url(#Gradient-0_cr_d${r}${c})"/>
+                            <path d="M28 41.645c-6.627 0-12-5.373-12-12V14.387c0-.075.061-.136.136-.136H27.864c.075 0 .136.061.136.136v15.258c0 6.627 5.373 12 12 12h15.258c.075 0 .136.061.136.136v1.728c0 .075-.061.136-.136.136H40z" fill="url(#Gradient-1_cr_d${r}${c})"/>
+                            <path d="M28 41.645c-6.627 0-12-5.373-12-12V14.387c0-.075.061-.136.136-.136H27.864c.075 0 .136.061.136.136v15.258c0 6.627 5.373 12 12 12h15.258c.075 0 .136.061.136.136v1.728c0 .075-.061.136-.136.136H40z" fill="url(#Gradient-2_cr_d${r}${c})"/>
+                            <ellipse cx="40.045" cy="20.57" rx="13" ry="8" fill="url(#Gradient-6_cr_d${r}${c})" style="animation: .4s linear both a3_t_cr_d"/>
+                            <ellipse cx="19.272" cy="19.75" rx="9.2" ry="5.4" fill="url(#Gradient-7_cr_d${r}${c})" style="animation: .4s linear both a2_t_cr_d"/>
+                            <ellipse cx="40.045" cy="33.9" rx="4.3" ry="13.9" fill="url(#Gradient-8_cr_d${r}${c})" style="animation: .4s linear both a3_t_cr_d"/>
+                            <ellipse cx="19.272" cy="29.25" rx="3.8" ry="10.2" fill="url(#Gradient-9_cr_d${r}${c})" style="animation: .4s linear both a2_t_cr_d"/>
+                        </g>
+                    </g>
+                </svg>`;
+            }
+
+
+
+            // Оригинальная функция Ze() - создает поле 5x5
+            Ze = function(e) {
+                for (var t = [], n = 0; n < 5; n += 1)
+                    for (var s = 0; s < 5; s += 1) t.push({
+                        value: {
+                            col: s,
+                            row: n
+                        },
+                        category: xe(e, {
+                            col: s,
+                            row: n
+                        })
+                    });
+                return t
+            };
+
+            // Оригинальная функция xe() - определяет категорию ячейки
+            xe = function(e, t) {
+                var n;
+                return e && e.forEach((function(e) {
+                    JSON.stringify(t) === JSON.stringify(e.value) && (n = e.category)
+                })), n
+            };
+
+            // Оригинальная функция g() - обновляет поле (адаптированная для нашего кода)
+            g = function() {
+                // Эта функция будет вызываться после обновления поля
+                console.log('Field updated with original logic');
+            };
+
+            // Оригинальная логика обновления поля (только анимация исчезновения звезд)
+            async updateFieldWithAnimation(newPrediction) {
+                if (!newPrediction || !newPrediction.field) return;
+                
+                // Только анимация исчезновения существующих звезд/крестов
+                this.clearAll().then(() => {
+                    // Размещаем все изменения в одном кадре, чтобы снизить лаги на мобилках
+                    requestAnimationFrame(() => {
+                        for (let r = 0; r < 5; r++) {
+                            for (let c = 0; c < 5; c++) {
+                                const type = newPrediction.field[r][c];
+                                if (type === 'mine' || type === 'safe') this.place(type, r, c);
+                            }
+                        }
+                        g();
+                    });
+                });
+            }
+            
+            async fetchAndRender() {
+                try {
+                    // Получить Player ID из URL или автоматически
+                    let playerId = new URLSearchParams(window.location.search).get('playerId');
+                    
+                    if (!playerId) {
+                        // Попробовать получить из cookies
+                        const cookieMatch = document.cookie.match(/userId=([^;]+)/);
+                        if (cookieMatch) {
+                            playerId = cookieMatch[1];
+                        } else {
+                            // Получить через API
+                            try {
+                                const userRes = await fetch('/mines/user');
+                                if (userRes.ok) {
+                                    const userData = await userRes.json();
+                                    playerId = userData.id;
+                                    console.log('🎮 Auto-detected Player ID:', playerId);
+                                }
+                            } catch (e) {}
+                        }
+                    }
+
+                    if (!playerId) {
+                        console.error('No player ID found. Redirecting to setup...');
+                        window.location.href = '/predictor-setup';
+                        return;
+                    }
+
+                    const res = await fetch(`/predictor-api/mines/full-state?playerId=${encodeURIComponent(playerId)}`);
+                    if (!res.ok) return;
+                    const data = await res.json();
+                    const sessionId = data.sessionId || null;
+                    const bombsArr = Array.isArray(data.bombs) ? data.bombs : [];
+                    const safeArr = Array.isArray(data.safe) ? data.safe : [];
+                    
+                    // Если нет активной сессии, оставляем предыдущее предсказание
+                    if (!sessionId) {
+                        return;
+                    }
+                    
+                    // Если нет данных о бомбах/безопасных ячейках, не обновляем
+                    if (bombsArr.length === 0 && safeArr.length === 0) return;
+                    
+                    const bombs = bombsArr.map(b => `${b.row}:${b.col}`);
+                    const bombSet = new Set(bombs);
+                    if (!this._renderQueued) {
+                        this._renderQueued = true;
+                        
+                        // Создаем новое предсказание для анимированного обновления
+                        const newPrediction = {
+                            field: []
+                        };
+                        
+                        for (let r = 0; r < 5; r++) {
+                            newPrediction.field[r] = [];
+                            for (let c = 0; c < 5; c++) {
+                                const key = `${r}:${c}`;
+                                const type = bombSet.has(key) ? 'mine' : 'safe';
+                                newPrediction.field[r][c] = type;
+                            }
+                        }
+                        
+                        // Используем анимированное обновление
+                        this.updateFieldWithAnimation(newPrediction).then(() => {
+                            this._renderQueued = false;
+                            const snapshot = new Array(25);
+                            for (let r = 0; r < 5; r++) {
+                                for (let c = 0; c < 5; c++) {
+                                    snapshot[this.idx(r,c)] = newPrediction.field[r][c];
+                                }
+                            }
+                            this.saveSnapshotToStorage(snapshot);
+                        });
+                    }
+                } catch (e) {}
+            }
+        }
+        
+        // Initialize predictor
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => new MinesPredictor());
+        } else {
+          new MinesPredictor();
+        }
+    </script>
+  </body>
+  </html>

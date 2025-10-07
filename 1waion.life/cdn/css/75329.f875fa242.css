@@ -1,0 +1,883 @@
+.BaseBonusFreespins_root_EuXbZ {
+    background-image: linear-gradient(90deg, #31bc69, #089e4e);
+    color: #fff;
+    padding: 35px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 1fr;
+    grid-template-areas: "title" "subTitle" "amount" "game" "progressBar" "progressAmounts" "timerBlock" "button"
+}
+
+.BaseBonusFreespins_statusPlay_JB6Dq {
+    grid-template-columns: auto;
+    grid-template-areas: "title      title" "subTitle   subTitle" "timerBlock game" "button     button"
+}
+
+.BaseBonusFreespins_modeWide_voVMb,
+.BaseBonusFreespins_modeMobile_BmFKy {
+    padding: 15px 20px;
+    grid-template-columns: 1fr auto;
+    grid-column-gap: 15px;
+    grid-template-areas: "title            amount" "progressBar      progressBar" "progressAmounts  progressAmounts" "timerBlock       timerBlock" "button           button"
+}
+
+.BaseBonusFreespins_statusComplete_dwn1D.BaseBonusFreespins_modeWide_voVMb {
+    grid-template-areas: "title            title" "subTitle         amount" "progressBar      progressBar" "progressAmounts  progressAmounts" "timerBlock       timerBlock" "button           button"
+}
+
+.BaseBonusFreespins_statusPlay_JB6Dq.BaseBonusFreespins_modeWide_voVMb,
+.BaseBonusFreespins_statusPlay_JB6Dq.BaseBonusFreespins_modeMobile_BmFKy {
+    grid-template-rows: auto 1fr auto auto;
+    grid-template-areas: "title            game" "subTitle         game" "progressBar      progressBar" "progressAmounts  progressAmounts" "timerBlock       button"
+}
+
+.BaseBonusFreespins_statusComplete_dwn1D {
+    background-image: url(/cdn/img/bonus-freespins-complete-bg.0b2b948f4-270.png), linear-gradient(90deg, #31bc69, #089e4e)
+}
+
+.BaseBonusFreespins_statusComplete_dwn1D.BaseBonusFreespins_modeWide_voVMb {
+    background-image: url(/cdn/img/bonus-freespins-wide-complete-bg.2f5051976-275.png), linear-gradient(90deg, #31bc69, #089e4e)
+}
+
+.BaseBonusFreespins_statusComplete_dwn1D.BaseBonusFreespins_modeMobile_BmFKy {
+    display: block;
+    background-image: url(/cdn/img/bonus-freespins-mobile-complete-bg.b0d05815d-216.png), linear-gradient(90deg, #31bc69, #089e4e)
+}
+
+.BaseBonusFreespins_cancel_VuajB,
+.BaseBonusFreespins_question_XE56d,
+.BaseBonusFreespins_questionInTitle_cVDFK {
+    width: 23px;
+    height: 23px;
+    background-color: #0003;
+    color: #ffffff80;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10px
+}
+
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_cancel_VuajB,
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_question_XE56d,
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_questionInTitle_cVDFK,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_cancel_VuajB,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_question_XE56d,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_questionInTitle_cVDFK {
+    width: 13px;
+    height: 13px;
+    top: 5px
+}
+
+.BaseBonusFreespins_questionInTitle_cVDFK {
+    display: none;
+    position: static;
+    font-size: 7px;
+    margin-left: 3px
+}
+
+.BaseBonusFreespins_statusPlay_JB6Dq.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_questionInTitle_cVDFK,
+.BaseBonusFreespins_statusProgress_mHmnQ.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_questionInTitle_cVDFK,
+.BaseBonusFreespins_statusSuccess_nu2nN.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_questionInTitle_cVDFK,
+.BaseBonusFreespins_statusPlay_JB6Dq.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_questionInTitle_cVDFK,
+.BaseBonusFreespins_statusProgress_mHmnQ.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_questionInTitle_cVDFK,
+.BaseBonusFreespins_statusSuccess_nu2nN.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_questionInTitle_cVDFK {
+    display: inline-flex
+}
+
+.BaseBonusFreespins_cancel_VuajB {
+    right: 10px;
+    font-size: 9px
+}
+
+.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_cancel_VuajB {
+    display: none
+}
+
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_cancel_VuajB {
+    display: inline-flex
+}
+
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_cancel_VuajB,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_cancel_VuajB {
+    right: 5px;
+    font-size: 5px
+}
+
+.BaseBonusFreespins_question_XE56d {
+    left: 10px;
+    font-size: 10px
+}
+
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_question_XE56d,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_question_XE56d {
+    left: 5px;
+    font-size: 7px;
+    display: none
+}
+
+.BaseBonusFreespins_modeWide_voVMb.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_question_XE56d,
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_question_XE56d {
+    display: inline-flex;
+    inset: auto 5px 5px auto
+}
+
+.BaseBonusFreespins_title_movd_ {
+    font-family: -apple-system, SF Pro Display, -apple-system, SF Pro Text, sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 25px;
+    letter-spacing: .33px;
+    text-shadow: 0 3px 5px rgba(9, 15, 30, .2);
+    margin-bottom: 25px;
+    grid-area: title
+}
+
+.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_title_movd_,
+.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_title_movd_ {
+    margin-bottom: 5px;
+    font-size: 35px;
+    line-height: 37px
+}
+
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_title_movd_,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_title_movd_ {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    min-height: 32px;
+    margin-bottom: 10px
+}
+
+.BaseBonusFreespins_modeWide_voVMb.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_title_movd_,
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_title_movd_ {
+    min-height: auto
+}
+
+.BaseBonusFreespins_modeWide_voVMb.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_title_movd_,
+.BaseBonusFreespins_modeWide_voVMb.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_title_movd_,
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_title_movd_,
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_title_movd_ {
+    margin-bottom: 5px
+}
+
+.BaseBonusFreespins_modeWide_voVMb.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_title_movd_,
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_title_movd_ {
+    min-height: auto
+}
+
+.BaseBonusFreespins_subTitle_FgHWI {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -.41px;
+    text-shadow: 0 3px 5px rgba(9, 15, 30, .2);
+    margin-bottom: 20px;
+    grid-area: subTitle
+}
+
+.BaseBonusFreespins_modeBanner_wp7yi.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_subTitle_FgHWI {
+    min-height: 40px
+}
+
+.BaseBonusFreespins_modeWide_voVMb.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_subTitle_FgHWI,
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_subTitle_FgHWI {
+    margin-bottom: 15px;
+    font-size: 12px;
+    line-height: 14px
+}
+
+.BaseBonusFreespins_modeWide_voVMb.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_subTitle_FgHWI {
+    margin-bottom: 13px
+}
+
+.BaseBonusFreespins_modeWide_voVMb.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_subTitle_FgHWI,
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_subTitle_FgHWI {
+    font-size: 10px;
+    line-height: 12px;
+    margin-bottom: 12px
+}
+
+.BaseBonusFreespins_amount_RUpQz {
+    position: relative;
+    background: linear-gradient(205.92deg, rgba(0, 0, 0, .3) 0%, rgba(0, 0, 0, .3) 66.35%);
+    border-radius: 14px;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 14px;
+    letter-spacing: -1px;
+    height: 73px;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    grid-area: amount;
+    flex-shrink: 0
+}
+
+.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_amount_RUpQz {
+    margin-bottom: 20px
+}
+
+.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_amount_RUpQz {
+    height: 83px
+}
+
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_amount_RUpQz,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_amount_RUpQz {
+    font-size: 12px;
+    line-height: 14px;
+    width: auto;
+    padding: 7px 10px;
+    height: -moz-min-content;
+    height: min-content;
+    border-radius: 8px
+}
+
+.BaseBonusFreespins_modeWide_voVMb.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_amount_RUpQz {
+    margin-bottom: 13px
+}
+
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_amount_RUpQz {
+    margin-bottom: 0
+}
+
+.BaseBonusFreespins_game_DQTiQ {
+    display: flex;
+    justify-content: center;
+    grid-area: game;
+    align-self: self-start;
+    width: 100px
+}
+
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_game_DQTiQ,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_game_DQTiQ {
+    margin-bottom: 12px;
+    width: 100%
+}
+
+.BaseBonusFreespins_modeWide_voVMb.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_game_DQTiQ,
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_game_DQTiQ {
+    margin-bottom: 10px
+}
+
+.BaseBonusFreespins_gameImg_zjN7C {
+    width: 90px;
+    height: 62px;
+    border-radius: 12px;
+    vertical-align: top;
+    object-fit: cover
+}
+
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_gameImg_zjN7C,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_gameImg_zjN7C {
+    width: 55px;
+    height: 40px
+}
+
+.BaseBonusFreespins_gameImgWrapper_mWZRP {
+    background: linear-gradient(205.92deg, rgba(0, 0, 0, .3) 0%, rgba(0, 0, 0, .3) 66.35%);
+    border-radius: 14px;
+    padding: 5px;
+    position: relative
+}
+
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_gameImgWrapper_mWZRP,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_gameImgWrapper_mWZRP {
+    padding: 6px
+}
+
+.BaseBonusFreespins_gameIcon_UsDg7 {
+    width: 41px;
+    height: 37px;
+    position: absolute;
+    top: -21px;
+    right: 10px
+}
+
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_gameIcon_UsDg7,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_gameIcon_UsDg7 {
+    width: 23px;
+    height: 20px;
+    top: -2px;
+    left: -13px;
+    right: auto
+}
+
+.BaseBonusFreespins_amountIcon_tMI45 {
+    position: absolute;
+    width: 41px;
+    height: 37px;
+    right: 10px;
+    top: -22px
+}
+
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_amountIcon_tMI45,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_amountIcon_tMI45 {
+    width: 23px;
+    height: 20px;
+    left: -13px;
+    right: auto;
+    top: -7px
+}
+
+.BaseBonusFreespins_progressBar_hZ3qf {
+    background: rgba(9, 15, 30, .3);
+    border-radius: 50px;
+    height: 19px;
+    padding: 5px;
+    margin-bottom: 5px;
+    grid-area: progressBar;
+    flex-shrink: 0
+}
+
+.BaseBonusFreespins_statusSuccess_nu2nN .BaseBonusFreespins_progressBar_hZ3qf {
+    margin-bottom: 28px
+}
+
+.BaseBonusFreespins_statusSuccess_nu2nN.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_progressBar_hZ3qf,
+.BaseBonusFreespins_statusSuccess_nu2nN.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_progressBar_hZ3qf {
+    margin-bottom: 9px
+}
+
+.BaseBonusFreespins_progressBar_hZ3qf:after {
+    content: "";
+    width: calc(1% * var(--bonus-free-spins-progress));
+    display: block;
+    height: 100%;
+    background-color: #59fd6d;
+    background-image: repeating-linear-gradient(102deg, #59fd6d, #59fd6d 5px, rgba(9, 15, 30, .2) 5px, rgba(9, 15, 30, .2) 10px);
+    box-shadow: 0 0 5px #01f78180;
+    border-radius: 50px;
+    transition: width .3s ease-out
+}
+
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_progressBar_hZ3qf,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_progressBar_hZ3qf {
+    height: 11px;
+    padding: 3px
+}
+
+.BaseBonusFreespins_progressAmounts_xoWw0 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    grid-area: progressAmounts
+}
+
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_progressAmounts_xoWw0,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_progressAmounts_xoWw0 {
+    margin-bottom: 10px
+}
+
+.BaseBonusFreespins_progressAmount_S3zo9,
+.BaseBonusFreespins_timerTitle_fpkzJ {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -.41px;
+    text-shadow: 0 3px 5px rgba(9, 15, 30, .2);
+    color: #ffffffb3
+}
+
+.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_progressAmount_S3zo9,
+.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_timerTitle_fpkzJ {
+    margin-bottom: 10px
+}
+
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_progressAmount_S3zo9,
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_timerTitle_fpkzJ,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_progressAmount_S3zo9,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_timerTitle_fpkzJ {
+    font-size: 10px;
+    line-height: 12px
+}
+
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_progressAmount_S3zo9,
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_timerTitle_fpkzJ,
+.BaseBonusFreespins_modeWide_voVMb.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_progressAmount_S3zo9,
+.BaseBonusFreespins_modeWide_voVMb.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_timerTitle_fpkzJ {
+    margin-bottom: 4px
+}
+
+.BaseBonusFreespins_timerBlock_hJCeq {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-area: timerBlock
+}
+
+.BaseBonusFreespins_modeBanner_wp7yi.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_timerBlock_hJCeq {
+    margin-right: 10px
+}
+
+.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_timerBlock_hJCeq {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center
+}
+
+.BaseBonusFreespins_modeWide_voVMb.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_timerBlock_hJCeq,
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_timerBlock_hJCeq {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 0;
+    align-self: flex-end
+}
+
+.BaseBonusFreespins_timer_YxtD9 {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    text-shadow: 0 3px 5px rgba(9, 15, 30, .2);
+    display: flex
+}
+
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_timer_YxtD9,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_timer_YxtD9 {
+    font-size: 11px;
+    line-height: 12px
+}
+
+.BaseBonusFreespins_timerItem_Lfful {
+    min-width: 2ch;
+    text-align: center
+}
+
+.BaseBonusFreespins_timerSeparator_rzXbQ {
+    margin: 0 2px;
+    font-size: 12px
+}
+
+.BaseBonusFreespins_buttonWhite_t61wA,
+.BaseBonusFreespins_buttonTransition_w7lkr {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 15px;
+    height: 45px;
+    border-radius: 10px;
+    width: 100%;
+    grid-area: button
+}
+
+.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_buttonWhite_t61wA,
+.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_buttonTransition_w7lkr {
+    margin-top: 31px
+}
+
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_buttonWhite_t61wA,
+.BaseBonusFreespins_modeWide_voVMb .BaseBonusFreespins_buttonTransition_w7lkr,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_buttonWhite_t61wA,
+.BaseBonusFreespins_modeMobile_BmFKy .BaseBonusFreespins_buttonTransition_w7lkr {
+    height: 30px;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    margin-top: 0
+}
+
+.BaseBonusFreespins_modeWide_voVMb.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_buttonWhite_t61wA,
+.BaseBonusFreespins_modeWide_voVMb.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_buttonTransition_w7lkr,
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_buttonWhite_t61wA,
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusPlay_JB6Dq .BaseBonusFreespins_buttonTransition_w7lkr {
+    padding: 0 15px
+}
+
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_buttonWhite_t61wA,
+.BaseBonusFreespins_modeMobile_BmFKy.BaseBonusFreespins_statusComplete_dwn1D .BaseBonusFreespins_buttonTransition_w7lkr {
+    display: none
+}
+
+.BaseBonusFreespins_buttonWhite_t61wA {
+    background-color: #fff;
+    box-shadow: 0 2px 4px #0ea15126, 0 4px 18px #0ea15126;
+    color: #090909
+}
+
+.BaseBonusFreespins_buttonTransition_w7lkr {
+    background-color: #0003;
+    text-shadow: 0 3px 5px rgba(9, 15, 30, .2)
+}
+
+.SkeletonPlaceholder_root_kmrJR {
+    background-color: #172033;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden
+}
+
+.SkeletonPlaceholder_root_kmrJR:before {
+    animation: SkeletonPlaceholder_shimmer_j0qiN 5s infinite;
+    background-image: linear-gradient(90deg, rgba(57, 71, 105, 0) 0, rgba(57, 71, 105, .2) 20%, rgba(57, 71, 105, .5) 60%, rgba(57, 71, 105, 0));
+    content: "";
+    inset: 0;
+    position: absolute;
+    transform: translate(-100%)
+}
+
+@keyframes SkeletonPlaceholder_shimmer_j0qiN {
+    to {
+        transform: translate(100%)
+    }
+}
+
+.CasinoProviderIcon_stub_hyyk0 {
+    position: relative
+}
+
+.CasinoProviderIcon_figure_cCHqq {
+    height: 100%;
+    width: 100%
+}
+
+.CasinoProviderIcon_default_F6uOd.CasinoProviderIcon_pink_U_wMC {
+    fill: url(#provider-pink)
+}
+
+.CasinoProviderIcon_default_F6uOd.CasinoProviderIcon_blue_rI71F {
+    fill: url(#provider-blue)
+}
+
+.CasinoProviderIcon_default_F6uOd.CasinoProviderIcon_green_PhTRn {
+    fill: url(#provider-green)
+}
+
+.CasinoProviderIcon_ls_qXsHN.CasinoProviderIcon_pink_U_wMC {
+    fill: #ff8227
+}
+
+.CasinoProviderIcon_ls_qXsHN.CasinoProviderIcon_blue_rI71F {
+    fill: #00c5b9
+}
+
+.CasinoProviderIcon_ls_qXsHN.CasinoProviderIcon_green_PhTRn {
+    fill: #00c968
+}
+
+.CasinoProviderIcon_logo_qGdW2 {
+    color: #000;
+    margin: 0;
+    max-height: 100%;
+    max-width: 100%;
+    position: absolute
+}
+
+.CasinoProviderIcon_logo_qGdW2.CasinoProviderIcon_default_F6uOd {
+    height: 32%;
+    left: 14%;
+    top: 34%;
+    width: 69%
+}
+
+.CasinoProviderIcon_logo_qGdW2.CasinoProviderIcon_ls_qXsHN {
+    height: 60%;
+    left: 20%;
+    opacity: .5;
+    top: 20%;
+    width: 60%
+}
+
+.CasinoNavigationBody_root_h9l4n {
+    max-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overflow: hidden auto
+}
+
+.CasinoNavigationBody_root_h9l4n .CasinoNavigationBody_hotButton_WdWB_,
+.CasinoNavigationBody_root_h9l4n .CasinoNavigationBody_popularButton_hFE8C {
+    align-items: center;
+    border-radius: 8px;
+    display: flex;
+    flex: 1;
+    height: 100%;
+    padding-left: 10px
+}
+
+.CasinoNavigationBody_root_h9l4n .CasinoNavigationBody_hotButton_WdWB_ .CasinoNavigationBody_hotpopularButtonIcon_OjgtI,
+.CasinoNavigationBody_root_h9l4n .CasinoNavigationBody_popularButton_hFE8C .CasinoNavigationBody_hotpopularButtonIcon_OjgtI {
+    height: 21px;
+    width: 21px
+}
+
+.CasinoNavigationBody_root_h9l4n .CasinoNavigationBody_hotButton_WdWB_ .CasinoNavigationBody_hotpopularButtonText_kU16e,
+.CasinoNavigationBody_root_h9l4n .CasinoNavigationBody_popularButton_hFE8C .CasinoNavigationBody_hotpopularButtonText_kU16e {
+    margin-left: 5px
+}
+
+.CasinoNavigationBody_root_h9l4n .CasinoNavigationBody_hotButton_WdWB_ .CasinoNavigationBody_hotpopularButtonText_kU16e .CasinoNavigationBody_hotpopularButtonTitle_YtkWh,
+.CasinoNavigationBody_root_h9l4n .CasinoNavigationBody_popularButton_hFE8C .CasinoNavigationBody_hotpopularButtonText_kU16e .CasinoNavigationBody_hotpopularButtonTitle_YtkWh {
+    font-size: 11px;
+    font-weight: 600
+}
+
+.CasinoNavigationBody_root_h9l4n .CasinoNavigationBody_hotButton_WdWB_ .CasinoNavigationBody_hotpopularButtonText_kU16e .CasinoNavigationBody_hotpopularButtonValue_E7ZcN,
+.CasinoNavigationBody_root_h9l4n .CasinoNavigationBody_popularButton_hFE8C .CasinoNavigationBody_hotpopularButtonText_kU16e .CasinoNavigationBody_hotpopularButtonValue_E7ZcN {
+    display: flex;
+    font-size: 10px;
+    letter-spacing: .23px;
+    opacity: .5
+}
+
+.CasinoNavigationBody_root_h9l4n .CasinoNavigationBody_category_A16Gb {
+    margin-bottom: 15px
+}
+
+.CasinoNavigationBody_root_h9l4n .CasinoNavigationBody_providers_q5ft_ {
+    margin-top: 5px
+}
+
+.CasinoNavigationBody_root_h9l4n .CasinoNavigationBody_list_WK_qw {
+    padding: 5px 3px 0
+}
+
+.CasinoNavigationBody_itemName_ah4Qx {
+    margin-left: 1px
+}
+
+.CasinoNavigationBody_groupTitle_JaOJS {
+    color: #7388b6;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: -.12px;
+    line-height: 13px;
+    opacity: .5;
+    padding: 5px 12px 0;
+    text-transform: uppercase
+}
+
+.CasinoNavigationBody_title_xOyOr {
+    color: #7388b6;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: -.12px;
+    margin: 0 15px;
+    opacity: .3;
+    text-transform: uppercase
+}
+
+.CasinoNavigationBody_buttons_YVT07 {
+    display: flex;
+    height: 41px;
+    margin: 15px 15px 0
+}
+
+.CasinoNavigationBody_buttons_YVT07 .CasinoNavigationBody_hotButton_WdWB_ {
+    background: linear-gradient(250deg, #26223c, rgba(255, 23, 183, .4) 84%, #4b2b66);
+    margin-right: 10px
+}
+
+.CasinoNavigationBody_buttons_YVT07 .CasinoNavigationBody_hotButton_WdWB_:hover {
+    background: linear-gradient(250deg, rgba(38, 34, 60, .5), rgba(255, 23, 183, .2) 84%, rgba(75, 43, 102, .5))
+}
+
+.CasinoNavigationBody_buttons_YVT07 .CasinoNavigationBody_popularButton_hFE8C {
+    background: linear-gradient(250deg, #1c2837, rgba(0, 168, 88, .3) 84%, #194353)
+}
+
+.CasinoNavigationBody_buttons_YVT07 .CasinoNavigationBody_popularButton_hFE8C:hover {
+    background: linear-gradient(250deg, rgba(28, 40, 55, .5), rgba(0, 168, 88, .15) 84%, rgba(25, 67, 83, .5))
+}
+
+.CasinoNavigationBody_listItem_LuE6B {
+    border-radius: 12px;
+    height: 45px;
+    position: relative
+}
+
+.CasinoNavigationBody_listItem_LuE6B .CasinoNavigationBody_itemLink__5TlO {
+    align-items: center;
+    display: flex;
+    min-height: 43px;
+    padding: 9px 12px
+}
+
+.CasinoNavigationBody_listItem_LuE6B .CasinoNavigationBody_itemLink__5TlO .CasinoNavigationBody_itemIcon_lxKj4 {
+    color: #fff;
+    height: 25px;
+    width: 25px
+}
+
+.CasinoNavigationBody_listItem_LuE6B .CasinoNavigationBody_itemLink__5TlO .CasinoNavigationBody_itemName_ah4Qx {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .28px;
+    margin-left: 12px;
+    margin-right: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.CasinoNavigationBody_listItem_LuE6B .CasinoNavigationBody_itemLink__5TlO .CasinoNavigationBody_itemCount_DGpaB {
+    color: #7388b6;
+    font-size: 10px;
+    letter-spacing: .23px;
+    margin-left: auto;
+    text-align: right
+}
+
+.CasinoNavigationBody_listItem_LuE6B:not(:last-child):before {
+    background-color: #262e4880;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: 12px;
+    position: absolute;
+    right: 12px
+}
+
+.CasinoNavigationBody_listItem_LuE6B:hover {
+    background-color: #1f2941;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none
+}
+
+.CasinoNavigationBody_listItem_LuE6B.CasinoNavigationBody_active_jmj4H {
+    background-image: linear-gradient(260deg, #00ff86, #00a858 48%, #00a858);
+    box-shadow: 0 2px 14px #00bc6333;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none
+}
+
+.CasinoNavigationBody_listItem_LuE6B.CasinoNavigationBody_active_jmj4H:before {
+    background-color: transparent
+}
+
+.CasinoNavigationBody_listItem_LuE6B.CasinoNavigationBody_active_jmj4H .CasinoNavigationBody_itemLink__5TlO .itemIcon [class$=_svg__primary] {
+    fill: #ffffff80
+}
+
+.CasinoNavigationBody_listItem_LuE6B.CasinoNavigationBody_active_jmj4H .CasinoNavigationBody_itemLink__5TlO .CasinoNavigationBody_itemName_ah4Qx {
+    opacity: .8
+}
+
+.CasinoNavigationBody_listItem_LuE6B.CasinoNavigationBody_active_jmj4H .CasinoNavigationBody_itemLink__5TlO .CasinoNavigationBody_itemCount_DGpaB {
+    color: #091123
+}
+
+.CasinoNavigationHeader_root_Cqw4F {
+    display: flex;
+    flex-shrink: 0;
+    margin: 15px
+}
+
+.CasinoNavigationHeader_root_Cqw4F .CasinoNavigationHeader_favorites_Nc2Iq {
+    align-items: center;
+    background-color: #ffd0311a;
+    border-radius: 10px;
+    color: #ffd031;
+    display: flex;
+    height: 34px;
+    justify-content: center;
+    margin-left: 5px;
+    width: 34px
+}
+
+.CasinoNavigationHeader_root_Cqw4F .CasinoNavigationHeader_favorites_Nc2Iq:hover {
+    background-color: #ffd03133
+}
+
+.CasinoNavigationHeader_root_Cqw4F .CasinoNavigationHeader_favorites_Nc2Iq.CasinoNavigationHeader_active_K3CUY {
+    background-color: #ffd031;
+    color: #141b2f
+}
+
+.CasinoNavigationHeader_root_Cqw4F .CasinoNavigationHeader_favorites_Nc2Iq .CasinoNavigationHeader_favoritesIcon_O61aQ {
+    font-size: 18px
+}
+
+.CasinoNavigationHeader_searchField_nS7Kc {
+    background-color: #1f2941;
+    border-radius: 10px;
+    display: flex;
+    flex: 1;
+    height: 34px;
+    position: relative
+}
+
+.CasinoNavigationHeader_searchField_nS7Kc .CasinoNavigationHeader_searchIcon_ZtuCO {
+    align-self: center;
+    color: #7388b6;
+    font-size: 17px;
+    left: 17.5px;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(-50%);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none
+}
+
+.CasinoNavigationHeader_searchInput_oFk3F {
+    color: #7388b6;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -.19px;
+    padding-left: 35px;
+    width: 201px
+}
+
+.CasinoNavigationHeader_searchInput_oFk3F::-moz-placeholder {
+    color: #7388b6;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -.19px;
+    opacity: .3
+}
+
+.CasinoNavigationHeader_searchInput_oFk3F::placeholder {
+    color: #7388b6;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -.19px;
+    opacity: .3
+}
+
+.CasinoNavigation_root_L9SUW {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%
+}
+
+.CasinoNavigation_body_WZun9 {
+    flex: 1;
+    margin-bottom: 15px
+}
+
+.CasinoNavigation_skeleton_FZV3e {
+    border-radius: 12px;
+    height: 776px
+}
+
+.CasinoNavigation_bonusFreespins_MKH6W {
+    border-radius: 10px;
+    margin-bottom: 15px
+}
+
+.CasinoNavigation_content_hFkfY {
+    background-color: #141b2f;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative
+}
+
+.CasinoNavigation_content_hFkfY:after {
+    background: linear-gradient(to bottom, rgba(20, 27, 47, 0), #141b2f);
+    border-radius: 12px;
+    bottom: 0;
+    content: "";
+    height: 54px;
+    pointer-events: none;
+    position: absolute;
+    width: 100%
+}

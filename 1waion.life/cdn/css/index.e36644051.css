@@ -1,0 +1,181 @@
+:root {
+    --color-n900: rgb(9, 15, 30);
+    --color-n800: rgb(22, 29, 46);
+    --color-n700: rgb(35, 45, 69);
+    --color-n600: rgb(48, 59, 88);
+    --color-n500: rgb(68, 80, 110);
+    --color-n400: rgb(92, 104, 132);
+    --color-n300: rgb(119, 130, 155);
+    --color-n200: rgb(125, 137, 165);
+    --color-n100: rgb(131, 145, 175);
+    --color-n90: rgb(137, 152, 185);
+    --color-n80: rgb(143, 159, 195);
+    --color-n70: rgb(148, 166, 205);
+    --color-n60: rgb(159, 175, 211);
+    --color-n50: rgb(171, 185, 218);
+    --color-n40: rgb(183, 195, 225);
+    --color-n30: rgb(196, 206, 231);
+    --color-n20: rgb(220, 228, 249);
+    --color-n10: rgb(237, 242, 255);
+    --color-n0: rgb(255, 255, 255);
+    --color-blk900: rgb(0, 0, 0);
+    --color-blk800: rgba(0, 0, 0, .9);
+    --color-blk700: rgba(0, 0, 0, .85);
+    --color-blk600: rgba(0, 0, 0, .8);
+    --color-blk500: rgba(0, 0, 0, .75);
+    --color-blk400: rgba(0, 0, 0, .7);
+    --color-blk300: rgba(0, 0, 0, .65);
+    --color-blk200: rgba(0, 0, 0, .6);
+    --color-blk100: rgba(0, 0, 0, .55);
+    --color-blk90: rgba(0, 0, 0, .5);
+    --color-blk80: rgba(0, 0, 0, .45);
+    --color-blk70: rgba(0, 0, 0, .4);
+    --color-blk60: rgba(0, 0, 0, .35);
+    --color-blk50: rgba(0, 0, 0, .3);
+    --color-blk40: rgba(0, 0, 0, .25);
+    --color-blk30: rgba(0, 0, 0, .2);
+    --color-blk20: rgba(0, 0, 0, .15);
+    --color-blk15: rgba(0, 0, 0, .12);
+    --color-blk10: rgba(0, 0, 0, .1);
+    --color-blk5: rgba(0, 0, 0, .08);
+    --color-w900: rgb(255, 255, 255);
+    --color-w800: rgba(255, 255, 255, .9);
+    --color-w700: rgba(255, 255, 255, .85);
+    --color-w600: rgba(255, 255, 255, .8);
+    --color-w500: rgba(255, 255, 255, .75);
+    --color-w400: rgba(255, 255, 255, .7);
+    --color-w300: rgba(255, 255, 255, .65);
+    --color-w200: rgba(255, 255, 255, .6);
+    --color-w100: rgba(255, 255, 255, .55);
+    --color-w90: rgba(255, 255, 255, .5);
+    --color-w80: rgba(255, 255, 255, .45);
+    --color-w70: rgba(255, 255, 255, .4);
+    --color-w60: rgba(255, 255, 255, .35);
+    --color-w50: rgba(255, 255, 255, .3);
+    --color-w40: rgba(255, 255, 255, .25);
+    --color-w30: rgba(255, 255, 255, .2);
+    --color-w20: rgba(255, 255, 255, .15);
+    --color-w15: rgba(255, 255, 255, .12);
+    --color-w10: rgba(255, 255, 255, .1);
+    --color-w5: rgba(255, 255, 255, .08);
+    --color-b300: rgb(9, 109, 255);
+    --color-g300: rgb(18, 184, 87);
+    --color-o300: rgb(252, 84, 21);
+    --color-y300: rgb(233, 171, 15);
+    --color-st-sf-dark-primary: var(--color-blk900);
+    --color-st-sf-dark-secondary: var(--color-blk90);
+    --color-st-sf-dark-tertiary: var(--color-blk30);
+    --color-st-sf-light-primary: var(--color-w900);
+    --color-st-sf-light-secondary: var(--color-w90);
+    --color-st-sf-light-tertiary: var(--color-w30);
+    --color-st-sf-border-surface: var(--color-w15);
+    --color-st-sf-border-control: var(--color-w40);
+    --color-st-sf-divider: var(--color-w15);
+    --color-st-text-dark-primary: var(--color-blk900);
+    --color-st-text-dark-secondary: var(--color-blk500);
+    --color-st-text-dark-tertiary: var(--color-blk90);
+    --color-st-text-light-primary: var(--color-w900);
+    --color-st-text-light-secondary: var(--color-w500);
+    --color-st-text-light-tertiary: var(--color-w90);
+    --color-st-focus: rgba(255, 255, 255, .48);
+    --color-st-hover-default-light: rgba(255, 255, 255, .04);
+    --color-st-hover-accent-light: rgba(255, 255, 255, .08);
+    --color-st-hover-default-dark: rgba(0, 0, 0, .04);
+    --color-st-hover-accent-dark: rgba(0, 0, 0, .08)
+}
+
+.colorSchemeDark {
+    --color-sf-background: var(--color-n900);
+    --color-sf-primary: var(--color-n800);
+    --color-sf-tertiary: var(--color-n600);
+    --color-sf-secondary: var(--color-n700);
+    --color-sf-border-control: rgba(119, 130, 155, .28);
+    --color-sf-border-surface: rgba(119, 130, 155, .2);
+    --color-sf-divider: rgba(119, 130, 155, .2);
+    --color-sf-scrim: rgba(9, 15, 30, .6);
+    --color-sf-scrim-hard: rgba(9, 15, 30, .95);
+    --color-text-primary: var(--color-n0);
+    --color-text-secondary: var(--color-n70);
+    --color-text-tertiary: var(--color-n100);
+    --color-text-link: var(--color-b300);
+    --color-gd-blue: rgb(0, 149, 255), rgb(8, 85, 196);
+    --color-gd-green: rgb(49, 188, 105), rgb(8, 158, 78);
+    --color-fn-base: var(--color-b300);
+    --color-fn-base-secondary: rgba(9, 109, 255, .1);
+    --color-fn-success: var(--color-g300);
+    --color-fn-success-secondary: rgba(18, 184, 87, .1);
+    --color-fn-warning: var(--color-y300);
+    --color-fn-warning-secondary: rgba(233, 171, 15, .1);
+    --color-fn-error: var(--color-o300);
+    --color-fn-error-secondary: rgba(252, 84, 21, .1);
+    --color-focus: rgba(9, 109, 255, .48);
+    --color-hover-default: rgba(255, 255, 255, .04);
+    --color-hover-accent: rgba(255, 255, 255, .08)
+}
+
+.colorSchemeLight {
+    --color-sf-background: var(--color-n0);
+    --color-sf-primary: var(--color-n10);
+    --color-sf-tertiary: var(--color-n30);
+    --color-sf-secondary: var(--color-n20);
+    --color-sf-border-control: rgba(119, 130, 155, .28);
+    --color-sf-border-surface: rgba(119, 130, 155, .2);
+    --color-sf-divider: rgba(119, 130, 155, .2);
+    --color-sf-scrim: rgba(9, 15, 30, .4);
+    --color-sf-scrim-hard: rgba(9, 15, 30, .95);
+    --color-text-primary: var(--color-n900);
+    --color-text-secondary: var(--color-n300);
+    --color-text-tertiary: var(--color-n90);
+    --color-text-link: var(--color-b300);
+    --color-gd-blue: rgb(0, 149, 255), rgb(8, 85, 196);
+    --color-gd-green: rgb(49, 188, 105), rgb(8, 158, 78);
+    --color-fn-base: var(--color-b300);
+    --color-fn-base-secondary: rgba(9, 109, 255, .1);
+    --color-fn-success: var(--color-g300);
+    --color-fn-success-secondary: rgba(18, 184, 87, .1);
+    --color-fn-warning: var(--color-y300);
+    --color-fn-warning-secondary: rgba(233, 171, 15, .1);
+    --color-fn-error: var(--color-o300);
+    --color-fn-error-secondary: rgba(252, 84, 21, .1);
+    --color-focus: rgba(9, 109, 255, .48);
+    --color-hover-default: rgba(0, 0, 0, .04);
+    --color-hover-accent: rgba(0, 0, 0, .08)
+}
+
+:root {
+    --rounding-2xs-dynamic: 4px;
+    --rounding-2xs-static: 4px;
+    --rounding-xs-dynamic: 8px;
+    --rounding-xs-static: 8px;
+    --rounding-s-dynamic: 10px;
+    --rounding-s-static: 10px;
+    --rounding-m-dynamic: 12px;
+    --rounding-m-static: 12px;
+    --rounding-l-dynamic: 16px;
+    --rounding-l-static: 16px;
+    --rounding-xl-static: 24px;
+    --rounding-max: 999px
+}
+
+:root {
+    --spacing-1: 2px;
+    --spacing-2: 4px;
+    --spacing-3: 8px;
+    --spacing-4: 12px;
+    --spacing-5: 16px;
+    --spacing-6: 20px;
+    --spacing-7: 24px;
+    --spacing-8: 28px;
+    --spacing-9: 32px
+}
+
+:root {
+    --font-family-display: -apple-system, "SF Pro Display", "SF Pro Text", sans-serif;
+    --font-family-text: -apple-system, "SF Pro Text", sans-serif;
+    --font-family-mono: -apple-system, "SF Mono", monospace
+}
+
+:root {
+    --z-index-overlay: 10000;
+    --z-index-tooltip: 10001
+}

@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/predictor-api/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/predictor-setup",
+      "dest": "server.js"
+    },
+    {
+      "src": "/predictor",
+      "dest": "server.js"
+    },
+    {
+      "src": "/mines/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/static/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/prod-rnd-frontend-php-orchestra.100hp.app/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "server.js"
+    }
+  ]
+}

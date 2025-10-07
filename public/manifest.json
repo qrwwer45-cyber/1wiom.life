@@ -1,0 +1,11 @@
+{
+  "name": "1win",
+  "short_name": "1win",
+  "start_url": "/mines/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "description": "Games app",
+  "lang": "en",
+  "icons": []
+}

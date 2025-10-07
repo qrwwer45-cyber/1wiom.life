@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'Halvar Breit Blk';
+    src: local('Halvar Breitschrift Black'), local('HalvarBreit-Blk'), url('HalvarBreit-Blk.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Halvar Breit Lt';
+    src: local('Halvar Breitschrift Light'), local('HalvarBreit-Lt'), url('HalvarBreit-Lt.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Halvar Breit Md';
+    src: local('Halvar Breitschrift Medium'), local('HalvarBreit-Md'), url('HalvarBreit-Md.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Halvar Breit Rg';
+    src: local('Halvar Breitschrift Bold'), local('HalvarBreit-Bd'), url('HalvarBreit-Bd.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Halvar Breit XBd';
+    src: local('Halvar Breitschrift ExtraBold'), local('HalvarBreit-XBd'), url('HalvarBreit-XBd.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Halvar Breit Th';
+    src: local('Halvar Breitschrift Thin'), local('HalvarBreit-Th'), url('HalvarBreit-Th.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Halvar Breit XTh';
+    src: local('Halvar Breitschrift ExtraThin'), local('HalvarBreit-XTh'), url('HalvarBreit-XTh.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Halvar Breit Hl';
+    src: local('Halvar Breitschrift Hairline'), local('HalvarBreit-Hl'), url('HalvarBreit-Hl.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Halvar Breit Hl';
+    src: local('Halvar Breitschrift Hairline'), local('HalvarBreit-Hl'), url('HalvarBreit-Hl_1.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Halvar Breit Rg';
+    src: local('Halvar Breitschrift Regular'), local('HalvarBreit-Rg'), url('HalvarBreit-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

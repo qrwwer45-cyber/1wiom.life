@@ -1,0 +1,13 @@
+# Исключаем ненужные файлы из деплоя
+node_modules/
+.git/
+*.log
+.DS_Store
+Thumbs.db
+
+# Исключаем исходные файлы, оставляем только public
+!public/
+!api/
+!vercel.json
+!package.json
+!package-lock.json

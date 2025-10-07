@@ -1,0 +1,65 @@
+@import './bg-small-lights';
+
+.mines {
+  &__bg {
+    background: radial-gradient(
+                    50% 50% at 50% 50%,
+                    #151b2e 0%,
+                    rgba(21, 27, 46, 0) 100%
+    );
+
+    .mines-footer {
+      @apply h-[155px] tablet:h-[120px] w-full;
+      @media screen and (max-width: 425px) {
+        min-width: 421px;
+        height: 80px;
+      }
+
+      &__wrapper {
+        @apply flex justify-center h-44 absolute bottom-0 w-full;
+        align-items: flex-end;
+        z-index: -2;
+
+        &::after {
+          @apply top-[10px] tablet:top-[45px] mobile:hidden;
+          @include lights;
+          right: 3%;
+          transform: rotate(0.1turn);
+        }
+
+        &::before {
+          @apply top-[10px] tablet:top-[45px] mobile:hidden;
+          @include lights;
+          left: -0.67%;
+        }
+      }
+    }
+
+    .mines-win-popup {
+      @apply flex flex-col justify-center items-center;
+      background-image: url('../../../img/mines/wins.webp');
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
+      width: 500px;
+      @screen mobile {
+        width: 295px;
+      }
+      .win-amount {
+        @apply pt-[400px] text-[35px] text-white font-bold;
+        font-family: 'Halvar Breit XBd', sans-serif;
+        @screen mobile {
+          font-size: 22px;
+          padding-top: 280px;
+        }
+      }
+
+      .win-popup-btn {
+        &.big {
+          @apply py-[18px] px-[47px] text-[24px] mt-12 font-extrabold uppercase mobile:mt-9;
+          width: fit-content;
+        }
+      }
+    }
+  }
+}

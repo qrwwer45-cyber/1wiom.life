@@ -1,0 +1,177 @@
+/* jackpot.css */
+
+/* Анимация появления */
+
+.modall {
+    opacity: 0;
+    /* Начальное состояние: невидимо */
+    transform: translateY(-20px);
+    /* Сдвинем модальное окно немного вверх */
+    transition: opacity 10s ease-in-out, transform 3s ease-in-out;
+    /* Плавный переход с ease-in-out */
+}
+
+/* Общие стили для модального окна */
+
+.modal.active {
+    opacity: 1;
+    /* Полная непрозрачность при активации */
+    transform: translateY(0);
+    /* Вернем модальное окно на место */
+    -webkit-text-size-adjust: 100%;
+    font-feature-settings: normal;
+    tab-size: 4;
+    line-height: inherit;
+    font-family: Halvar Breit Blk, sans-serif;
+    font-weight: 700;
+    border: 0 solid #e5e7eb;
+    box-sizing: border-box;
+    font-size: 100%;
+    margin: 0;
+    padding: 8px;
+    vertical-align: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+    background: rgba(9, 15, 30, .7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* Добавлено для предотвращения смещения */
+    bottom: 0;
+    /* Добавлено для предотвращения смещения */
+    margin: auto;
+    /* Центрирование */
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    opacity: 1;
+    transition: .5s;
+    pointer-events: all;
+}
+
+/* Стили для содержимого модального окна */
+
+.mines-win-popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* Добавьте это, если его еще нет */
+}
+
+/* Стили для изображения */
+
+.mines-win-popup img {
+    display: block;
+    margin: auto;
+    max-width: 65%;
+    height: auto;
+}
+
+/* Стили для кнопки "Забрать" */
+
+.WinJackpotButton {
+    pointer-events: all;
+    cursor: pointer !important;
+    color: #f3f3f3;
+    font-family: "FS Elliot Pro", sans-serif;
+    font-style: normal;
+    line-height: 18px;
+    text-align: center;
+    font-weight: 800;
+    text-transform: uppercase;
+    border: none;
+    /* Убрали border для соответствия стилям */
+    background: linear-gradient(272.98deg, #fdbb4e 2.23%, #f56719 95.05%);
+    /* Градиентный фон */
+    padding: 18px 47px;
+    /* Отступы для кнопки */
+    border-radius: 8px;
+    /* Скругление углов */
+    font-size: 24px;
+    /* Размер шрифта */
+    margin-top: 40px;
+    /* Увеличиваем отступ сверху для кнопки */
+    transition: background-color 0.3s, transform 0.3s;
+    /* Плавный переход цвета фона и трансформации */
+}
+
+/* Анимация при наведении */
+
+.WinJackpotButton:hover {
+    background: linear-gradient(272.98deg, #f56719 2.23%, #fdbb4e 95.05%);
+    /* Изменение градиента */
+    transform: scale(1.05);
+    /* Увеличение кнопки при наведении */
+}
+
+.take-win-button:hover {
+    background-color: #e74c3c;
+    /* Цвет при наведении */
+}
+
+/* jackpot.css */
+
+/* Стили для суммы */
+
+.winJackpotAmount {
+    font-family: "Halvar Breit XBd", sans-serif;
+    font-weight: 700;
+    color: #fff;
+    /* Установите цвет текста */
+    line-height: 1.5;
+    /* Установите межстрочный интервал */
+    font-size: 2rem;
+    /* Размер шрифта */
+    text-align: center;
+    /* Центрирование текста */
+    padding: 10px;
+    /* Отступы */
+    border-radius: 5px;
+    /* Скругление углов */
+    pointer-events: all;
+    /* Разрешить взаимодействие */
+    margin-top: -140px;
+    /* Отступ сверху от изображения */
+}
+
+/* Анимация исчезновения */
+
+.modal.fade-out {
+    opacity: 0;
+    /* Уменьшаем непрозрачность до 0 */
+    transition: opacity 0.5s ease;
+    /* Плавный переход */
+}
+
+/* Адаптация модального окна под мобильные устройства */
+
+@media (max-width: 768px) {
+    .modal.active {
+        flex-direction: column;
+        padding: 16px;
+    }
+    .mines-win-popup {
+        width: 100%;
+        padding: 0 12px;
+        box-sizing: border-box;
+    }
+    .mines-win-popup img {
+        max-width: 90%;
+        height: auto;
+    }
+    .winJackpotAmount {
+        font-size: 1.5rem;
+        margin-top: -80px;
+    }
+    .WinJackpotButton {
+        font-size: 18px;
+        padding: 14px 32px;
+        width: 100%;
+        max-width: 300px;
+    }
+}

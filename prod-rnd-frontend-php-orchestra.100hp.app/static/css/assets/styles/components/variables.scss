@@ -1,0 +1,9 @@
+$red-color: #C22E3D;
+$double-header-buttons-bg: #1E263F;
+$double-main-bg: #1A2238;
+$double-secondary-bg: #0A0F1E;
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
